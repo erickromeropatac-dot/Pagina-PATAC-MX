@@ -1,0 +1,26 @@
+# robots.txt para PATAC México
+
+# Permitir acceso a todos los bots de búsqueda
+User-agent: *
+Allow: /
+
+# Bloquear directorios administrativos o privados (si existen)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://pagina-patac-mx.vercel.app/sitemap.xml
+
+# Bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Tiempo de rastreo (crawl-delay)
+Crawl-delay: 1
