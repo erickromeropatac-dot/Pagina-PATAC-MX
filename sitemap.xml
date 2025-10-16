@@ -6,7 +6,7 @@
 
   <!-- Página principal -->
   <url>
-    <loc>https://patac.org/</loc>
+    <loc>https://pagina-patac-mx.vercel.app/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Sección Inicio -->
   <url>
-    <loc>https://patac.org/#inicio</loc>
+    <loc>https://pagina-patac-mx.vercel.app/#inicio</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Sección Misión -->
   <url>
-    <loc>https://patac.org/#mision</loc>
+    <loc>https://pagina-patac-mx.vercel.app/#mision</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!-- Sección Impacto -->
   <url>
-    <loc>https://patac.org/#impacto</loc>
+    <loc>https://pagina-patac-mx.vercel.app/#impacto</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
 
   <!-- Sección Voluntariado -->
   <url>
-    <loc>https://patac.org/#voluntariado</loc>
+    <loc>https://pagina-patac-mx.vercel.app/#voluntariado</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -46,7 +46,7 @@
 
   <!-- Sección Contacto -->
   <url>
-    <loc>https://patac.org/#contacto</loc>
+    <loc>https://pagina-patac-mx.vercel.app/#contacto</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
