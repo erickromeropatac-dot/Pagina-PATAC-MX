@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultura y Patrimonio | PATAC México</title>
+    <meta name="description" content="Descubre la riqueza del patrimonio textil indígena de México. Aprende sobre técnicas ancestrales y la historia detrás de cada pieza.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Cultura específico */
+        .cultura-hero {
+            min-height: 70vh;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.92) 0%, rgba(199, 91, 57, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .cultura-hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .cultura-hero-content p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .cultura-intro {
+            max-width: 900px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .cultura-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cultura-intro p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--dark);
+            opacity: 0.85;
+        }
+
+        .articles-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 70px rgba(139, 69, 19, 0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: var(--light);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.15);
+        }
+
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1rem;
+        }
+
+        .article-date {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .article-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .article-author {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .article-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .modal-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--dark);
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 5rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        .loading {
+            color: var(--primary);
+        }
+
+        .error {
+            color: var(--accent);
+        }
+
+        .error h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .cultura-hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .modal-body {
+                padding: 2rem;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Home">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="cultura.html">Cultura</a></li>
+                <li><a href="index.html#voluntariado">Voluntariado</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cultura-hero">
+        <div class="cultura-hero-content">
+            <h1>Patrimonio Cultural de México</h1>
+            <p>Descubre las historias, técnicas y tradiciones ancestrales que viven en cada hilo tejido por las manos expertas de nuestros artesanos</p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="cultura-intro">
+        <h2>Preservando la Memoria Textil</h2>
+        <p>Los textiles indígenas de México son documentos vivos que narran la cosmovisión, identidad e historia de los pueblos originarios. Cada técnica, color y diseño es una expresión cultural que se transmite de generación en generación.</p>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles-container">
+        <div id="articulos-container">
+            <div class="loading">
+                <p>Cargando artículos culturales...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Modal -->
+    <div id="article-modal" class="article-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>PATAC México</h3>
+                <p>Productos Artesanales Textiles de Arte y Cultura</p>
+                <p>Preservando el patrimonio biocultural de México y fortaleciendo comunidades a través de la economía social y solidaria.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="cultura.html">Cultura</a></li>
+                    <li><a href="index.html#voluntariado">Voluntariado</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/525525213142">WhatsApp: 52 55 2521 3142</a></li>
+                    <li><a href="mailto:contacto@patac.org">Email: contacto@patac.org</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Tejiendo el futuro cultural de México</p>
+        </div>
+    </footer>
+
+    <script>
+        // API endpoint
+        const API_URL = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/articulosCulturales';
+
+        // Load articles
+        async function loadArticles() {
+            const container = document.getElementById('articulos-container');
+            
+            try {
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Error al cargar artículos');
+                }
+                
+                const data = await response.json();
+                const articulos = data.articulosCulturales;
+
+                if (!articulos || articulos.length === 0) {
+                    container.innerHTML = '<div class="error"><h3>No hay artículos disponibles</h3><p>Pronto publicaremos nuevo contenido cultural.</p></div>';
+                    return;
+                }
+
+                // Sort by date (newest first)
+                articulos.sort((a, b) => new Date(b.fechaPublicacion) - new Date(a.fechaPublicacion));
+
+                // Build articles grid
+                const grid = document.createElement('div');
+                grid.className = 'articles-grid';
+
+                articulos.forEach(articulo => {
+                    const card = createArticleCard(articulo);
+                    grid.appendChild(card);
+                });
+
+                container.innerHTML = '';
+                container.appendChild(grid);
+
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = '<div class="error"><h3>Error al cargar artículos</h3><p>Por favor, intenta nuevamente más tarde.</p></div>';
+            }
+        }
+
+        // Create article card
+        function createArticleCard(articulo) {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            card.onclick = () => openModal(articulo);
+
+            const fecha = new Date(articulo.fechaPublicacion).toLocaleDateString('es-MX', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Get excerpt (first 200 chars)
+            const excerpt = articulo.contenido.substring(0, 200) + '...';
+
+            card.innerHTML = `
+                <div class="article-image">
+                    <img src="${articulo.urlImagenPortada}" alt="Cultural heritage of Mexico - ${articulo.titulo}" loading="lazy">
+                    <div class="article-overlay">
+                        <div class="article-date">${fecha}</div>
+                    </div>
+                </div>
+                <div class="article-content">
+                    <h3 class="article-title">${articulo.titulo}</h3>
+                    <p class="article-excerpt">${excerpt}</p>
+                    <div class="article-footer">
+                        <div class="article-author">📝 ${articulo.autor}</div>
+                        <span class="read-more">Leer más →</span>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Open modal
+        function openModal(articulo) {
+            const modal = document.getElementById('article-modal');
+            const modalBody = document.getElementById('modal-body');
+
+            const fecha = new Date(articulo.fechaPublicacion).toLocaleDateString('es-MX', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            modalBody.innerHTML = `
+                <div class="modal-image">
+                    <img src="${articulo.urlImagenPortada}" alt="Cultural heritage of Mexico - ${articulo.titulo}" loading="lazy">
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-title">${articulo.titulo}</h2>
+                    <div class="modal-meta">
+                        <div class="modal-meta-item">📝 ${articulo.autor}</div>
+                        <div class="modal-meta-item">📅 ${fecha}</div>
+                    </div>
+                    <div class="modal-text">${articulo.contenido}</div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on background click
+        document.getElementById('article-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Load articles on page load
+        document.addEventListener('DOMContentLoaded', loadArticles);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(26, 26, 26, 0.98)';
+                nav.style.boxShadow = '0 5px 30px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.background = 'rgba(26, 26, 26, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto | PATAC México</title>
+    <meta name="description" content="Descubre los detalles de esta pieza artesanal única creada por artesanos indígenas de México.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .product-detail-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 10rem 2rem 5rem;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb span {
+            color: var(--dark);
+            opacity: 0.6;
+            margin: 0 0.5rem;
+        }
+
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .product-gallery {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            background: var(--light);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 2rem 0;
+        }
+
+        .product-category-tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .product-price-section {
+            background: linear-gradient(135deg, var(--light), #fff);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--gold);
+        }
+
+        .product-price-large {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-price-large span {
+            font-size: 1.3rem;
+            opacity: 0.7;
+        }
+
+        .availability {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .availability.disponible {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .availability.agotado {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .product-description-full {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--dark);
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .product-specs {
+            margin: 3rem 0;
+        }
+
+        .product-specs h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .spec-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 140px;
+        }
+
+        .spec-value {
+            color: var(--dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn-primary,
+        .cta-buttons .btn-secondary {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .artisan-section {
+            background: linear-gradient(135deg, var(--light), #fff);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .artisan-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .artisan-info {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .artisan-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .artisan-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .artisan-details h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .artisan-location {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .artisan-story {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.9;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 5rem 2rem;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading h2, .error h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .product-gallery {
+                position: relative;
+                top: 0;
+            }
+
+            .artisan-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .artisan-photo {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .product-price-large {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn-primary,
+            .cta-buttons .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Home">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="cultura.html">Cultura</a></li>
+                <li><a href="index.html#voluntariado">Voluntariado</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Detail -->
+    <div class="product-detail-container" id="producto-container">
+        <div class="loading">
+            <h2>Cargando producto...</h2>
+            <p>Por favor espera un momento</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>PATAC México</h3>
+                <p>Productos Artesanales Textiles de Arte y Cultura</p>
+                <p>Preservando el patrimonio biocultural de México y fortaleciendo comunidades a través de la economía social y solidaria.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="cultura.html">Cultura</a></li>
+                    <li><a href="index.html#voluntariado">Voluntariado</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/525525213142">WhatsApp: 52 55 2521 3142</a></li>
+                    <li><a href="mailto:contacto@patac.org">Email: contacto@patac.org</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Tejiendo el futuro cultural de México</p>
+        </div>
+    </footer>
+
+    <script>
+        // API endpoints
+        const PRODUCTOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/productos';
+        const ARTESANOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/artesanos';
+
+        // Get product ID from URL
+        function getProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Load product and artisan data
+        async function loadProductDetail() {
+            const container = document.getElementById('producto-container');
+            const productId = getProductId();
+
+            if (!productId) {
+                container.innerHTML = `
+                    <div class="error">
+                        <h2>Producto no encontrado</h2>
+                        <p>No se especificó un producto válido.</p>
+                        <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                // Fetch products
+                const productResponse = await fetch(PRODUCTOS_API);
+                if (!productResponse.ok) throw new Error('Error al cargar producto');
+                
+                const productData = await productResponse.json();
+                const producto = productData.productos.find(p => p.idProducto == productId);
+
+                if (!producto) {
+                    throw new Error('Producto no encontrado');
+                }
+
+                // Fetch artisan data
+                const artesanoResponse = await fetch(ARTESANOS_API);
+                let artesano = null;
+                
+                if (artesanoResponse.ok) {
+                    const artesanoData = await artesanoResponse.json();
+                    artesano = artesanoData.artesanos.find(a => a.idArtesano == producto.idArtesano);
+                }
+
+                // Render product detail
+                container.innerHTML = renderProductDetail(producto, artesano);
+
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = `
+                    <div class="error">
+                        <h2>Error al cargar el producto</h2>
+                        <p>Por favor, intenta nuevamente más tarde.</p>
+                        <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Render product detail
+        function renderProductDetail(producto, artesano) {
+            const disponible = producto.disponible && producto.disponible.toLowerCase() === 'sí';
+            const whatsappMessage = `Hola, estoy interesado/a en el producto "${producto.nombre}"${artesano ? ` del artesano/a ${artesano.nombreCompleto}` : ''}. ¿Podrían darme más información?`;
+            const whatsappUrl = `https://wa.me/525525213142?text=${encodeURIComponent(whatsappMessage)}`;
+
+            return `
+                <div class="breadcrumb">
+                    <a href="index.html">Inicio</a>
+                    <span>/</span>
+                    <a href="catalogo.html">Catálogo</a>
+                    <span>/</span>
+                    <span>${producto.nombre}</span>
+                </div>
+
+                <div class="product-main">
+                    <div class="product-gallery">
+                        <div class="main-image">
+                            <img src="${producto.urlImagenPrincipal}" alt="Mexican textile art - ${producto.nombre}" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="product-details">
+                        <div class="product-category-tag">${producto.categoria || 'Artesanía'}</div>
+                        <h1 class="product-title">${producto.nombre}</h1>
+
+                        <div class="product-price-section">
+                            <div class="product-price-large">
+                                ${producto.precio.toLocaleString('es-MX')} <span>MXN</span>
+                            </div>
+                            <div class="availability ${disponible ? 'disponible' : 'agotado'}">
+                                ${disponible ? '✓ Disponible' : '✗ Agotado'}
+                            </div>
+                        </div>
+
+                        <div class="product-description-full">
+                            ${producto.descripcion}
+                        </div>
+
+                        <div class="product-specs">
+                            <h3>Especificaciones</h3>
+                            ${producto.tecnica ? `
+                                <div class="spec-item">
+                                    <div class="spec-label">Técnica:</div>
+                                    <div class="spec-value">${producto.tecnica}</div>
+                                </div>
+                            ` : ''}
+                            ${producto.materiales ? `
+                                <div class="spec-item">
+                                    <div class="spec-label">Materiales:</div>
+                                    <div class="spec-value">${producto.materiales}</div>
+                                </div>
+                            ` : ''}
+                            ${producto.categoria ? `
+                                <div class="spec-item">
+                                    <div class="spec-label">Categoría:</div>
+                                    <div class="spec-value">${producto.categoria}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="cta-buttons">
+                            <a href="${whatsappUrl}" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                                💬 Contactar para adquirir
+                            </a>
+                            <a href="catalogo.html" class="btn-secondary">
+                                ← Volver al catálogo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                ${artesano ? `
+                    <div class="artisan-section">
+                        <h3>Conoce al Artesano</h3>
+                        <div class="artisan-info">
+                            <div class="artisan-photo">
+                                <img src="${artesano.urlFotoPerfil}" alt="Artisan from Mexico - ${artesano.nombreCompleto}" loading="lazy">
+                            </div>
+                            <div class="artisan-details">
+                                <h4>${artesano.nombreCompleto}</h4>
+                                <div class="artisan-location">📍 ${artesano.comunidad}</div>
+                                <p class="artisan-story">${artesano.historiaPersonal}</p>
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+            `;}
