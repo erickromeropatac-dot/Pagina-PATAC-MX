@@ -374,152 +374,172 @@
 
     <script>
         // API endpoints
-        const PRODUCTOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/productos';
-        const ARTESANOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/artesanos';
+const PRODUCTOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/productos';
+const ARTESANOS_API = 'https://api.sheety.co/19d976c6541de9ec11e5e9401f71aac8/dbPatac/artesanos';
 
-        // Get product ID from URL
-        function getProductId() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id');
+// Get product ID from URL
+function getProductId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id');
+}
+
+// Load product and artisan data
+async function loadProductDetail() {
+    const container = document.getElementById('producto-container');
+    const productId = getProductId();
+
+    if (!productId) {
+        container.innerHTML = `
+            <div class="error">
+                <h2>Producto no encontrado</h2>
+                <p>No se especificó un producto válido.</p>
+                <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
+            </div>
+        `;
+        return;
+    }
+
+    try {
+        // Obtener todos los productos
+        const productResponse = await fetch(PRODUCTOS_API);
+        if (!productResponse.ok) throw new Error('Error al cargar la lista de productos');
+        
+        const productData = await productResponse.json();
+        // Sheety convierte id_producto a idProducto
+        const producto = productData.productos.find(p => p.idProducto == productId);
+
+        if (!producto) {
+            throw new Error('Producto específico no encontrado en la lista');
         }
 
-        // Load product and artisan data
-        async function loadProductDetail() {
-            const container = document.getElementById('producto-container');
-            const productId = getProductId();
-
-            if (!productId) {
-                container.innerHTML = `
-                    <div class="error">
-                        <h2>Producto no encontrado</h2>
-                        <p>No se especificó un producto válido.</p>
-                        <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
-                    </div>
-                `;
-                return;
-            }
-
-            try {
-                // Fetch products
-                const productResponse = await fetch(PRODUCTOS_API);
-                if (!productResponse.ok) throw new Error('Error al cargar producto');
-                
-                const productData = await productResponse.json();
-                const producto = productData.productos.find(p => p.idProducto == productId);
-
-                if (!producto) {
-                    throw new Error('Producto no encontrado');
-                }
-
-                // Fetch artisan data
-                const artesanoResponse = await fetch(ARTESANOS_API);
-                let artesano = null;
-                
-                if (artesanoResponse.ok) {
-                    const artesanoData = await artesanoResponse.json();
-                    artesano = artesanoData.artesanos.find(a => a.idArtesano == producto.idArtesano);
-                }
-
-                // Render product detail
-                container.innerHTML = renderProductDetail(producto, artesano);
-
-            } catch (error) {
-                console.error('Error:', error);
-                container.innerHTML = `
-                    <div class="error">
-                        <h2>Error al cargar el producto</h2>
-                        <p>Por favor, intenta nuevamente más tarde.</p>
-                        <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
-                    </div>
-                `;
-            }
+        // Obtener todos los artesanos
+        const artesanoResponse = await fetch(ARTESANOS_API);
+        let artesano = null;
+        
+        if (artesanoResponse.ok) {
+            const artesanoData = await artesanoResponse.json();
+            // Sheety convierte id_artesano a idArtesano
+            artesano = artesanoData.artesanos.find(a => a.idArtesano == producto.idArtesano);
         }
 
-        // Render product detail
-        function renderProductDetail(producto, artesano) {
-            const disponible = producto.disponible && producto.disponible.toLowerCase() === 'sí';
-            const whatsappMessage = `Hola, estoy interesado/a en el producto "${producto.nombre}"${artesano ? ` del artesano/a ${artesano.nombreCompleto}` : ''}. ¿Podrían darme más información?`;
-            const whatsappUrl = `https://wa.me/525525213142?text=${encodeURIComponent(whatsappMessage)}`;
+        // Renderizar el detalle del producto
+        container.innerHTML = renderProductDetail(producto, artesano);
 
-            return `
-                <div class="breadcrumb">
-                    <a href="index.html">Inicio</a>
-                    <span>/</span>
-                    <a href="catalogo.html">Catálogo</a>
-                    <span>/</span>
-                    <span>${producto.nombre}</span>
+    } catch (error) {
+        console.error('Error detallado:', error);
+        container.innerHTML = `
+            <div class="error">
+                <h2>Error al cargar el producto</h2>
+                <p>Ocurrió un problema al obtener los datos. Por favor, intenta nuevamente más tarde.</p>
+                <p style="font-size: 0.9rem; color: #888; margin-top: 1rem;">Detalles: ${error.message}</p>
+                <a href="catalogo.html" class="btn-primary" style="margin-top: 2rem;">Volver al catálogo</a>
+            </div>
+        `;
+    }
+}
+
+// Render product detail
+function renderProductDetail(producto, artesano) {
+    const disponible = producto.disponible && producto.disponible.toLowerCase() === 'sí';
+    const artesanoNombre = artesano ? artesano.nombreCompleto : ''; 
+    const whatsappMessage = `Hola, estoy interesado/a en el producto "${producto.nombre}"${artesanoNombre ? ` del artesano/a ${artesanoNombre}` : ''}. ¿Podrían darme más información?`;
+    const whatsappUrl = `https://wa.me/525525213142?text=${encodeURIComponent(whatsappMessage)}`;
+
+    return `
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a>
+            <span>/</span>
+            <a href="catalogo.html">Catálogo</a>
+            <span>/</span>
+            <span>${producto.nombre}</span>
+        </div>
+
+        <div class="product-main">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="${producto.urlImagenPrincipal}" alt="Mexican textile art - ${producto.nombre}" loading="lazy">
                 </div>
+            </div>
 
-                <div class="product-main">
-                    <div class="product-gallery">
-                        <div class="main-image">
-                            <img src="${producto.urlImagenPrincipal}" alt="Mexican textile art - ${producto.nombre}" loading="lazy">
-                        </div>
+            <div class="product-details">
+                <div class="product-category-tag">${producto.categoria || 'Artesanía'}</div>
+                <h1 class="product-title">${producto.nombre}</h1>
+
+                <div class="product-price-section">
+                    <div class="product-price-large">
+                        $${producto.precio.toLocaleString('es-MX')} <span>MXN</span>
                     </div>
-
-                    <div class="product-details">
-                        <div class="product-category-tag">${producto.categoria || 'Artesanía'}</div>
-                        <h1 class="product-title">${producto.nombre}</h1>
-
-                        <div class="product-price-section">
-                            <div class="product-price-large">
-                                ${producto.precio.toLocaleString('es-MX')} <span>MXN</span>
-                            </div>
-                            <div class="availability ${disponible ? 'disponible' : 'agotado'}">
-                                ${disponible ? '✓ Disponible' : '✗ Agotado'}
-                            </div>
-                        </div>
-
-                        <div class="product-description-full">
-                            ${producto.descripcion}
-                        </div>
-
-                        <div class="product-specs">
-                            <h3>Especificaciones</h3>
-                            ${producto.tecnica ? `
-                                <div class="spec-item">
-                                    <div class="spec-label">Técnica:</div>
-                                    <div class="spec-value">${producto.tecnica}</div>
-                                </div>
-                            ` : ''}
-                            ${producto.materiales ? `
-                                <div class="spec-item">
-                                    <div class="spec-label">Materiales:</div>
-                                    <div class="spec-value">${producto.materiales}</div>
-                                </div>
-                            ` : ''}
-                            ${producto.categoria ? `
-                                <div class="spec-item">
-                                    <div class="spec-label">Categoría:</div>
-                                    <div class="spec-value">${producto.categoria}</div>
-                                </div>
-                            ` : ''}
-                        </div>
-
-                        <div class="cta-buttons">
-                            <a href="${whatsappUrl}" class="btn-primary" target="_blank" rel="noopener noreferrer">
-                                💬 Contactar para adquirir
-                            </a>
-                            <a href="catalogo.html" class="btn-secondary">
-                                ← Volver al catálogo
-                            </a>
-                        </div>
+                    <div class="availability ${disponible ? 'disponible' : 'agotado'}">
+                        ${disponible ? '✓ Disponible' : '✗ Agotado'}
                     </div>
                 </div>
 
-                ${artesano ? `
-                    <div class="artisan-section">
-                        <h3>Conoce al Artesano</h3>
-                        <div class="artisan-info">
-                            <div class="artisan-photo">
-                                <img src="${artesano.urlFotoPerfil}" alt="Artisan from Mexico - ${artesano.nombreCompleto}" loading="lazy">
-                            </div>
-                            <div class="artisan-details">
-                                <h4>${artesano.nombreCompleto}</h4>
-                                <div class="artisan-location">📍 ${artesano.comunidad}</div>
-                                <p class="artisan-story">${artesano.historiaPersonal}</p>
-                            </div>
+                <div class="product-description-full">
+                    ${producto.descripcion}
+                </div>
+
+                <div class="product-specs">
+                    <h3>Especificaciones</h3>
+                    ${producto.tecnica ? `
+                        <div class="spec-item">
+                            <div class="spec-label">Técnica:</div>
+                            <div class="spec-value">${producto.tecnica}</div>
                         </div>
+                    ` : ''}
+                    ${producto.materiales ? `
+                        <div class="spec-item">
+                            <div class="spec-label">Materiales:</div>
+                            <div class="spec-value">${producto.materiales}</div>
+                        </div>
+                    ` : ''}
+                    ${producto.categoria ? `
+                        <div class="spec-item">
+                            <div class="spec-label">Categoría:</div>
+                            <div class="spec-value">${producto.categoria}</div>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="${whatsappUrl}" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                        💬 Contactar para adquirir
+                    </a>
+                    <a href="catalogo.html" class="btn-secondary">
+                        ← Volver al catálogo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        ${artesano ? `
+            <div class="artisan-section">
+                <h3>Conoce al Artesano</h3>
+                <div class="artisan-info">
+                    <div class="artisan-photo">
+                        <img src="${artesano.urlFotoPerfil}" alt="Artisan from Mexico - ${artesano.nombreCompleto}" loading="lazy">
                     </div>
-                ` : ''}
-            `;}
+                    <div class="artisan-details">
+                        <h4>${artesano.nombreCompleto}</h4>
+                        <div class="artisan-location">📍 ${artesano.comunidad}</div>
+                        <p class="artisan-story">${artesano.historiaPersonal}</p>
+                    </div>
+                </div>
+            </div>
+        ` : ''}
+    `;
+}
+
+// Load product on page load
+document.addEventListener('DOMContentLoaded', loadProductDetail);
+
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('.nav');
+    if (window.scrollY > 100) {
+        nav.style.background = 'rgba(26, 26, 26, 0.98)';
+        nav.style.boxShadow = '0 5px 30px rgba(0,0,0,0.3)';
+    } else {
+        nav.style.background = 'rgba(26, 26, 26, 0.95)';
+        nav.style.boxShadow = 'none';
+    }
+});

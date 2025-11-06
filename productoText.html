@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dynamic Background Sections</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Embedded CSS for section-specific backgrounds and transitions */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: opacity 0.5s ease, background-image 0.5s ease;
+            opacity: 0;
+        }
+        .section.active {
+            opacity: 1;
+            animation: fadeIn 1s ease;
+        }
+        #hero {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.85), rgba(199, 91, 57, 0.75)),
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600&q=80');
+        }
+        #section1 {
+            background: linear-gradient(rgba(245, 241, 236, 0.95), rgba(245, 241, 236, 0.95)),
+                        url('https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=1600&q=80');
+        }
+        #section2 {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.95), rgba(199, 91, 57, 0.9)),
+                        url('https://images.unsplash.com/photo-1544986581-efac024faf62?w=1600&q=80');
+        }
+        #section3 {
+            background: var(--white); /* Plain white for comparison */
+        }
+        #section4 {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.9)),
+                        url('https://images.unsplash.com/photo-1741085766062-b1a596c6fb91?w=1600&q=80');
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">PATAC México</a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="section-link">Inicio</a></li>
+                <li><a href="#section1" class="section-link">Artesanos</a></li>
+                <li><a href="#section2" class="section-link">Proyectos</a></li>
+                <li><a href="#section3" class="section-link">Testimonios (Blanco)</a></li>
+                <li><a href="#section4" class="section-link">CTA</a></li>
+            </ul>
+            <button class="nav-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+    <div class="nav-sidebar">
+        <div class="nav-sidebar-header">
+            <a href="#" class="nav-sidebar-logo">PATAC</a>
+            <button class="nav-sidebar-close">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="#hero" class="section-link">Inicio</a></li>
+            <li><a href="#section1" class="section-link">Artesanos</a></li>
+            <li><a href="#section2" class="section-link">Proyectos</a></li>
+            <li><a href="#section3" class="section-link">Testimonios (Blanco)</a></li>
+            <li><a href="#section4" class="section-link">CTA</a></li>
+        </ul>
+    </div>
+
+    <div class="quick-nav">
+        <ul class="quick-nav-list">
+            <li class="quick-nav-item"><a href="#hero" class="quick-nav-link section-link"><span class="quick-nav-tooltip">Inicio</span></a></li>
+            <li class="quick-nav-item"><a href="#section1" class="quick-nav-link section-link"><span class="quick-nav-tooltip">Artesanos</span></a></li>
+            <li class="quick-nav-item"><a href="#section2" class="quick-nav-link section-link"><span class="quick-nav-tooltip">Proyectos</span></a></li>
+            <li class="quick-nav-item"><a href="#section3" class="quick-nav-link section-link"><span class="quick-nav-tooltip">Testimonios</span></a></li>
+            <li class="quick-nav-item"><a href="#section4" class="quick-nav-link section-link"><span class="quick-nav-tooltip">CTA</span></a></li>
+        </ul>
+    </div>
+
+    <section id="hero" class="hero section">
+        <div class="hero-content">
+            <span class="hero-badge">Bienvenido</span>
+            <h1 class="hero-title">PATAC México</h1>
+            <p class="hero-tagline">Artesanía y Cultura</p>
+            <p class="hero-description">Explora nuestras secciones con fondos dinámicos y compara con fondo blanco.</p>
+            <div class="hero-buttons">
+                <a href="#section1" class="btn btn-primary section-link">Descubre Más</a>
+                <a href="#section4" class="btn btn-secondary section-link">Únete</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section1" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Artesanos</h2>
+                <p class="section-subtitle">Conoce el talento de los artesanos mexicanos.</p>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="card artisan-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1593697829995-b5a6ae2f79a8?auto=format&fit=crop&w=500&q=80" alt="Artesano">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Artesano 1</h3>
+                        <p class="card-description">Creando piezas únicas con técnicas tradicionales.</p>
+                    </div>
+                </div>
+                <div class="card artisan-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1578631618386-3c4da0b7e98b?auto=format&fit=crop&w=500&q=80" alt="Artesano">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Artesano 2</h3>
+                        <p class="card-description">Preservando la cultura a través del arte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section2" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-subtitle">Iniciativas para apoyar comunidades.</p>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="card card-project">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80" alt="Proyecto">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Proyecto 1</h3>
+                        <p class="card-description">Fomentando el comercio justo.</p>
+                    </div>
+                </div>
+                <div class="card card-project">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=500&q=80" alt="Proyecto">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Proyecto 2</h3>
+                        <p class="card-description">Capacitación para artesanos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section3" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Testimonios (Fondo Blanco)</h2>
+                <p class="section-subtitle">Historias que inspiran, sin fondo dinámico.</p>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Autor">
+                    </div>
+                    <p class="testimonial-quote">"PATAC ha transformado mi comunidad."</p>
+                    <p class="testimonial-author">Juan Pérez</p>
+                    <p class="testimonial-role">Artesano</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Autor">
+                    </div>
+                    <p class="testimonial-quote">"Un impacto real en nuestras vidas."</p>
+                    <p class="testimonial-author">María López</p>
+                    <p class="testimonial-role">Voluntaria</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section4" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Únete a Nuestra Causa</h2>
+                <p class="section-subtitle">Apoya la artesanía mexicana y haz la diferencia.</p>
+            </div>
+            <div class="btn-group justify-center">
+                <a href="#" class="btn btn-primary">Voluntario</a>
+                <a href="#" class="btn btn-secondary">Donar</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PATAC México</h3>
+                <p>Apoyando la artesanía y cultura mexicana desde 2025.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#section1">Artesanos</a></li>
+                    <li><a href="#section2">Proyectos</a></li>
+                    <li><a href="#section3">Testimonios</a></li>
+                    <li><a href="#section4">CTA</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const toggle = document.querySelector('.nav-toggle');
+        const sidebar = document.querySelector('.nav-sidebar');
+        const overlay = document.querySelector('.nav-overlay');
+        const closeBtn = document.querySelector('.nav-sidebar-close');
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Smooth scroll for section links
+        document.querySelectorAll('.section-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Dynamic background transitions
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>

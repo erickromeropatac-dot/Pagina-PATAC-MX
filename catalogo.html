@@ -154,6 +154,7 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-clamp: 3; /* Added for compatibility */
         }
 
         .product-footer {
@@ -339,33 +340,35 @@
         }
 
         // Create product card
-        function createProductCard(producto) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.onclick = () => window.location.href = `producto.html?id=${producto.idProducto}`;
+        // Create product card
+    function createProductCard(producto) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        // CAMBIO AQUÍ: usar idProducto en lugar de id_producto
+        card.onclick = () => window.location.href = `producto.html?id=${producto.idProducto}`;
 
-            const disponible = producto.disponible && producto.disponible.toLowerCase() === 'sí';
+        const disponible = producto.disponible && producto.disponible.toLowerCase() === 'sí';
 
-            card.innerHTML = `
-                <div class="product-image">
-                    ${disponible ? '<div class="product-badge">Disponible</div>' : '<div class="product-badge" style="background: #888;">Agotado</div>'}
-                    <img src="${producto.urlImagenPrincipal}" alt="Textile art from Mexico - ${producto.nombre}" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">${producto.categoria || 'Artesanía'}</div>
-                    <h3 class="product-name">${producto.nombre}</h3>
-                    <p class="product-description">${producto.descripcion}</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            $${producto.precio.toLocaleString('es-MX')} <span>MXN</span>
-                        </div>
-                        <button class="view-btn">Ver más</button>
+        card.innerHTML = `
+            <div class="product-image">
+                ${disponible ? '<div class="product-badge">Disponible</div>' : '<div class="product-badge" style="background: #888;">Agotado</div>'}
+                <img src="${producto.urlImagenPrincipal}" alt="Textile art from Mexico - ${producto.nombre}" loading="lazy">
+            </div>
+            <div class="product-info">
+                <div class="product-category">${producto.categoria || 'Artesanía'}</div>
+                <h3 class="product-name">${producto.nombre}</h3>
+                <p class="product-description">${producto.descripcion}</p>
+                <div class="product-footer">
+                    <div class="product-price">
+                        $${producto.precio.toLocaleString('es-MX')} <span>MXN</span>
                     </div>
+                    <button class="view-btn">Ver más</button>
                 </div>
-            `;
+            </div>
+        `;
 
-            return card;
-        }
+        return card;
+    }
 
         // Load products on page load
         document.addEventListener('DOMContentLoaded', loadProducts);

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Proyectos PATAC | Transformamos Vidas y Preservamos Culturas</title>
+    <meta name="description" content="Explora los proyectos de PATAC México: iniciativas de preservación biocultural textil, formación artesanal y voluntariado. Apoya causas que empoderan comunidades indígenas.">
+    <meta name="keywords" content="proyectos artesanales, preservación cultural, voluntariado México, crowdfunding indígena, impacto social textiles">
+    <meta name="author" content="PATAC México">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://patac.org/proyectos.html">
+    <meta property="og:title" content="Proyectos PATAC | Transformamos Vidas y Preservamos Culturas">
+    <meta property="og:description" content="Descubre y apoya proyectos que preservan el patrimonio textil indígena mediante formación, comercio justo y digitalización cultural.">
+    <meta property="og:image" content="https://patac.org/og-proyectos.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://patac.org/proyectos.html">
+    <meta property="twitter:title" content="Proyectos PATAC | Transformamos Vidas y Preservamos Culturas">
+    <meta property="twitter:description" content="Centraliza y explora proyectos de voluntarios y artesanos indígenas. Filtra por estado, categoría y más.">
+    <meta property="twitter:image" content="https://patac.org/twitter-proyectos.jpg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="PATAC Proyectos" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preconnect to CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet">
+    <!-- AOS, Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://patac.org/proyectos.html">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Proyectos PATAC México",
+      "description": "Proyectos de preservación biocultural textil indígena",
+      "url": "https://patac.org/proyectos.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "PATAC México",
+        "url": "https://patac.org"
+      },
+      "hasPart": [
+        {
+          "@type": "Project",
+          "name": "Taller de Tintes Naturales en Oaxaca",
+          "description": "Capacitación en tintes naturales para artesanas Mixe",
+          "startDate": "2024-01-15",
+          "status": "https://schema.org/Ongoing"
+        },
+        {
+          "@type": "Project",
+          "name": "Digitalización de Técnicas Artesanales",
+          "description": "Documentación de técnicas en riesgo de desaparición",
+          "startDate": "2024-03-01",
+          "endDate": "2024-09-30",
+          "status": "https://schema.org/Completed"
+        }
+      ]
+    }
+    </script>
+    <style>
+        /* Estilos mínimos para filtros y timeline (usando vars CSS existentes, no nuevo CSS pesado) */
+        .proyectos-filters { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: center; margin-bottom: var(--space-8); background: var(--light); padding: var(--space-6); border-radius: var(--radius-xl); }
+        .filter-group { display: flex; flex-direction: column; gap: var(--space-2); }
+        .filter-label { font-size: var(--text-sm); color: var(--gray-600); font-weight: 600; }
+        .filter-select, .filter-input { padding: var(--space-3) var(--space-6); border: 2px solid var(--light-dark); border-radius: var(--radius); background: var(--white); font-family: var(--font-primary); transition: border-color var(--transition-fast); }
+        .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--gold); }
+        .filter-btn { padding: var(--space-3) var(--space-6); background: var(--light); border: 2px solid var(--light-dark); border-radius: var(--radius-lg); cursor: pointer; transition: all var(--transition-base); }
+        .filter-btn.active, .filter-btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold-dark); }
+        .timeline { position: relative; max-width: var(--max-width-5xl); margin: 0 auto; padding: var(--space-8) 0; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--gold); transform: translateX(-50%); }
+        .timeline-item { position: relative; margin: var(--space-16) 0; display: flex; justify-content: space-between; align-items: flex-start; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content { width: 45%; background: var(--white); padding: var(--space-6); border-radius: var(--radius-xl); box-shadow: var(--shadow); transition: transform var(--transition-bounce); }
+        .timeline-content:hover { transform: translateY(-4px); }
+        .timeline-icon { position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%); width: 40px; height: 40px; background: var(--gold); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: var(--dark); font-weight: 700; z-index: 1; }
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 200px; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--light); }
+        .flip-card-back { transform: rotateY(180deg); background: var(--gold-light); color: var(--dark); }
+        .modal { display: none; position: fixed; z-index: var(--z-modal); left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
+        .modal-content { background: var(--white); margin: 5% auto; padding: 0; border-radius: var(--radius-xl); width: 90%; max-width: var(--max-width-4xl); position: relative; animation: modalSlideIn var(--transition-slow); }
+        .close { color: var(--gray-500); float: right; font-size: var(--text-3xl); font-weight: bold; position: absolute; right: var(--space-4); top: var(--space-4); cursor: pointer; z-index: 2; }
+        .close:hover { color: var(--error); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); margin: var(--space-8) 0; }
+        .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius); cursor: pointer; transition: transform var(--transition-fast); }
+        .gallery img:hover { transform: scale(1.05); }
+        @keyframes modalSlideIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .timeline::before { left: 20px; } .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; width: 100%; } .timeline-content { width: 100%; margin: var(--space-4) 0; } .timeline-icon { left: 20px; } .proyectos-filters { flex-direction: column; align-items: stretch; } }
+    </style>
+</head>
+<body>
+    <!-- Navigation (copiado de index.html) -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-content">
+            <a href="/" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#mision">Misión</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#actividades">Actividades</a></li>
+                <li><a href="/artesanos.html">Artesanos</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="nav-sidebar" id="nav-sidebar">
+        <div class="nav-sidebar-header">
+            <span class="nav-sidebar-logo">PATAC</span>
+            <button class="nav-sidebar-close" id="nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="#mision">Misión</a></li>
+            <li><a href="#impacto">Impacto</a></li>
+            <li><a href="#actividades">Actividades</a></li>
+            <li><a href="/artesanos.html">Artesanos</a></li>
+            <li><a href="/proyectos.html">Proyectos</a></li>
+            <li><a href="#reconocimientos">Aliados</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <!-- Quick Navigation (adaptada para secciones de proyectos) -->
+    <aside class="quick-nav">
+        <ul class="quick-nav-list">
+            <li class="quick-nav-item"><a href="#hero-proyectos" class="quick-nav-link active" data-section="hero-proyectos"><span class="quick-nav-tooltip">Proyectos</span></a></li>
+            <li class="quick-nav-item"><a href="#filtros" class="quick-nav-link" data-section="filtros"><span class="quick-nav-tooltip">Filtros</span></a></li>
+            <li class="quick-nav-item"><a href="#grid-proyectos" class="quick-nav-link" data-section="grid-proyectos"><span class="quick-nav-tooltip">Explorar</span></a></li>
+            <li class="quick-nav-item"><a href="#contenido-cultural" class="quick-nav-link" data-section="contenido-cultural"><span class="quick-nav-tooltip">Cultura</span></a></li>
+            <li class="quick-nav-item"><a href="#proyectos-completados" class="quick-nav-link" data-section="proyectos-completados"><span class="quick-nav-tooltip">Completados</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-proyectos">
+        <video class="hero-video" autoplay muted loop playsinline poster="/assets/hero-proyectos-fallback.jpg">
+            <source src="https://www.pexels.com/download/video/19312831/" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">PROYECTOS BIOCULTURALES</div>
+            <h1 class="logo" data-aos="fade-up" data-aos-delay="400">Proyectos PATAC</h1>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="600">Proyectos que Transforman Vidas y Preservan Culturas</p>
+            <p class="description" data-aos="fade-up" data-aos-delay="800">
+                Explora iniciativas que empoderan artesanos indígenas a través de formación, digitalización y comercio justo. Filtra, apoya y únete al cambio cultural.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="1000">
+                <a href="#grid-proyectos" class="btn btn-primary btn-xl">
+                    <i class="fas fa-search mr-3"></i>Explorar Proyectos
+                </a>
+                <a href="#filtros" class="btn btn-secondary btn-xl">
+                    <i class="fas fa-filter mr-3"></i>Filtrar y Buscar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros Interactivos -->
+    <section class="section" id="filtros" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Filtros para Descubrir Proyectos</h2>
+                <p>Centraliza tu búsqueda por estado, categoría, tipo, urgencia y más. Actualización en tiempo real.</p>
+            </div>
+            <form class="proyectos-filters" id="proyectos-filters" role="search" aria-label="Filtros de proyectos">
+                <div class="filter-group">
+                    <label class="filter-label" for="search-input">Buscar</label>
+                    <input type="search" id="search-input" class="filter-input" placeholder="E.g., Oaxaca o tintes..." aria-label="Búsqueda de proyectos">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="estado-select">Estado/Comunidad</label>
+                    <select id="estado-select" class="filter-select" aria-label="Filtrar por estado o comunidad">
+                        <option value="">Todos</option>
+                        <option value="Oaxaca">Oaxaca - Sierra Mixe</option>
+                        <option value="Varios">Varios - Remoto</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="categoria-select">Categoría</label>
+                    <select id="categoria-select" class="filter-select" aria-label="Filtrar por categoría">
+                        <option value="">Todas</option>
+                        <option value="Formación">Formación</option>
+                        <option value="Cultural">Cultural</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="tipo-select">Tipo de Proyecto</label>
+                    <select id="tipo-select" class="filter-select" aria-label="Filtrar por tipo">
+                        <option value="">Todos</option>
+                        <option value="recaudacion">Recaudación</option>
+                        <option value="formacion">Formación</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="voluntariado">Voluntariado</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="status-select">Estado</label>
+                    <select id="status-select" class="filter-select" aria-label="Filtrar por estado del proyecto">
+                        <option value="">Todos</option>
+                        <option value="activo">Activos</option>
+                        <option value="completado">Completados</option>
+                        <option value="en-formacion">En Formación</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="urgencia-select">Urgencia</label>
+                    <select id="urgencia-select" class="filter-select" aria-label="Filtrar por urgencia">
+                        <option value="">Todas</option>
+                        <option value="urgente">Urgentes</option>
+                        <option value="normal">Normales</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="monto-select">Monto</label>
+                    <select id="monto-select" class="filter-select" aria-label="Ordenar por monto">
+                        <option value="">Por Defecto</option>
+                        <option value="asc">Menor a Mayor</option>
+                        <option value="desc">Mayor a Menor</option>
+                    </select>
+                </div>
+                <button type="button" class="filter-btn active" id="clear-filters" aria-label="Limpiar filtros">Limpiar</button>
+            </form>
+            <div id="filter-results" class="text-center" style="margin-top: var(--space-4); font-size: var(--text-sm); color: var(--gray-500);"></div>
+        </div>
+    </section>
+
+    <!-- Grid de Proyectos -->
+    <section class="section" id="grid-proyectos" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explora Nuestros Proyectos</h2>
+                <p>Desde talleres locales hasta iniciativas digitales, cada proyecto visibiliza artesanos y voluntarios.</p>
+            </div>
+            <div class="proyectos-grid" id="proyectos-container"></div>
+        </div>
+    </section>
+
+    <!-- Contenido Cultural -->
+    <section class="section blog-section" id="contenido-cultural" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contenido Cultural: Técnicas y Historias</h2>
+                <p>Artículos, videos y galerías que profundizan en el simbolismo textil y procesos ancestrales.</p>
+            </div>
+            <!-- Artículos Grid -->
+            <div class="blog-grid" id="cultural-articulos"></div>
+            <!-- Videos Carousel -->
+            <div class="swiper testimonios-carousel" id="cultural-videos">
+                <div class="swiper-wrapper" id="videos-wrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos Completados -->
+    <section class="section" id="proyectos-completados" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Proyectos Completados: Impacto Real</h2>
+                <p>Timeline con transformaciones "antes y después" de comunidades beneficiadas.</p>
+            </div>
+            <ul class="timeline" id="timeline-completados"></ul>
+        </div>
+    </section>
+
+    <!-- Modal para Detalles de Proyecto -->
+    <div id="project-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close" id="modal-close">&times;</span>
+            <div id="modal-body">
+                <!-- Contenido dinámico: título, desc, galería, video, CTA -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (adaptados y expandidos de index.html) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        const API_BASE = 'http://localhost:3000/api';
+        let allProyectos = [];
+        let filteredProyectos = [];
+
+        // Mobile Nav (de index)
+        const navToggle = document.getElementById('nav-toggle');
+        const navSidebar = document.getElementById('nav-sidebar');
+        const navClose = document.getElementById('nav-close');
+        const navOverlay = document.getElementById('nav-overlay');
+        function openMenu() { navSidebar.classList.add('active'); navOverlay.classList.add('active'); navToggle.classList.add('active'); }
+        function closeMenu() { navSidebar.classList.remove('active'); navOverlay.classList.remove('active'); navToggle.classList.remove('active'); }
+        navToggle.addEventListener('click', openMenu);
+        navClose.addEventListener('click', closeMenu);
+        navOverlay.addEventListener('click', closeMenu);
+        document.querySelectorAll('.nav-sidebar-links a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // Quick Nav Scrollspy (adaptado)
+        const quickNavLinks = document.querySelectorAll('.quick-nav-link');
+        const sections = document.querySelectorAll('.section');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            sections.forEach(section => {
+                if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+                    quickNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (section.id === link.dataset.section) link.classList.add('active');
+                    });
+                }
+            });
+        });
+
+        // Load Proyectos (expandido)
+        async function loadProyectos() {
+            try {
+                const response = await fetch(`${API_BASE}/proyectos`);
+                const data = await response.json();
+                allProyectos = data.proyectos.map(p => ({
+                    ...p,
+                    progreso: p.metaEconomica ? (parseFloat(p.recaudado || 0) / parseFloat(p.metaEconomica)) * 100 : 0,
+                    esUrgente: p.status === 'activo' && new Date(p.fechaFin) < new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) && p.progreso < 80
+                })).sort((a, b) => new Date(b.fechaInicio) - new Date(a.fechaInicio));
+                filteredProyectos = [...allProyectos];
+                renderProyectos(filteredProyectos, 'proyectos-container');
+                renderCompletados(allProyectos.filter(p => p.status === 'completado'));
+                renderCulturalContent();
+            } catch (error) {
+                console.error('Error cargando proyectos:', error);
+                document.getElementById('proyectos-container').innerHTML = '<p class="error-message">Error al cargar proyectos. <button onclick="loadProyectos()">Reintentar</button></p>';
+            }
+        }
+
+        function renderProyectos(proyectos, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = proyectos.map(proyecto => {
+                const progreso = Math.min(proyecto.progreso, 100);
+                const statusClass = proyecto.status || 'activo';
+                const urgentClass = proyecto.esUrgente ? 'status-urgente urgent' : `status-${statusClass}`;
+                return `
+                    <div class="card card-project ${urgentClass}" data-proyecto-estado="${proyecto['estado(geográfico)'] || proyecto.estado}" data-proyecto-categoria="${proyecto.categoria}" data-proyecto-tipo="${proyecto.categoria.toLowerCase()}" data-proyecto-status="${proyecto.status}" data-proyecto-urgencia="${proyecto.esUrgente ? 'urgente' : 'normal'}" data-proyecto-monto="${proyecto.metaEconomica}" onclick="openProjectModal(${proyecto.idProyecto})" role="button" tabindex="0" aria-label="Ver detalles de ${proyecto.nombre}">
+                        <div class="card-image">
+                            <img src="${proyecto.urlImagenPrincipal}" alt="Imagen de ${proyecto.nombre} en ${proyecto.comunidad}" loading="lazy">
+                            <span class="card-badge ${urgentClass}">${proyecto.status?.toUpperCase() || 'ACTIVO'}${proyecto.esUrgente ? ' ⚠️' : ''}</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-category">${proyecto.categoria}</div>
+                            <h3 class="card-title">${proyecto.nombre}</h3>
+                            <p class="project-location">📍 ${proyecto.comunidad}, ${proyecto['estado(geográfico)'] || proyecto.estado}</p>
+                            <p class="card-description">${proyecto.descripcion.substring(0, 100)}...</p>
+                            <div class="project-goal">
+                                <span class="project-goal-current">$${parseFloat(proyecto.recaudado || 0).toLocaleString('es-MX')}</span>
+                                <span class="project-goal-target">de $${parseFloat(proyecto.metaEconomica || 0).toLocaleString('es-MX')}</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: ${progreso}%"></div>
+                            </div>
+                            <p><strong>${proyecto.artesanosBeneficiados} artesanos beneficiados</strong></p>
+                            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); window.location.href='/donar.html?proyecto=${proyecto.idProyecto}'">Apoyar Proyecto</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('filter-results').textContent = `${proyectos.length} proyecto${proyectos.length !== 1 ? 's' : ''} encontrado${proyectos.length !== 1 ? 's' : ''}.`;
+        }
+
+        // Filtros y Search
+        function applyFilters() {
+            let results = [...allProyectos];
+            const search = document.getElementById('search-input').value.toLowerCase();
+            if (search) results = results.filter(p => p.nombre.toLowerCase().includes(search) || p.descripcion.toLowerCase().includes(search));
+            const estado = document.getElementById('estado-select').value;
+            if (estado) results = results.filter(p => (p['estado(geográfico)'] || p.estado).includes(estado));
+            const categoria = document.getElementById('categoria-select').value;
+            if (categoria) results = results.filter(p => p.categoria === categoria);
+            const tipo = document.getElementById('tipo-select').value;
+            if (tipo) results = results.filter(p => p.categoria.toLowerCase().includes(tipo));
+            const status = document.getElementById('status-select').value;
+            if (status) results = results.filter(p => p.status === status);
+            const urgencia = document.getElementById('urgencia-select').value;
+            if (urgencia) results = results.filter(p => (p.esUrgente ? 'urgente' : 'normal') === urgencia);
+            const monto = document.getElementById('monto-select').value;
+            if (monto === 'asc') results.sort((a, b) => parseFloat(a.metaEconomica) - parseFloat(b.metaEconomica));
+            if (monto === 'desc') results.sort((a, b) => parseFloat(b.metaEconomica) - parseFloat(a.metaEconomica));
+            filteredProyectos = results;
+            renderProyectos(results, 'proyectos-container');
+        }
+
+        // Debounce para search
+        function debounce(fn, delay) {
+            let timeout;
+            return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => fn(...args), delay); };
+        }
+        document.getElementById('search-input').addEventListener('input', debounce(applyFilters, 300));
+        ['estado-select', 'categoria-select', 'tipo-select', 'status-select', 'urgencia-select', 'monto-select'].forEach(id => {
+            document.getElementById(id).addEventListener('change', applyFilters);
+        });
+        document.getElementById('clear-filters').addEventListener('click', () => {
+            document.querySelectorAll('#proyectos-filters input, #proyectos-filters select').forEach(el => el.value = '');
+            applyFilters();
+        });
+
+        // Modal Proyecto
+        function openProjectModal(id) {
+            const proyecto = allProyectos.find(p => p.idProyecto === id);
+            if (!proyecto) return;
+            const modal = document.getElementById('project-modal');
+            const body = document.getElementById('modal-body');
+            const galeria = proyecto.urlImagenesGaleria ? proyecto.urlImagenesGaleria.split(',').map(img => `<img src="${img.trim()}" alt="Galería ${proyecto.nombre}" loading="lazy">`).join('') : '';
+            body.innerHTML = `
+                <h2 id="modal-title">${proyecto.nombre}</h2>
+                <p>${proyecto.descripcion}</p>
+                <div class="gallery">${galeria}</div>
+                ${proyecto.videoUrl ? `<iframe src="${proyecto.videoUrl}" width="100%" height="300" frameborder="0" allowfullscreen></iframe>` : ''}
+                <p><strong>Impacto:</strong> ${proyecto.artesanosBeneficiados} beneficiados. Progreso: ${Math.min(proyecto.progreso, 100).toFixed(0)}%</p>
+                <a href="/donar.html?proyecto=${proyecto.idProyecto}" class="btn btn-primary btn-xl" style="width: 100%; margin-top: var(--space-4);">Donar Ahora</a>
+            `;
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        document.getElementById('modal-close').addEventListener('click', () => {
+            document.getElementById('project-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('project-modal')) {
+                document.getElementById('project-modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('project-modal').style.display = 'none';
+        });
+
+        // Render Completados Timeline
+        function renderCompletados(completados) {
+            const container = document.getElementById('timeline-completados');
+            container.innerHTML = completados.map((proyecto, index) => `
+                <li class="timeline-item" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="timeline-icon"><i class="fas fa-check"></i></div>
+                    <div class="timeline-content">
+                        <h3>${proyecto.nombre}</h3>
+                        <p>${proyecto.descripcion}</p>
+                        <p><strong>Fecha Fin:</strong> ${new Date(proyecto.fechaFin).toLocaleDateString('es-MX')}</p>
+                        <p><strong>Impacto:</strong> ${proyecto.artesanosBeneficiados} beneficiados</p>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <h4>Antes</h4>
+                                    <p>Comunidad sin acceso a herramientas digitales.</p>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Después</h4>
+                                    <p>150 técnicas documentadas, empoderando generaciones.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="this.parentElement.querySelector('.flip-card').classList.toggle('flipped')">Ver Antes/Después</button>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        // Contenido Cultural (artículos + videos)
+        async function renderCulturalContent() {
+            // Artículos (de DB via /articulosBlog)
+            try {
+                const response = await fetch(`${API_BASE}/articulosBlog`);
+                const data = await response.json();
+                const articulos = data.articulosBlogs.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)).slice(0, 6);
+                document.getElementById('cultural-articulos').innerHTML = articulos.map(articulo => {
+                    const fecha = articulo.fecha ? new Date(parseInt(articulo.fecha) * 86400000).toLocaleDateString('es-MX') : 'Sin fecha';
+                    return `
+                        <div class="blog-card">
+                            <img src="${articulo.urlImagen}" class="blog-card-image" alt="Artículo: ${articulo.titulo}" loading="lazy">
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span>${fecha}</span>
+                                    <span>${articulo.categoria}</span>
+                                </div>
+                                <h3 class="blog-card-title">${articulo.titulo}</h3>
+                                <p class="blog-card-excerpt">${articulo.resumen}</p>
+                                <a href="${articulo.urlCompleto}" class="blog-card-link" target="_blank">Leer más →</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error cargando artículos:', error);
+            }
+            // Videos (de proyectos)
+            const videosWrapper = document.getElementById('videos-wrapper');
+            videosWrapper.innerHTML = allProyectos.filter(p => p.videoUrl).map(p => `
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <iframe src="${p.videoUrl}" width="100%" height="200" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        <p class="testimonial-author">${p.nombre}</p>
+                        <p class="testimonial-role">${p.comunidad}</p>
+                    </div>
+                </div>
+            `).join('');
+            if (videosWrapper.children.length > 0) {
+                new Swiper('#cultural-videos', {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+                });
+            }
+        }
+
+        // Smooth Scroll (de index)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect (de index)
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Inicializar
+        loadProyectos();
+    </script>
+</body>
+</html>
