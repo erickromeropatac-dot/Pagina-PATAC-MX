@@ -914,6 +914,68 @@
                     `);
                 });
             }
+
+            // ==================== MANEJO DEL FORMULARIO DE CONTACTO ====================
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+                    submitButton.disabled = true;
+
+                    const formData = {
+                        clienteNombre: document.getElementById('name').value,
+                        clienteEmail: document.getElementById('email').value,
+                        mensaje: document.getElementById('message').value,
+                        // Puedes agregar otros campos si los tienes, ej:
+                        // clienteTelefono: document.getElementById('phone')?.value,
+                        // productoId: 'Consulta General' 
+                    };
+
+                    try {
+                        const response = await fetch(`${API_BASE}/consultas`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData),
+                        });
+
+                        const result = await response.json();
+
+                        if (!response.ok) {
+                            throw new Error(result.error || 'Error desconocido al enviar.');
+                        }
+
+                        // Éxito
+                        submitButton.innerHTML = '¡Enviado con éxito! <i class="fas fa-check"></i>';
+                        submitButton.style.backgroundColor = 'var(--success)'; // Color verde
+                        contactForm.reset();
+                        
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.disabled = false;
+                            submitButton.style.backgroundColor = ''; // Restablecer color
+                        }, 4000);
+
+                    } catch (error) {
+                        // Error
+                        console.error('Error enviando consulta:', error);
+                        submitButton.innerHTML = `Error: ${error.message}`;
+                        submitButton.style.backgroundColor = 'var(--danger)'; // Color rojo
+                        submitButton.disabled = false;
+                        
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.style.backgroundColor = ''; // Restablecer color
+                        }, 5000);
+                    }
+                });
+            }
+
             // ==================== INICIALIZAR ====================
             loadArtesanos();
             loadProyectos();
