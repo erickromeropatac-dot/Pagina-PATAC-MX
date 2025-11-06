@@ -1,16 +1,19 @@
 // server.js - Servidor Express con API COMPLETA para Google Sheets
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const SheetsDB = require('./sheets-db');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Sirve archivos estáticos
 
-const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g'); // TU SHEET ID
+// Servir archivos estáticos (CSS, JS, imágenes, etc.)
+app.use(express.static('.'));
 
-// ========== ENDPOINTS EXISTENTES ==========
+const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
+
+// ========== ENDPOINTS DE API ==========
 
 // Endpoint: /api/artesanos
 app.get('/api/artesanos', async (req, res) => {
@@ -70,17 +73,12 @@ app.get('/api/articulosBlog', async (req, res) => {
   }
 });
 
-// ========== NUEVOS ENDPOINTS CRÍTICOS ==========
-
-// Endpoint: /api/productos (NUEVO - CRÍTICO PARA E-COMMERCE)
+// Endpoint: /api/productos
 app.get('/api/productos', async (req, res) => {
   try {
     let productos = await db.getAll('productos');
-    
-    // Filtrar solo productos con stock disponible
     productos = productos.filter(p => parseInt(p.stock) > 0);
     
-    // Enriquecer con datos del artesano (JOIN programático)
     const productosEnriquecidos = await Promise.all(
       productos.map(async (producto) => {
         if (producto.idArtesano) {
@@ -107,7 +105,7 @@ app.get('/api/productos', async (req, res) => {
   }
 });
 
-// Endpoint: /api/productos/:id (detalle individual con artesano)
+// Endpoint: /api/productos/:id
 app.get('/api/productos/:id', async (req, res) => {
   try {
     const producto = await db.getById(req.params.id, 'productos');
@@ -116,7 +114,6 @@ app.get('/api/productos/:id', async (req, res) => {
       return res.status(404).json({ error: 'Producto no encontrado' });
     }
     
-    // Enriquecer con datos completos del artesano
     if (producto.idArtesano) {
       const artesano = await db.getById(producto.idArtesano, 'artesanos');
       producto.artesano = artesano;
@@ -129,7 +126,7 @@ app.get('/api/productos/:id', async (req, res) => {
   }
 });
 
-// Endpoint: /api/productos/categoria/:categoria (filtrar por categoría)
+// Endpoint: /api/productos/categoria/:categoria
 app.get('/api/productos/categoria/:categoria', async (req, res) => {
   try {
     const productos = await db.getAll('productos');
@@ -144,12 +141,11 @@ app.get('/api/productos/categoria/:categoria', async (req, res) => {
   }
 });
 
-// Endpoint: POST /api/consultas (NUEVO - CAPTURA DE LEADS)
+// Endpoint: POST /api/consultas
 app.post('/api/consultas', async (req, res) => {
   try {
     const { clienteNombre, clienteEmail, clienteTelefono, productoId, mensaje } = req.body;
     
-    // Validaciones básicas
     if (!clienteNombre || !mensaje) {
       return res.status(400).json({ 
         error: 'Nombre y mensaje son obligatorios' 
@@ -162,38 +158,30 @@ app.post('/api/consultas', async (req, res) => {
       });
     }
     
-    // Validar formato de email si se proporciona
     if (clienteEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clienteEmail)) {
       return res.status(400).json({ 
         error: 'Formato de email inválido' 
       });
     }
     
-    // Obtener nombre del producto si se proporciona ID
     let productoNombre = '';
     if (productoId) {
       const producto = await db.getById(productoId, 'productos');
       productoNombre = producto ? producto.nombre : 'Producto no encontrado';
     }
     
-    // Crear objeto de consulta
     const consulta = {
       timestamp: new Date().toISOString(),
       clienteNombre,
       clienteEmail: clienteEmail || 'No proporcionado',
       clienteTelefono: clienteTelefono || 'No proporcionado',
       productoId: productoId || 'Consulta general',
-      productoNombre, // Desnormalizado para facilitar lectura
+      productoNombre,
       mensaje,
-      estado: 'Nuevo' // Estado inicial
+      estado: 'Nuevo'
     };
     
-    // Guardar en Google Sheets
     await db.create(consulta, 'consultas');
-    
-    // TODO: Aquí podrías agregar envío de emails
-    // - Email a PATAC notificando nueva consulta
-    // - Email automático al cliente confirmando recepción
     
     res.status(201).json({ 
       success: true,
@@ -207,11 +195,10 @@ app.post('/api/consultas', async (req, res) => {
   }
 });
 
-// Endpoint: /api/consultas (GET - para backoffice)
+// Endpoint: /api/consultas (GET)
 app.get('/api/consultas', async (req, res) => {
   try {
     const consultas = await db.getAll('consultas');
-    // Ordenar por fecha descendente (más recientes primero)
     consultas.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
     res.json({ consultas });
   } catch (error) {
@@ -220,7 +207,7 @@ app.get('/api/consultas', async (req, res) => {
   }
 });
 
-// Endpoint: /api/informes (NUEVO - para métricas del backoffice)
+// Endpoint: /api/informes
 app.get('/api/informes', async (req, res) => {
   try {
     const data = await db.getAll('informesAnuales');
@@ -249,7 +236,26 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Manejo de rutas no encontradas
+// ========== RUTAS PARA PÁGINAS HTML ==========
+// IMPORTANTE: Estas deben ir DESPUÉS de todas las rutas de API
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/proyectos.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'proyectos.html'));
+});
+
+app.get('/artesanos.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'artesanos.html'));
+});
+
+app.get('/transparencia.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'transparencia.html'));
+});
+
+// Manejo de rutas no encontradas (debe ser la ÚLTIMA ruta)
 app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint no encontrado' });
 });
