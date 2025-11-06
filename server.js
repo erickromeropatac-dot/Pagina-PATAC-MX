@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos (CSS, JS, imágenes, etc.)
-app.use(express.static('.'));
+// Servir archivos estáticos (CSS, JS, imágenes, etc.) con ruta absoluta
+app.use(express.static(path.join(__dirname)));
 
 const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 
