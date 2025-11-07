@@ -10,17 +10,29 @@ app.use(express.json());
 
 const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 
-// ========== SOLO EN LOCAL: Servir archivos estáticos y HTML ==========
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static(path.join(__dirname, '..')));
+// ========== SERVIR ARCHIVOS ESTÁTICOS Y HTML (SIEMPRE ACTIVO) ==========
+// Esto es crucial para que Express sirva los recursos estáticos (CSS, JS, imágenes)
+// cuando Vercel reescribe la petición a esta función.
+app.use(express.static(path.join(__dirname, '..')));
 
-  const htmlPages = ['/', '/proyectos.html', '/artesanos.html', '/transparencia.html'];
-  htmlPages.forEach(page => {
-    app.get(page, (req, res) => {
-      res.sendFile(path.join(__dirname, '..', page === '/' ? 'index.html' : page));
-    });
+// Rutas para servir el HTML principal
+// Se deben incluir todas las páginas HTML que no son la API
+const htmlPages = [
+  '/', 
+  '/proyectos.html', 
+  '/cultura.html', 
+  '/catalogo.html', 
+  '/producto.html', 
+  '/productoText.html',
+  '/testcss.html' // Agregué testcss.html por si acaso
+];
+
+htmlPages.forEach(page => {
+  app.get(page, (req, res) => {
+    const fileName = page === '/' ? 'index.html' : page.substring(1);
+    res.sendFile(path.join(__dirname, '..', fileName));
   });
-}
+});
 
 // ========== 🔧 ENDPOINT DE DEBUG (TEMPORAL - ELIMINAR EN PRODUCCIÓN) ==========
 app.get('/api/debug', async (req, res) => {
@@ -312,11 +324,9 @@ app.get('/health', (req, res) => {
 });
 
 // ========== 404 (SIEMPRE al final) ==========
+// Si la petición llega aquí, significa que no es una ruta de API ni una ruta HTML conocida.
 app.use((req, res) => {
-  if (process.env.NODE_ENV !== 'production') {
-    return res.sendFile(path.join(__dirname, '..', 'index.html'));
-  }
-  res.status(404).json({ error: 'Endpoint no encontrado' });
+  res.status(404).json({ error: 'Endpoint no encontrado o recurso estático no existente' });
 });
 
 // ========== INICIO DEL SERVIDOR (solo en local) ==========
