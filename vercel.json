@@ -1,8 +1,20 @@
 {
+  "version": 2,
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "destination": "/api/server.js"
     }
-  ]
+  ],
+  "builds": [
+    {
+      "src": "api/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "functions": {
+    "api/server.js": {
+      "includeFiles": "**/*.html, **/*.css, **/*.js, **/*.ico, **/*.png"
+    }
+  }
 }
