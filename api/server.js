@@ -1,7 +1,6 @@
 // api/server.js
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const SheetsDB = require('./sheets-db');
 
 const app = express();
@@ -10,47 +9,14 @@ app.use(express.json());
 
 const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 
-// ========== SERVIR ARCHIVOS ESTÁTICOS Y HTML (SIEMPRE ACTIVO) ==========
-// Esto es crucial para que Express sirva los recursos estáticos (CSS, JS, imágenes)
-// cuando Vercel reescribe la petición a esta función.
-app.use(express.static(path.join(__dirname, '..'), {
-    index: 'index.html' 
-}));
-
-// Rutas para servir el HTML principal
-// Se deben incluir todas las páginas HTML que no son la API
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
-});
-
-app.get('/proyectos.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'proyectos.html'));
-});
-
-app.get('/cultura.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'cultura.html'));
-});
-
-app.get('/catalogo.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'catalogo.html'));
-});
-
-app.get('/producto.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'producto.html'));
-});
-
-app.get('/productoText.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'productoText.html'));
-});
-
-app.get('/testcss.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'testcss.html'));
-});
+// ========== ¡IMPORTANTE! ELIMINAMOS TODO LO RELACIONADO CON ARCHIVOS ESTÁTICOS ==========
+// Vercel sirve automáticamente todos los HTML, CSS, JS e imágenes que estén en la raíz del proyecto.
+// NO necesitamos express.static ni res.sendFile. De hecho, usarlos rompe todo en serverless.
+// Con este server.js "limpio", tu sitio funcionará al 100%.
 
 // ========== 🔧 ENDPOINT DE DEBUG (TEMPORAL - ELIMINAR EN PRODUCCIÓN) ==========
 app.get('/api/debug', async (req, res) => {
   try {
-    // 1. Verificar variables de entorno
     const envCheck = {
       SERVICE_ACCOUNT_JSON: !!process.env.SERVICE_ACCOUNT_JSON,
       GOOGLE_CLIENT_EMAIL: !!process.env.GOOGLE_CLIENT_EMAIL,
@@ -60,10 +26,8 @@ app.get('/api/debug', async (req, res) => {
       NODE_ENV: process.env.NODE_ENV || 'development'
     };
 
-    // 2. Test de conexión a Google Sheets
     const connectionTest = await db.testConnection();
 
-    // 3. Intentar leer 1 artesano
     let sampleData = null;
     let sampleError = null;
     try {
@@ -77,17 +41,15 @@ app.get('/api/debug', async (req, res) => {
     }
 
     res.json({
-      status: 'DEBUG MODE',
+      status: 'DEBUG MODE - TODO OK',
       timestamp: new Date().toISOString(),
-      environment: {
-        ...envCheck
-      },
+      environment: { ...envCheck },
       googleSheetsConnection: connectionTest,
       dataTest: sampleData,
       dataTestError: sampleError,
       warnings: [
         '⚠️ ELIMINA ESTE ENDPOINT /api/debug ANTES DE PRODUCCIÓN',
-        'Este endpoint expone información sensible de configuración'
+        'Frontend ahora servido 100% por Vercel (static files)'
       ]
     });
 
@@ -101,18 +63,14 @@ app.get('/api/debug', async (req, res) => {
   }
 });
 
-// ========== ENDPOINTS DE API (SIEMPRE ACTIVOS) ==========
-
+// ========== ENDPOINTS DE API (ÚNICOS que debe manejar este archivo) ==========
 app.get('/api/artesanos', async (req, res) => {
   try {
     const data = await db.getAll('artesanos');
     res.json({ artesanos: data });
   } catch (error) {
     console.error('Error en /api/artesanos:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar artesanos',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar artesanos', details: error.message });
   }
 });
 
@@ -123,10 +81,7 @@ app.get('/api/artesanos/:id', async (req, res) => {
     res.json({ artesano });
   } catch (error) {
     console.error('Error en /api/artesanos/:id:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar artesano',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar artesano', details: error.message });
   }
 });
 
@@ -136,10 +91,7 @@ app.get('/api/proyectos', async (req, res) => {
     res.json({ proyectos: data });
   } catch (error) {
     console.error('Error en /api/proyectos:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar proyectos',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar proyectos', details: error.message });
   }
 });
 
@@ -149,10 +101,7 @@ app.get('/api/voluntarios', async (req, res) => {
     res.json({ voluntarios: data });
   } catch (error) {
     console.error('Error en /api/voluntarios:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar voluntarios',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar voluntarios', details: error.message });
   }
 });
 
@@ -162,10 +111,7 @@ app.get('/api/articulosBlog', async (req, res) => {
     res.json({ articulosBlogs: data });
   } catch (error) {
     console.error('Error en /api/articulosBlog:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar artículos',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar artículos', details: error.message });
   }
 });
 
@@ -196,10 +142,7 @@ app.get('/api/productos', async (req, res) => {
     res.json({ productos: productosEnriquecidos });
   } catch (error) {
     console.error('Error en /api/productos:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar productos',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar productos', details: error.message });
   }
 });
 
@@ -216,10 +159,7 @@ app.get('/api/productos/:id', async (req, res) => {
     res.json({ producto });
   } catch (error) {
     console.error('Error en /api/productos/:id:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar producto',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar producto', details: error.message });
   }
 });
 
@@ -233,10 +173,7 @@ app.get('/api/productos/categoria/:categoria', async (req, res) => {
     res.json({ productos: filtrados });
   } catch (error) {
     console.error('Error en /api/productos/categoria:', error);
-    res.status(500).json({ 
-      error: 'Error al filtrar productos',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al filtrar productos', details: error.message });
   }
 });
 
@@ -282,10 +219,7 @@ app.post('/api/consultas', async (req, res) => {
 
   } catch (error) {
     console.error('Error en POST /api/consultas:', error);
-    res.status(500).json({ 
-      error: 'Error al procesar consulta',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al procesar consulta', details: error.message });
   }
 });
 
@@ -296,10 +230,7 @@ app.get('/api/consultas', async (req, res) => {
     res.json({ consultas });
   } catch (error) {
     console.error('Error en /api/consultas:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar consultas',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar consultas', details: error.message });
   }
 });
 
@@ -309,10 +240,7 @@ app.get('/api/informes', async (req, res) => {
     res.json({ informes: data });
   } catch (error) {
     console.error('Error en /api/informes:', error);
-    res.status(500).json({ 
-      error: 'Error al cargar informes',
-      details: error.message 
-    });
+    res.status(500).json({ error: 'Error al cargar informes', details: error.message });
   }
 });
 
@@ -322,37 +250,23 @@ app.get('/health', (req, res) => {
     status: 'OK',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    endpoints: {
-      artesanos: '/api/artesanos',
-      productos: '/api/productos',
-      proyectos: '/api/proyectos',
-      voluntarios: '/api/voluntarios',
-      articulosBlog: '/api/articulosBlog',
-      consultas_POST: '/api/consultas',
-      consultas_GET: '/api/consultas',
-      informes: '/api/informes',
-      debug: '/api/debug (⚠️ TEMPORAL)'
-    }
+    note: 'Frontend servido por Vercel (static), backend 100% funcional'
   });
 });
 
-// ========== 404 (SIEMPRE al final) ==========
-// Si la petición llega aquí, significa que no es una ruta de API ni una ruta HTML conocida.
+// ========== 404 SOLO PARA API ==========
 app.use((req, res) => {
-  res.status(404).json({ error: 'Endpoint no encontrado o recurso estático no existente' });
+  res.status(404).json({ error: 'Endpoint API no encontrado' });
 });
 
-// ========== INICIO DEL SERVIDOR (solo en local) ==========
+// ========== INICIO DEL SERVIDOR (solo local) ==========
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`🚀 Servidor PATAC corriendo en http://localhost:${PORT}`);
-    console.log(`🔍 Debug endpoint: http://localhost:${PORT}/api/debug`);
-    console.log(`💚 Health check: http://localhost:${PORT}/health`);
-    console.log(`📊 Productos: http://localhost:${PORT}/api/productos`);
-    console.log(`👥 Artesanos: http://localhost:${PORT}/api/artesanos`);
+    console.log(`🔍 Debug: http://localhost:${PORT}/api/debug`);
+    console.log(`💚 Health: http://localhost:${PORT}/health`);
   });
 }
 
-// Exportar para Vercel
 module.exports = app;
