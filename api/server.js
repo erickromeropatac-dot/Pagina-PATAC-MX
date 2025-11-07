@@ -13,25 +13,38 @@ const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 // ========== SERVIR ARCHIVOS ESTÁTICOS Y HTML (SIEMPRE ACTIVO) ==========
 // Esto es crucial para que Express sirva los recursos estáticos (CSS, JS, imágenes)
 // cuando Vercel reescribe la petición a esta función.
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '..'), {
+    index: 'index.html' 
+}));
 
 // Rutas para servir el HTML principal
 // Se deben incluir todas las páginas HTML que no son la API
-const htmlPages = [
-  '/', 
-  '/proyectos.html', 
-  '/cultura.html', 
-  '/catalogo.html', 
-  '/producto.html', 
-  '/productoText.html',
-  '/testcss.html' // Agregué testcss.html por si acaso
-];
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
-htmlPages.forEach(page => {
-  app.get(page, (req, res) => {
-    const fileName = page === '/' ? 'index.html' : page.substring(1);
-    res.sendFile(path.join(__dirname, '..', fileName));
-  });
+app.get('/proyectos.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'proyectos.html'));
+});
+
+app.get('/cultura.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'cultura.html'));
+});
+
+app.get('/catalogo.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'catalogo.html'));
+});
+
+app.get('/producto.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'producto.html'));
+});
+
+app.get('/productoText.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'productoText.html'));
+});
+
+app.get('/testcss.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'testcss.html'));
 });
 
 // ========== 🔧 ENDPOINT DE DEBUG (TEMPORAL - ELIMINAR EN PRODUCCIÓN) ==========
