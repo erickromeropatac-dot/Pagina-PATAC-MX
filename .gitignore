@@ -1,1 +1,23 @@
+# Dependencies
+node_modules/
+
+# Credentials (NUNCA subir a Git)
 service-account.json
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs (opcional)
+dist/
+build/
