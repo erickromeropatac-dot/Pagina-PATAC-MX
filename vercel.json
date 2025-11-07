@@ -1,9 +1,26 @@
 {
   "version": 2,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/server.js"
+  "routes": [
+    
+    { "handle": "filesystem" },
+   
+    { 
+      "src": "/api/(.*)", 
+      "dest": "/api/server.js" 
+    },
+    { 
+      "src": "/(proyectos|cultura|catalogo|producto|productoText|testcss)\\.html", 
+      "dest": "/api/server.js" 
+    },
+    { 
+      "src": "/", 
+      "dest": "/api/server.js" 
+    },
+  
+    { 
+      "src": "/(.*)", 
+      "status": 404, 
+      "dest": "/api/server.js" 
     }
   ],
   "builds": [
