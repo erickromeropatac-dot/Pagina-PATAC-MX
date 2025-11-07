@@ -8,9 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos (CSS, JS, imágenes, etc.) con ruta absoluta
-app.use(express.static(path.join(__dirname)));
-
 const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 
 // ========== ENDPOINTS DE API ==========
@@ -234,25 +231,6 @@ app.get('/health', (req, res) => {
       informes: '/api/informes'
     }
   });
-});
-
-// ========== RUTAS PARA PÁGINAS HTML ==========
-// IMPORTANTE: Estas deben ir DESPUÉS de todas las rutas de API
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-app.get('/proyectos.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'proyectos.html'));
-});
-
-app.get('/artesanos.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'artesanos.html'));
-});
-
-app.get('/transparencia.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'transparencia.html'));
 });
 
 // Manejo de rutas no encontradas (debe ser la ÚLTIMA ruta)
