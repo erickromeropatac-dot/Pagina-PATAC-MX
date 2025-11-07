@@ -12,7 +12,7 @@ class SheetsDB {
     // En Vercel, leer credenciales desde variable de entorno
     const credentials = process.env.SERVICE_ACCOUNT_JSON 
       ? JSON.parse(process.env.SERVICE_ACCOUNT_JSON)
-      : require('../service-account.json'); // Fallback para desarrollo local
+      : require('./service-account.json'); // Fallback para desarrollo local
 
     this.auth = new google.auth.GoogleAuth({
       credentials,
