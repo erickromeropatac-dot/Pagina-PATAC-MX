@@ -2,10 +2,10 @@
   "name": "patac-api",
   "version": "1.0.0",
   "description": "API de PATAC México con Google Sheets",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node api/server.js",
+    "dev": "node api/server.js"
   },
   "engines": {
     "node": ">=18.x"

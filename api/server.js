@@ -1,4 +1,4 @@
-// server.js - Servidor Express con API COMPLETA para Google Sheets
+// api/server.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -10,9 +10,22 @@ app.use(express.json());
 
 const db = new SheetsDB('1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g');
 
-// ========== ENDPOINTS DE API ==========
+// ========== SOLO EN LOCAL: Servir archivos estáticos y HTML ==========
+if (process.env.NODE_ENV !== 'production') {
+  // Servir CSS, JS, imágenes, etc. desde la raíz del proyecto
+  app.use(express.static(path.join(__dirname, '..')));
 
-// Endpoint: /api/artesanos
+  // Rutas para páginas HTML
+  const htmlPages = ['/', '/proyectos.html', '/artesanos.html', '/transparencia.html'];
+  htmlPages.forEach(page => {
+    app.get(page, (req, res) => {
+      res.sendFile(path.join(__dirname, '..', page === '/' ? 'index.html' : page));
+    });
+  });
+}
+
+// ========== ENDPOINTS DE API (SIEMPRE ACTIVOS) ==========
+
 app.get('/api/artesanos', async (req, res) => {
   try {
     const data = await db.getAll('artesanos');
@@ -23,13 +36,10 @@ app.get('/api/artesanos', async (req, res) => {
   }
 });
 
-// Endpoint: /api/artesanos/:id (detalle individual)
 app.get('/api/artesanos/:id', async (req, res) => {
   try {
     const artesano = await db.getById(req.params.id, 'artesanos');
-    if (!artesano) {
-      return res.status(404).json({ error: 'Artesano no encontrado' });
-    }
+    if (!artesano) return res.status(404).json({ error: 'Artesano no encontrado' });
     res.json({ artesano });
   } catch (error) {
     console.error('Error en /api/artesanos/:id:', error);
@@ -37,7 +47,6 @@ app.get('/api/artesanos/:id', async (req, res) => {
   }
 });
 
-// Endpoint: /api/proyectos
 app.get('/api/proyectos', async (req, res) => {
   try {
     const data = await db.getAll('proyectos');
@@ -48,7 +57,6 @@ app.get('/api/proyectos', async (req, res) => {
   }
 });
 
-// Endpoint: /api/voluntarios
 app.get('/api/voluntarios', async (req, res) => {
   try {
     const data = await db.getAll('voluntarios');
@@ -59,7 +67,6 @@ app.get('/api/voluntarios', async (req, res) => {
   }
 });
 
-// Endpoint: /api/articulosBlog
 app.get('/api/articulosBlog', async (req, res) => {
   try {
     const data = await db.getAll('articulosBlog');
@@ -70,12 +77,11 @@ app.get('/api/articulosBlog', async (req, res) => {
   }
 });
 
-// Endpoint: /api/productos
 app.get('/api/productos', async (req, res) => {
   try {
     let productos = await db.getAll('productos');
     productos = productos.filter(p => parseInt(p.stock) > 0);
-    
+
     const productosEnriquecidos = await Promise.all(
       productos.map(async (producto) => {
         if (producto.idArtesano) {
@@ -94,7 +100,7 @@ app.get('/api/productos', async (req, res) => {
         return producto;
       })
     );
-    
+
     res.json({ productos: productosEnriquecidos });
   } catch (error) {
     console.error('Error en /api/productos:', error);
@@ -102,20 +108,16 @@ app.get('/api/productos', async (req, res) => {
   }
 });
 
-// Endpoint: /api/productos/:id
 app.get('/api/productos/:id', async (req, res) => {
   try {
     const producto = await db.getById(req.params.id, 'productos');
-    
-    if (!producto) {
-      return res.status(404).json({ error: 'Producto no encontrado' });
-    }
-    
+    if (!producto) return res.status(404).json({ error: 'Producto no encontrado' });
+
     if (producto.idArtesano) {
       const artesano = await db.getById(producto.idArtesano, 'artesanos');
       producto.artesano = artesano;
     }
-    
+
     res.json({ producto });
   } catch (error) {
     console.error('Error en /api/productos/:id:', error);
@@ -123,11 +125,10 @@ app.get('/api/productos/:id', async (req, res) => {
   }
 });
 
-// Endpoint: /api/productos/categoria/:categoria
 app.get('/api/productos/categoria/:categoria', async (req, res) => {
   try {
     const productos = await db.getAll('productos');
-    const filtrados = productos.filter(p => 
+    const filtrados = productos.filter(p =>
       p.categoria.toLowerCase() === req.params.categoria.toLowerCase() &&
       parseInt(p.stock) > 0
     );
@@ -138,35 +139,28 @@ app.get('/api/productos/categoria/:categoria', async (req, res) => {
   }
 });
 
-// Endpoint: POST /api/consultas
 app.post('/api/consultas', async (req, res) => {
   try {
     const { clienteNombre, clienteEmail, clienteTelefono, productoId, mensaje } = req.body;
-    
+
     if (!clienteNombre || !mensaje) {
-      return res.status(400).json({ 
-        error: 'Nombre y mensaje son obligatorios' 
-      });
+      return res.status(400).json({ error: 'Nombre y mensaje son obligatorios' });
     }
-    
+
     if (!clienteEmail && !clienteTelefono) {
-      return res.status(400).json({ 
-        error: 'Debe proporcionar al menos email o teléfono' 
-      });
+      return res.status(400).json({ error: 'Debe proporcionar al menos email o teléfono' });
     }
-    
+
     if (clienteEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clienteEmail)) {
-      return res.status(400).json({ 
-        error: 'Formato de email inválido' 
-      });
+      return res.status(400).json({ error: 'Formato de email inválido' });
     }
-    
+
     let productoNombre = '';
     if (productoId) {
       const producto = await db.getById(productoId, 'productos');
       productoNombre = producto ? producto.nombre : 'Producto no encontrado';
     }
-    
+
     const consulta = {
       timestamp: new Date().toISOString(),
       clienteNombre,
@@ -177,22 +171,20 @@ app.post('/api/consultas', async (req, res) => {
       mensaje,
       estado: 'Nuevo'
     };
-    
+
     await db.create(consulta, 'consultas');
-    
-    res.status(201).json({ 
+    res.status(201).json({
       success: true,
       mensaje: 'Consulta recibida. Nos pondremos en contacto pronto.',
       consulta
     });
-    
+
   } catch (error) {
     console.error('Error en POST /api/consultas:', error);
     res.status(500).json({ error: 'Error al procesar consulta' });
   }
 });
 
-// Endpoint: /api/consultas (GET)
 app.get('/api/consultas', async (req, res) => {
   try {
     const consultas = await db.getAll('consultas');
@@ -204,7 +196,6 @@ app.get('/api/consultas', async (req, res) => {
   }
 });
 
-// Endpoint: /api/informes
 app.get('/api/informes', async (req, res) => {
   try {
     const data = await db.getAll('informesAnuales');
@@ -215,10 +206,10 @@ app.get('/api/informes', async (req, res) => {
   }
 });
 
-// ========== ENDPOINT DE SALUD ==========
+// ========== HEALTH CHECK ==========
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     timestamp: new Date().toISOString(),
     endpoints: {
       artesanos: '/api/artesanos',
@@ -233,16 +224,26 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Manejo de rutas no encontradas (debe ser la ÚLTIMA ruta)
+// ========== 404 (SIEMPRE al final) ==========
 app.use((req, res) => {
+  // En local: sirve index.html para SPA
+  if (process.env.NODE_ENV !== 'production') {
+    return res.sendFile(path.join(__dirname, '..', 'index.html'));
+  }
+  // En Vercel: responde JSON
   res.status(404).json({ error: 'Endpoint no encontrado' });
 });
 
-// Inicia el servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor PATAC corriendo en http://localhost:${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/health`);
-  console.log(`🛍️  Productos: http://localhost:${PORT}/api/productos`);
-  console.log(`👥 Artesanos: http://localhost:${PORT}/api/artesanos`);
-});
+// ========== INICIO DEL SERVIDOR (solo en local) ==========
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor PATAC corriendo en http://localhost:${PORT}`);
+    console.log(`Health check: http://localhost:${PORT}/health`);
+    console.log(`Productos: http://localhost:${PORT}/api/productos`);
+    console.log(`Artesanos: http://localhost:${PORT}/api/artesanos`);
+  });
+}
+
+// Exportar para Vercel
+module.exports = app;
