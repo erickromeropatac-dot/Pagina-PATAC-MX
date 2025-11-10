@@ -1,37 +1,21 @@
 {
   "version": 2,
-  "routes": [
-    
-    { "handle": "filesystem" },
-   
-    { 
-      "src": "/api/(.*)", 
-      "dest": "/api/server.js" 
-    },
-    { 
-      "src": "/(proyectos|cultura|catalogo|producto|productoText|testcss)\\.html", 
-      "dest": "/api/server.js" 
-    },
-    { 
-      "src": "/", 
-      "dest": "/api/server.js" 
-    },
-  
-    { 
-      "src": "/(.*)", 
-      "status": 404, 
-      "dest": "/api/server.js" 
-    }
-  ],
   "builds": [
     {
       "src": "api/server.js",
       "use": "@vercel/node"
     }
   ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/server.js"
+    }
+  ],
   "functions": {
     "api/server.js": {
-      "includeFiles": "**/*.html, **/*.css, **/*.js, **/*.ico, **/*.png"
+      "memory": 1024,
+      "maxDuration": 10
     }
   }
 }
