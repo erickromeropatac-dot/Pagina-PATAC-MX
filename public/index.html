@@ -1,295 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔍 PATAC - Test de Diagnóstico</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 40px;
-            text-align: center;
-            color: white;
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-        .content {
-            padding: 40px;
-        }
-        .test-section {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-        }
-        .test-section h2 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        .status {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        .status.loading {
-            background: #ffc107;
-            color: #fff;
-        }
-        .status.success {
-            background: #28a745;
-            color: white;
-        }
-        .status.error {
-            background: #dc3545;
-            color: white;
-        }
-        .result-box {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        .btn:active {
-            transform: translateY(0);
-        }
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s linear infinite;
-            margin-right: 8px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .timestamp {
-            color: #6c757d;
-            font-size: 0.8rem;
-            margin-top: 10px;
-        }
-        .summary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .summary h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-        .summary p {
-            opacity: 0.95;
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PATAC México - Artesanía con propósito</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- CSS (ruta absoluta) -->
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔍 PATAC México</h1>
-            <p>Sistema de Diagnóstico de Despliegue</p>
-        </div>
-        
-        <div class="content">
-            <!-- TEST 1: Archivo HTML -->
-            <div class="test-section">
-                <h2>✅ Test 1: Archivo HTML Estático</h2>
-                <p>Si puedes ver esta página, significa que Vercel está sirviendo correctamente los archivos estáticos desde <code>/public</code></p>
-                <div class="status success">✓ HTML funcionando</div>
-            </div>
+  <header>
+    <h1>🇵🇹 PATAC México</h1>
+    <p>Conectando artesanos, productos y comunidades</p>
+  </header>
 
-            <!-- TEST 2: API Health -->
-            <div class="test-section">
-                <h2>🏥 Test 2: API Health Check</h2>
-                <p>Verificando conexión con el servidor API...</p>
-                <button class="btn" onclick="testHealth()">🔄 Probar API Health</button>
-                <div id="health-status" class="status loading" style="display:none;">
-                    <span class="spinner"></span> Cargando...
-                </div>
-                <div id="health-result" class="result-box" style="display:none;"></div>
-            </div>
+  <main>
+    <section class="hero">
+      <img 
+        src="/assets/hero-fallback.jpg" 
+        alt="Artesanos mexicanos trabajando" 
+        loading="lazy"
+      />
+    </section>
 
-            <!-- TEST 3: API Debug -->
-            <div class="test-section">
-                <h2>🐛 Test 3: API Debug Completo</h2>
-                <p>Verificando configuración de Google Sheets y variables de entorno...</p>
-                <button class="btn" onclick="testDebug()">🔬 Probar API Debug</button>
-                <div id="debug-status" class="status loading" style="display:none;">
-                    <span class="spinner"></span> Analizando...
-                </div>
-                <div id="debug-result" class="result-box" style="display:none;"></div>
-            </div>
+    <nav class="quick-links">
+      <a href="/proyectos.html">Proyectos</a>
+      <a href="/artesanos.html">Artesanos</a>
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/cultura.html">Cultura</a>
+      <a href="/transparencia.html">Transparencia</a>
+    </nav>
 
-            <!-- TEST 4: Datos Reales -->
-            <div class="test-section">
-                <h2>📊 Test 4: Lectura de Datos (Artesanos)</h2>
-                <p>Obteniendo datos reales desde Google Sheets...</p>
-                <button class="btn" onclick="testArtesanos()">👥 Cargar Artesanos</button>
-                <div id="artesanos-status" class="status loading" style="display:none;">
-                    <span class="spinner"></span> Consultando base de datos...
-                </div>
-                <div id="artesanos-result" class="result-box" style="display:none;"></div>
-            </div>
+    <!-- Botón para probar la API -->
+    <button id="loadArtesanos" style="margin: 20px; padding: 10px 20px;">
+      Cargar Artesanos (API)
+    </button>
+    <div id="artesanos-output" style="margin: 20px; padding: 15px; background: #f0f0f0; display: none;"></div>
+  </main>
 
-            <!-- TEST 5: Ruta Principal -->
-            <div class="test-section">
-                <h2>🏠 Test 5: Verificación de Rutas</h2>
-                <p><strong>Ruta actual:</strong> <code id="current-url"></code></p>
-                <p><strong>Origen:</strong> <code id="origin"></code></p>
-                <div class="status success">✓ Rutas configuradas correctamente</div>
-            </div>
+  <footer>
+    <p>&copy; 2025 PATAC México. Todos los derechos reservados.</p>
+    <p>
+      <a href="/api/health" target="_blank">Health Check</a> |
+      <a href="/api/debug" target="_blank">Debug</a>
+    </p>
+  </footer>
 
-            <!-- Resumen Final -->
-            <div class="summary">
-                <h3>📋 Resumen de Estado</h3>
-                <p id="final-summary">Ejecuta las pruebas para ver un resumen completo del estado del sistema.</p>
-                <div class="timestamp" id="test-timestamp"></div>
-            </div>
-        </div>
-    </div>
+  <!-- JavaScript (si tienes un archivo separado, usa ruta absoluta) -->
+  <!-- <script src="/main.js"></script> -->
 
-    <script>
-        // Mostrar información de la URL
-        document.getElementById('current-url').textContent = window.location.href;
-        document.getElementById('origin').textContent = window.location.origin;
+  <!-- Script inline para prueba rápida -->
+  <script>
+    document.getElementById('loadArtesanos').addEventListener('click', async () => {
+      const output = document.getElementById('artesanos-output');
+      output.style.display = 'block';
+      output.textContent = 'Cargando...';
 
-        // Función auxiliar para hacer requests
-        async function makeRequest(url, elementPrefix) {
-            const statusEl = document.getElementById(`${elementPrefix}-status`);
-            const resultEl = document.getElementById(`${elementPrefix}-result`);
-            
-            statusEl.style.display = 'inline-block';
-            statusEl.className = 'status loading';
-            statusEl.innerHTML = '<span class="spinner"></span> Cargando...';
-            resultEl.style.display = 'none';
-            
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                statusEl.className = 'status success';
-                statusEl.innerHTML = `✓ Respuesta recibida (${response.status})`;
-                
-                resultEl.style.display = 'block';
-                resultEl.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-                
-                return { success: true, data };
-            } catch (error) {
-                statusEl.className = 'status error';
-                statusEl.innerHTML = `✗ Error: ${error.message}`;
-                
-                resultEl.style.display = 'block';
-                resultEl.innerHTML = `<pre style="color: #dc3545;">${error.message}\n${error.stack || ''}</pre>`;
-                
-                return { success: false, error: error.message };
-            }
-        }
-
-        // TEST: Health Check
-        async function testHealth() {
-            await makeRequest('/api/health', 'health');
-            updateSummary();
-        }
-
-        // TEST: Debug
-        async function testDebug() {
-            await makeRequest('/api/debug', 'debug');
-            updateSummary();
-        }
-
-        // TEST: Artesanos
-        async function testArtesanos() {
-            const result = await makeRequest('/api/artesanos', 'artesanos');
-            if (result.success && result.data.artesanos) {
-                document.getElementById('artesanos-result').innerHTML = 
-                    `<pre>Total de artesanos: ${result.data.artesanos.length}\n\n` +
-                    `Primer artesano:\n${JSON.stringify(result.data.artesanos[0], null, 2)}</pre>`;
-            }
-            updateSummary();
-        }
-
-        // Actualizar resumen
-        function updateSummary() {
-            const healthOk = document.getElementById('health-status').classList.contains('success');
-            const debugOk = document.getElementById('debug-status').classList.contains('success');
-            const dataOk = document.getElementById('artesanos-status').classList.contains('success');
-            
-            let summary = '✅ HTML estático: OK\n';
-            summary += healthOk ? '✅ API Health: OK\n' : '⏳ API Health: No probado\n';
-            summary += debugOk ? '✅ API Debug: OK\n' : '⏳ API Debug: No probado\n';
-            summary += dataOk ? '✅ Datos Google Sheets: OK\n' : '⏳ Datos: No probados\n';
-            
-            if (healthOk && debugOk && dataOk) {
-                summary += '\n🎉 ¡TODOS LOS SISTEMAS OPERATIVOS!';
-            }
-            
-            document.getElementById('final-summary').innerHTML = summary.replace(/\n/g, '<br>');
-            document.getElementById('test-timestamp').textContent = `Última actualización: ${new Date().toLocaleString('es-MX')}`;
-        }
-
-        // Auto-ejecutar test inicial
-        window.addEventListener('load', () => {
-            console.log('🚀 Sistema de diagnóstico cargado');
-            console.log('📍 URL:', window.location.href);
-        });
-    </script>
+      try {
+        const res = await fetch('/api/artesanos');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        output.innerHTML = `<strong>✅ Cargados ${data.artesanos.length} artesanos.</strong><br><small>Primer artesano: ${data.artesanos[0]?.nombre || 'N/A'}</small>`;
+      } catch (err) {
+        output.innerHTML = `<strong>❌ Error:</strong> ${err.message}`;
+      }
+    });
+  </script>
 </body>
 </html>
