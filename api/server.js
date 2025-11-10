@@ -1,32 +1,34 @@
-// api/server.js - Versión limpia y optimizada para Vercel
+// api/server.js
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const SheetsDB = require('./sheets-db');
 
 const app = express();
-
-// Configuración básica
 app.use(cors());
 app.use(express.json());
 
-// ID de tu Google Sheet (puedes moverlo a variable de entorno si quieres)
+// 📁 Ruta base del proyecto (útil para local)
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SPREADSHEET_ID = '1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g';
 const db = new SheetsDB(SPREADSHEET_ID);
 
-// 🔍 Middleware de logging (opcional, útil para depuración en Vercel)
-app.use((req, res, next) => {
-  console.log(`📍 ${req.method} ${req.path}`);
-  next();
-});
+// 🌐 Servir archivos estáticos SOLO en desarrollo (Vercel no lo necesita)
+if (process.env.NODE_ENV !== 'production') {
+  console.log(`📁 Serviendo archivos estáticos desde: ${PUBLIC_DIR}`);
+  app.use(express.static(PUBLIC_DIR));
+}
 
 // ========== 🔧 ENDPOINT DE DEBUG ==========
 app.get('/api/debug', async (req, res) => {
   try {
     const envCheck = {
+      SERVICE_ACCOUNT_JSON: !!process.env.SERVICE_ACCOUNT_JSON,
       GOOGLE_CLIENT_EMAIL: !!process.env.GOOGLE_CLIENT_EMAIL,
       GOOGLE_PRIVATE_KEY: !!process.env.GOOGLE_PRIVATE_KEY,
       GOOGLE_PRIVATE_KEY_length: process.env.GOOGLE_PRIVATE_KEY ? process.env.GOOGLE_PRIVATE_KEY.length : 0,
-      NODE_ENV: process.env.NODE_ENV || 'development'
+      NODE_ENV: process.env.NODE_ENV || 'development',
+      isProduction: process.env.NODE_ENV === 'production'
     };
 
     const connectionTest = await db.testConnection();
@@ -44,22 +46,22 @@ app.get('/api/debug', async (req, res) => {
     }
 
     res.json({
-      status: '✅ DEBUG MODE - TODO OK',
+      status: '✅ API funcionando correctamente',
       timestamp: new Date().toISOString(),
       environment: envCheck,
       googleSheetsConnection: connectionTest,
       dataTest: sampleData,
       dataTestError: sampleError,
-      warnings: [
-        '⚠️ ELIMINA /api/debug EN PRODUCCIÓN',
-        'Los archivos estáticos (/index.html, etc.) son servidos por Vercel (no por esta API)'
-      ]
+      notes: process.env.NODE_ENV !== 'production'
+        ? ['⚠️ Este endpoint es solo para desarrollo. Elimínalo en producción si es sensible.']
+        : ['✅ Producción: no se sirven archivos estáticos desde aquí (Vercel lo hace)']
     });
   } catch (error) {
     console.error('❌ Error en /api/debug:', error);
     res.status(500).json({
       status: 'ERROR',
       error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
       timestamp: new Date().toISOString()
     });
   }
@@ -242,7 +244,10 @@ app.get('/api/health', (req, res) => {
       proyectos: '/api/proyectos',
       voluntarios: '/api/voluntarios',
       articulosBlog: '/api/articulosBlog',
-      consultas: '/api/consultas',
+      consultas: {
+        GET: '/api/consultas',
+        POST: '/api/consultas'
+      },
       informes: '/api/informes',
       debug: '/api/debug',
       health: '/api/health'
@@ -250,28 +255,51 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// ========== 🛑 Manejo de 404 solo para rutas /api/ ==========
-app.use((req, res, next) => {
-  if (req.path.startsWith('/api/')) {
-    return res.status(404).json({ 
+// ========== 🛑 404 HANDLER (solo para rutas /api/* o no estáticas) ==========
+app.use((req, res) => {
+  // Solo mostramos este JSON si es una petición API o no se encontró archivo estático
+  if (req.path.startsWith('/api/') || process.env.NODE_ENV === 'production') {
+    res.status(404).json({ 
       error: 'Endpoint de API no encontrado',
-      requestedUrl: req.originalUrl
+      requestedUrl: req.originalUrl,
+      availableApiEndpoints: [
+        '/api/artesanos',
+        '/api/artesanos/:id',
+        '/api/productos',
+        '/api/productos/:id',
+        '/api/productos/categoria/:categoria',
+        '/api/proyectos',
+        '/api/proyectos/:id',
+        '/api/voluntarios',
+        '/api/articulosBlog',
+        '/api/consultas',
+        '/api/informes',
+        '/api/debug',
+        '/api/health'
+      ]
+    });
+  } else {
+    // En desarrollo, si no es /api/*, dejamos que express.static maneje 404 (mejor UX)
+    res.status(404).sendFile(path.join(PUBLIC_DIR, '404.html'), (err) => {
+      if (err) {
+        res.status(404).send('<h1>404 - Página no encontrada</h1><p>Archivo no encontrado.</p>');
+      }
     });
   }
-  // Si no es /api/, Vercel ya intentará servir desde /public (gracias a vercel.json)
-  // ¡No debes manejar rutas no-API aquí!
-  next();
 });
 
-// ========== 🚨 Manejo global de errores (solo API) ==========
-app.use((err, req, res, next) => {
-  console.error('Unhandled API error:', err);
-  res.status(500).json({
-    error: process.env.NODE_ENV === 'production' 
-      ? 'Error interno del servidor' 
-      : err.message
+// ========== 🚀 SERVIDOR LOCAL (solo en desarrollo) ==========
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, 'localhost', () => {
+    console.log(`\n🚀 PATAC API + Static Server corriendo en:`);
+    console.log(`🌐 Sitio: http://localhost:${PORT}/`);
+    console.log(`📊 API:   http://localhost:${PORT}/api/artesanos`);
+    console.log(`🔧 Debug: http://localhost:${PORT}/api/debug`);
+    console.log(`💚 Health: http://localhost:${PORT}/api/health`);
+    console.log(`📄 Archivos servidos desde: ${PUBLIC_DIR}\n`);
   });
-});
+}
 
-// ⚙️ Exportar app para Vercel
+// ⚙️ Exportar para Vercel (obligatorio)
 module.exports = app;
