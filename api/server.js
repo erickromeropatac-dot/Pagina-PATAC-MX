@@ -1,4 +1,4 @@
-// api/server.js
+// api/server.js - VERSIÓN DEFINITIVA CON SERVICIO DE ARCHIVOS ESTÁTICOS
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -8,19 +8,34 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 📁 Ruta base del proyecto (útil para local)
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SPREADSHEET_ID = '1SfoCefyVpqnjykWVLQGkfavWV45fQJ6StTNwGcKmw7g';
 const db = new SheetsDB(SPREADSHEET_ID);
 
-// 🌐 Servir archivos estáticos SOLO en desarrollo (Vercel no lo necesita)
-if (process.env.NODE_ENV !== 'production') {
-  console.log(`📁 Serviendo archivos estáticos desde: ${PUBLIC_DIR}`);
-  app.use(express.static(PUBLIC_DIR));
-}
+// ========== 🌐 SERVIR ARCHIVOS ESTÁTICOS (SIEMPRE) ==========
+console.log(`📁 Configurando directorio público: ${PUBLIC_DIR}`);
+app.use(express.static(PUBLIC_DIR, {
+  dotfiles: 'ignore',
+  etag: true,
+  extensions: ['html', 'htm'],
+  index: 'index.html',
+  maxAge: '1d',
+  redirect: true,
+  setHeaders: (res, path) => {
+    res.set('X-Served-By', 'PATAC-API');
+  }
+}));
+
+// 🔍 Middleware de logging
+app.use((req, res, next) => {
+  console.log(`📍 ${req.method} ${req.path}`);
+  next();
+});
 
 // ========== 🔧 ENDPOINT DE DEBUG ==========
 app.get('/api/debug', async (req, res) => {
+  const fs = require('fs');
+  
   try {
     const envCheck = {
       SERVICE_ACCOUNT_JSON: !!process.env.SERVICE_ACCOUNT_JSON,
@@ -45,16 +60,31 @@ app.get('/api/debug', async (req, res) => {
       sampleError = err.message;
     }
 
+    // Verificar archivos en /public
+    const publicFiles = fs.existsSync(PUBLIC_DIR) 
+      ? fs.readdirSync(PUBLIC_DIR).slice(0, 10) 
+      : [];
+    
+    const indexExists = fs.existsSync(path.join(PUBLIC_DIR, 'index.html'));
+
     res.json({
-      status: '✅ API funcionando correctamente',
+      status: '✅ DEBUG MODE - TODO OK',
       timestamp: new Date().toISOString(),
       environment: envCheck,
       googleSheetsConnection: connectionTest,
       dataTest: sampleData,
       dataTestError: sampleError,
-      notes: process.env.NODE_ENV !== 'production'
-        ? ['⚠️ Este endpoint es solo para desarrollo. Elimínalo en producción si es sensible.']
-        : ['✅ Producción: no se sirven archivos estáticos desde aquí (Vercel lo hace)']
+      filesystem: {
+        publicDir: PUBLIC_DIR,
+        publicDirExists: fs.existsSync(PUBLIC_DIR),
+        indexHtmlExists: indexExists,
+        filesInPublic: publicFiles,
+        cwdFiles: fs.existsSync(process.cwd()) ? fs.readdirSync(process.cwd()).slice(0, 10) : []
+      },
+      warnings: [
+        '⚠️ ELIMINA ESTE ENDPOINT /api/debug ANTES DE PRODUCCIÓN',
+        'Frontend ahora servido 100% por Vercel (static files)'
+      ]
     });
   } catch (error) {
     console.error('❌ Error en /api/debug:', error);
@@ -255,11 +285,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// ========== 🛑 404 HANDLER (solo para rutas /api/* o no estáticas) ==========
-app.use((req, res) => {
-  // Solo mostramos este JSON si es una petición API o no se encontró archivo estático
-  if (req.path.startsWith('/api/') || process.env.NODE_ENV === 'production') {
-    res.status(404).json({ 
+// ========== 🛑 404 HANDLER ==========
+app.use((req, res, next) => {
+  // Si es una ruta API que no existe
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ 
       error: 'Endpoint de API no encontrado',
       requestedUrl: req.originalUrl,
       availableApiEndpoints: [
@@ -278,28 +308,50 @@ app.use((req, res) => {
         '/api/health'
       ]
     });
-  } else {
-    // En desarrollo, si no es /api/*, dejamos que express.static maneje 404 (mejor UX)
-    res.status(404).sendFile(path.join(PUBLIC_DIR, '404.html'), (err) => {
-      if (err) {
-        res.status(404).send('<h1>404 - Página no encontrada</h1><p>Archivo no encontrado.</p>');
-      }
-    });
   }
+  
+  // Si no es API, intentar servir index.html (SPA fallback)
+  const fs = require('fs');
+  const indexPath = path.join(PUBLIC_DIR, 'index.html');
+  
+  if (fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
+  }
+  
+  // Último recurso: 404 genérico
+  res.status(404).send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>404 - PATAC México</title>
+      <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: #f5f5f5; }
+        h1 { color: #667eea; }
+        .btn { background: #667eea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 20px; }
+      </style>
+    </head>
+    <body>
+      <h1>404 - Página no encontrada</h1>
+      <p>La ruta <code>${req.path}</code> no existe.</p>
+      <a href="/" class="btn">Ir al inicio</a>
+      <a href="/api/debug" class="btn">Ver diagnóstico</a>
+    </body>
+    </html>
+  `);
 });
 
-// ========== 🚀 SERVIDOR LOCAL (solo en desarrollo) ==========
+// ========== 🚀 SERVIDOR LOCAL ==========
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3000;
-  app.listen(PORT, 'localhost', () => {
+  app.listen(PORT, () => {
     console.log(`\n🚀 PATAC API + Static Server corriendo en:`);
     console.log(`🌐 Sitio: http://localhost:${PORT}/`);
     console.log(`📊 API:   http://localhost:${PORT}/api/artesanos`);
     console.log(`🔧 Debug: http://localhost:${PORT}/api/debug`);
     console.log(`💚 Health: http://localhost:${PORT}/api/health`);
-    console.log(`📄 Archivos servidos desde: ${PUBLIC_DIR}\n`);
+    console.log(`📁 Archivos servidos desde: ${PUBLIC_DIR}\n`);
   });
 }
 
-// ⚙️ Exportar para Vercel (obligatorio)
+// ⚙️ Exportar para Vercel
 module.exports = app;
