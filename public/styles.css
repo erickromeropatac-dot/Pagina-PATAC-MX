@@ -1135,7 +1135,7 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .hero-title {
-    font-family: var(--font-handwritten);
+    font-family: 'Muthiara', var(--font-display), serif;
     font-size: var(--text-8xl);
     font-weight: 400;
     margin-bottom: var(--space-6);
@@ -2833,3 +2833,120 @@ button {
         font-size: 1.25rem;
     }
 }
+
+/* ========================================
+   11. FUENTES PERSONALIZADAS
+   ======================================== */
+@font-face {
+    font-family: 'Muthiara';
+    src: url('/fonts/Muthiara.woff2') format('woff2'),
+         url('/fonts/Muthiara-demo-version.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Mejora la carga */
+}
+
+/* Clase específica para el logo con Muthiara */
+.logo-muthiara {
+    font-family: 'Muthiara', cursive;
+    font-weight: normal;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: var(--space-6);
+    line-height: 1.1;
+    text-shadow: 3px 6px 12px rgba(0,0,0,0.4);
+    
+    /* Tamaños responsivos */
+    font-size: 3rem; /* Móvil: 48px */
+}
+
+/* Tablet (640px y up) */
+@media (min-width: 640px) {
+    .logo-muthiara {
+        font-size: 4rem; /* 64px */
+        letter-spacing: 0.03em;
+    }
+}
+
+/* Desktop pequeño (1024px y up) */
+@media (min-width: 1024px) {
+    .logo-muthiara {
+        font-size: 5rem; /* 80px */
+        letter-spacing: 0.04em;
+    }
+}
+
+/* Desktop grande (1280px y up) */
+@media (min-width: 1280px) {
+    .logo-muthiara {
+        font-size: 6rem; /* 96px */
+        letter-spacing: 0.05em;
+    }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .logo-muthiara {
+        font-size: 2.25rem; /* 36px */
+        letter-spacing: 0.02em;
+        margin-bottom: var(--space-4);
+    }
+}
+
+/* Asegura que el contenedor no se rompa */
+.hero-content h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.proyectos-hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    text-decoration: none;
+    text-shadow: 3px 6px 12px rgba(0,0,0,0.4);
+    margin-bottom: var(--space-6);
+    
+    /* Tamaño base para móvil (equivalente a un h2 grande) */
+    font-size: 2.5rem; /* 40px */
+}
+
+/* Tablet (640px - 1024px) */
+@media (min-width: 640px) {
+    .proyectos-hero-title {
+        font-size: 3.5rem; /* 56px */
+        letter-spacing: 0.03em;
+        text-shadow: 2px 4px 8px rgba(0,0,0,0.35);
+    }
+}
+
+/* Desktop pequeño (1024px - 1280px) */
+@media (min-width: 1024px) {
+    .proyectos-hero-title {
+        font-size: 4.5rem; /* 72px */
+        letter-spacing: 0.04em;
+    }
+}
+
+/* Desktop grande (> 1280px) */
+@media (min-width: 1280px) {
+    .proyectos-hero-title {
+        font-size: var(--text-8xl); /* 96px - tu tamaño original */
+        letter-spacing: 0.05em;
+        text-shadow: 3px 6px 12px rgba(0,0,0,0.4);
+    }
+}
+
+/* Ajuste específico para pantallas muy pequeñas (< 480px) */
+@media (max-width: 480px) {
+    .proyectos-hero-title {
+        font-size: 2rem; /* 32px */
+        letter-spacing: 0.02em;
+        text-shadow: 1px 2px 6px rgba(0,0,0,0.3);
+        line-height: 1.2;
+        margin-bottom: var(--space-4);
+    }
+}
+

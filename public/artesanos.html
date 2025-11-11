@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Artesanos de PATAC México | Las Manos Detrás del Arte Textil</title>
+    <meta name="description" content="Conoce a los artesanos indígenas que preservan el patrimonio textil de México. Historias reales, técnicas ancestrales, y el impacto transformador de PATAC en sus comunidades.">
+    <meta name="keywords" content="artesanos mexicanos, textiles indígenas, patrimonio cultural, artesanía originaria, comunidades indígenas México, tejedores tradicionales">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://patac.org/artesanos.html">
+    <meta property="og:title" content="Artesanos de PATAC México | Las Manos Detrás del Arte">
+    <meta property="og:description" content="Conoce las historias de los artesanos indígenas que preservan técnicas textiles ancestrales. Cada hilo cuenta una historia de resistencia y cultura viva.">
+    <meta property="og:image" content="https://patac.org/og-artesanos.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://patac.org/artesanos.html">
+    <meta property="twitter:title" content="Artesanos de PATAC México">
+    <meta property="twitter:description" content="Historias reales de artesanos que tejen el patrimonio cultural de México.">
+    <meta property="twitter:image" content="https://patac.org/twitter-artesanos.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://patac.org/artesanos.html">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Artesanos de PATAC México",
+      "description": "Perfiles de artesanos indígenas que preservan técnicas textiles ancestrales con el apoyo de PATAC México",
+      "provider": {
+        "@type": "Organization",
+        "name": "PATAC México"
+      }
+    }
+    </script>
+    
+    <style>
+        /* Estilos específicos para la página de artesanos que no pueden ir en styles.css */
+        
+        /* Hero específico con overlay más oscuro para legibilidad */
+        .artesanos-hero {
+            min-height: 70vh;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.92) 0%, rgba(199, 91, 57, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=2000') center/cover;
+            position: relative;
+        }
+        
+        /* Grid adaptativo más sofisticado */
+        .artesanos-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            grid-auto-flow: dense;
+        }
+        
+        /* Card de artesano con hover más expresivo */
+        .artesano-card-enhanced {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .artesano-card-enhanced:hover {
+            transform: translateY(-12px) scale(1.02);
+            z-index: 10;
+        }
+        
+        /* Avatar con borde cultural */
+        .artesano-avatar-cultural {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .artesano-avatar-cultural::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate-border 3s linear infinite;
+        }
+        
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .artesano-avatar-cultural img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+        }
+        
+        /* Etiquetas de técnica con iconos */
+        .tecnica-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(199, 91, 57, 0.1));
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0.25rem;
+        }
+        
+        /* Sección de impacto individual con métricas */
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed rgba(139, 69, 19, 0.2);
+        }
+        
+        .metric-item {
+            text-align: center;
+        }
+        
+        .metric-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: var(--font-display);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Filtros sticky mejorados */
+        .filters-sticky {
+            position: sticky;
+            top: 80px;
+            background: var(--white);
+            z-index: var(--z-sticky);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        /* Historias destacadas con diseño especial */
+        .historia-destacada {
+            background: linear-gradient(135deg, var(--light) 0%, rgba(212, 175, 55, 0.08) 100%);
+            border-left: 5px solid var(--gold);
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .historia-destacada::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 120px;
+            color: rgba(212, 175, 55, 0.15);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        /* Mini modal para "Ver Historia Completa" */
+        .artesano-expanded {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        /* Video embed responsivo */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            margin: 1.5rem 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Stats hero con íconos culturales */
+        .hero-stats-cultural {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .hero-stat-cultural {
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-stat-icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Empty state si no hay artesanos */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        
+        .empty-state-icon {
+            font-size: 5rem;
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .artesanos-masonry {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sticky {
+                top: 60px;
+            }
+            
+            .hero-stats-cultural {
+                gap: 1.5rem;
+            }
+            
+            .hero-stat-icon {
+                font-size: 2rem;
+            }
+            
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (reutilizada) -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#mision">Misión</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="artesanos.html" class="active">Artesanos</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="nav-sidebar" id="nav-sidebar">
+        <div class="nav-sidebar-header">
+            <span class="nav-sidebar-logo">PATAC</span>
+            <button class="nav-sidebar-close" id="nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#mision">Misión</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="index.html#reconocimientos">Aliados</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="artesanos-hero hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <div class="hero-badge">EL CORAZÓN DE PATAC MÉXICO</div>
+            <h1 class="proyectos-hero-title">Las Manos Detrás del Arte</h1>
+            <p class="hero-description">
+                Cada hilo es una historia. Cada tejido es resistencia cultural. Conoce a los custodios de técnicas ancestrales que, con el apoyo de PATAC, transforman tradiciones milenarias en sustento digno y orgullo comunitario.
+            </p>
+            
+            <!-- Stats Hero -->
+            <div class="hero-stats-cultural">
+                <div class="hero-stat-cultural" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-users hero-stat-icon"></i>
+                    <span class="hero-stat-number" id="total-artesanos">500+</span>
+                    <span class="hero-stat-label">Artesanos Apoyados</span>
+                </div>
+                <div class="hero-stat-cultural" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-map-marker-alt hero-stat-icon"></i>
+                    <span class="hero-stat-number" id="total-comunidades">50+</span>
+                    <span class="hero-stat-label">Comunidades</span>
+                </div>
+                <div class="hero-stat-cultural" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-language hero-stat-icon"></i>
+                    <span class="hero-stat-number" id="total-lenguas">15+</span>
+                    <span class="hero-stat-label">Lenguas Originarias</span>
+                </div>
+                <div class="hero-stat-cultural" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-chart-line hero-stat-icon"></i>
+                    <span class="hero-stat-number">+300%</span>
+                    <span class="hero-stat-label">Incremento Promedio</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros Sticky -->
+    <div class="filters-sticky">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="filter-estado" class="form-label">
+                        <i class="fas fa-map-marked-alt mr-2"></i> Filtrar por Estado
+                    </label>
+                    <select id="filter-estado" class="form-select">
+                        <option value="">Todos los Estados</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-comunidad" class="form-label">
+                        <i class="fas fa-home mr-2"></i> Comunidad
+                    </label>
+                    <select id="filter-comunidad" class="form-select">
+                        <option value="">Todas las Comunidades</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-lengua" class="form-label">
+                        <i class="fas fa-language mr-2"></i> Lengua Originaria
+                    </label>
+                    <select id="filter-lengua" class="form-select">
+                        <option value="">Todas las Lenguas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-tecnica" class="form-label">
+                        <i class="fas fa-palette mr-2"></i> Técnica
+                    </label>
+                    <select id="filter-tecnica" class="form-select">
+                        <option value="">Todas las Técnicas</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Contador de resultados y botón de reset -->
+            <div class="flex justify-between items-center mt-4">
+                <p class="text-base" id="resultados-count">
+                    <strong id="count-number">0</strong> artesanos encontrados
+                </p>
+                <button id="reset-filters" class="btn btn-ghost btn-sm">
+                    <i class="fas fa-undo mr-2"></i> Limpiar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de Artesanos -->
+    <section class="section" id="artesanos-grid-section">
+        <div class="container">
+            <div class="artesanos-masonry" id="artesanos-grid">
+                <!-- Loading spinner inicial -->
+                <div class="loading-state">
+                    <div class="spinner-container">
+                        <div class="spinner"></div>
+                        <p>Cargando historias de nuestros artesanos...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Historias de Impacto -->
+    <section class="section" style="background: var(--light);" id="historias-impacto">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-badge">
+                    <i class="fas fa-heart"></i>
+                    IMPACTO REAL
+                </div>
+                <h2 class="section-title">Historias de Transformación</h2>
+                <p class="section-subtitle">
+                    Testimonios reales de cómo PATAC ha cambiado vidas, preservado culturas y empoderado comunidades enteras
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12" id="historias-destacadas-container">
+                <!-- Se llenará dinámicamente con JS -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section" style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.95), rgba(199, 91, 57, 0.9)); color: var(--white);">
+        <div class="container text-center">
+            <div data-aos="fade-up">
+                <h2 class="section-title" style="color: var(--white); margin-bottom: 2rem;">
+                    Cada Compra es un Acto de Resistencia Cultural
+                </h2>
+                <p class="section-subtitle" style="color: var(--white); opacity: 0.95; max-width: 800px; margin: 0 auto 3rem;">
+                    Al apoyar a nuestros artesanos, no solo adquieres una pieza única de arte textil. Contribuyes a la preservación de técnicas milenarias, al sustento digno de familias indígenas y a la transmisión de conocimientos ancestrales a las nuevas generaciones.
+                </p>
+                <div class="btn-group justify-center">
+                    <a href="proyectos.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-hands-helping mr-3"></i>
+                        Apoya un Proyecto
+                    </a>
+                    <a href="index.html#contacto" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-envelope mr-3"></i>
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (reutilizado) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>PATAC México</h4>
+                <p>Cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios mediante incubación empresarial, educación integral y comercio justo.</p>
+                <p><strong>Eslogan:</strong> "El Tejido Cultural de México"</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#mision">Misión</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="artesanos.html">Artesanos</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                <p><i class="fas fa-envelope mr-2"></i> contacto@patac.org</p>
+                <p><i class="fas fa-building mr-2"></i> SC de RL de CV</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="flex gap-4 mb-4">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Historia Completa -->
+    <div class="modal" id="historia-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content artesano-expanded">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+
+        // API Base URL
+        const API_BASE = '/api';
+
+        // Estado global
+        let todosLosArtesanos = [];
+        let artesanosFiltrados = [];
+
+        // ==================== MOBILE NAVIGATION ====================
+        const navToggle = document.getElementById('nav-toggle');
+        const navSidebar = document.getElementById('nav-sidebar');
+        const navClose = document.getElementById('nav-close');
+        const navOverlay = document.getElementById('nav-overlay');
+        const sidebarLinks = document.querySelectorAll('.nav-sidebar-links a');
+
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navSidebar.classList.add('active');
+                navOverlay.classList.add('active');
+                navToggle.classList.add('active');
+            });
+        }
+
+        const closeMenu = () => {
+            navSidebar.classList.remove('active');
+            navOverlay.classList.remove('active');
+            navToggle.classList.remove('active');
+        };
+
+        if (navClose) navClose.addEventListener('click', closeMenu);
+        if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+        sidebarLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // ==================== SCROLL EFFECTS ====================
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== CARGAR ARTESANOS ====================
+        async function cargarArtesanos() {
+            try {
+                const response = await fetch(`${API_BASE}/artesanos`);
+                const data = await response.json();
+                todosLosArtesanos = data.artesanos || [];
+                artesanosFiltrados = [...todosLosArtesanos];
+                
+                // Actualizar stats del hero
+                actualizarStatsHero(todosLosArtesanos);
+                
+                // Poblar filtros
+                poblarFiltros(todosLosArtesanos);
+                
+                // Renderizar artesanos
+                renderizarArtesanos(artesanosFiltrados);
+                
+                // Cargar historias destacadas
+                cargarHistoriasDestacadas(todosLosArtesanos);
+                
+            } catch (error) {
+                console.error('Error cargando artesanos:', error);
+                mostrarError();
+            }
+        }
+
+        // ==================== ACTUALIZAR STATS HERO ====================
+        function actualizarStatsHero(artesanos) {
+            const totalArtesanos = artesanos.length;
+            const comunidadesUnicas = new Set(artesanos.map(a => a.comunidad)).size;
+            const lenguasUnicas = new Set(artesanos.map(a => a.lenguaOriginaria).filter(Boolean)).size;
+            
+            document.getElementById('total-artesanos').textContent = totalArtesanos + '+';
+            document.getElementById('total-comunidades').textContent = comunidadesUnicas + '+';
+            document.getElementById('total-lenguas').textContent = lenguasUnicas + '+';
+        }
+
+        // ==================== POBLAR FILTROS ====================
+        function poblarFiltros(artesanos) {
+            const estados = new Set();
+            const comunidades = new Set();
+            const lenguas = new Set();
+            const tecnicas = new Set();
+
+            artesanos.forEach(artesano => {
+                if (artesano.estado) estados.add(artesano.estado);
+                if (artesano.comunidad) comunidades.add(artesano.comunidad);
+                if (artesano.lenguaOriginaria) lenguas.add(artesano.lenguaOriginaria);
+                if (artesano.tecnica) tecnicas.add(artesano.tecnica);
+            });
+
+            poblarSelect('filter-estado', Array.from(estados).sort());
+            poblarSelect('filter-comunidad', Array.from(comunidades).sort());
+            poblarSelect('filter-lengua', Array.from(lenguas).sort());
+            poblarSelect('filter-tecnica', Array.from(tecnicas).sort());
+        }
+
+        function poblarSelect(id, opciones) {
+            const select = document.getElementById(id);
+            opciones.forEach(opcion => {
+                const option = document.createElement('option');
+                option.value = opcion;
+                option.textContent = opcion;
+                select.appendChild(option);
+            });
+        }
+
+        // ==================== APLICAR FILTROS ====================
+        function aplicarFiltros() {
+            const estadoSeleccionado = document.getElementById('filter-estado').value;
+            const comunidadSeleccionada = document.getElementById('filter-comunidad').value;
+            const lenguaSeleccionada = document.getElementById('filter-lengua').value;
+            const tecnicaSeleccionada = document.getElementById('filter-tecnica').value;
+
+            artesanosFiltrados = todosLosArtesanos.filter(artesano => {
+                return (!estadoSeleccionado || artesano.estado === estadoSeleccionado) &&
+                       (!comunidadSeleccionada || artesano.comunidad === comunidadSeleccionada) &&
+                       (!lenguaSeleccionada || artesano.lenguaOriginaria === lenguaSeleccionada) &&
+                       (!tecnicaSeleccionada || artesano.tecnica === tecnicaSeleccionada);
+            });
+
+            renderizarArtesanos(artesanosFiltrados);
+            document.getElementById('count-number').textContent = artesanosFiltrados.length;
+        }
+
+        // Event listeners para filtros
+        ['filter-estado', 'filter-comunidad', 'filter-lengua', 'filter-tecnica'].forEach(id => {
+            document.getElementById(id).addEventListener('change', aplicarFiltros);
+        });
+
+        // Reset filtros
+        document.getElementById('reset-filters').addEventListener('click', () => {
+            document.getElementById('filter-estado').value = '';
+            document.getElementById('filter-comunidad').value = '';
+            document.getElementById('filter-lengua').value = '';
+            document.getElementById('filter-tecnica').value = '';
+            aplicarFiltros();
+        });
+
+        // ==================== RENDERIZAR ARTESANOS ====================
+        function renderizarArtesanos(artesanos) {
+            const grid = document.getElementById('artesanos-grid');
+            
+            if (artesanos.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search empty-state-icon"></i>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">No se encontraron artesanos</h3>
+                        <p style="color: var(--gray-600);">Intenta ajustar los filtros para ver más resultados</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = artesanos.map((artesano, index) => {
+                const tecnicas = artesano.tecnica ? artesano.tecnica.split(',').map(t => t.trim()) : [];
+                const impactoNumerico = extraerNumeroImpacto(artesano.impactoEconomico);
+                const edad = artesano.edad || 'N/A';
+                
+                return `
+                    <div class="card artesano-card-enhanced" data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 400)}">
+                        <!-- Avatar Cultural -->
+                        <div class="artesano-avatar-cultural">
+                            <img src="${artesano.urlFoto}" 
+                                 alt="Foto de ${artesano.nombreCompleto}, artesano textil de ${artesano.comunidad}"
+                                 loading="lazy"
+                                 onerror="this.src='https://via.placeholder.com/180?text=Sin+Foto'">
+                        </div>
+                        
+                        <!-- Contenido Principal -->
+                        <div class="card-content">
+                            <!-- Nombre y Edad -->
+                            <h3 class="card-title" style="text-align: center; margin-bottom: 0.5rem;">
+                                ${artesano.nombreCompleto}
+                            </h3>
+                            <p class="card-category" style="text-align: center; margin-bottom: 1rem;">
+                                ${edad} años
+                            </p>
+                            
+                            <!-- Ubicación y Lengua -->
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <p style="margin-bottom: 0.5rem;">
+                                    <i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                    <strong>${artesano.comunidad}</strong>, ${artesano.estado || 'México'}
+                                </p>
+                                ${artesano.lenguaOriginaria ? `
+                                    <p style="margin-bottom: 0;">
+                                        <i class="fas fa-language" style="color: var(--gold); margin-right: 0.5rem;"></i>
+                                        ${artesano.lenguaOriginaria}
+                                    </p>
+                                ` : ''}
+                            </div>
+                            
+                            <!-- Técnicas -->
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                ${tecnicas.map(tecnica => `
+                                    <span class="tecnica-badge">
+                                        <i class="fas fa-hands"></i>
+                                        ${tecnica}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            
+                            <!-- Historia (truncada) -->
+                            <p class="card-description" style="text-align: left;">
+                                ${truncarTexto(artesano.historia, 120)}
+                            </p>
+                            
+                            <!-- Métricas de Impacto -->
+                            ${impactoNumerico ? `
+                                <div class="impact-metrics">
+                                    <div class="metric-item">
+                                        <span class="metric-value">+${impactoNumerico}%</span>
+                                        <span class="metric-label">Incremento</span>
+                                    </div>
+                                    ${artesano.proyectosParticipados ? `
+                                        <div class="metric-item">
+                                            <span class="metric-value">${artesano.proyectosParticipados}</span>
+                                            <span class="metric-label">Proyectos</span>
+                                        </div>
+                                    ` : ''}
+                                    ${artesano.aprendices ? `
+                                        <div class="metric-item">
+                                            <span class="metric-value">${artesano.aprendices}</span>
+                                            <span class="metric-label">Aprendices</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+                            
+                            <!-- Botones de Acción -->
+                            <div class="card-footer" style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                                <button class="btn btn-primary btn-sm" onclick="verHistoriaCompleta('${artesano.idArtesano}')" style="flex: 1;">
+                                    <i class="fas fa-book-open mr-2"></i>
+                                    Ver Historia
+                                </button>
+                                ${artesano.urlVideo ? `
+                                    <button class="btn btn-outline btn-sm" onclick="reproducirVideo('${artesano.urlVideo}')" style="flex: 1;">
+                                        <i class="fas fa-play mr-2"></i>
+                                        Video
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Actualizar contador
+            document.getElementById('count-number').textContent = artesanos.length;
+        }
+
+        // ==================== UTILIDADES ====================
+        function truncarTexto(texto, maxLength) {
+            if (!texto) return 'Historia no disponible.';
+            if (texto.length <= maxLength) return texto;
+            return texto.substring(0, maxLength) + '...';
+        }
+
+        function extraerNumeroImpacto(impactoTexto) {
+            if (!impactoTexto) return null;
+            const match = impactoTexto.match(/(\d+)/);
+            return match ? parseInt(match[1]) : null;
+        }
+
+        // ==================== MODAL HISTORIA COMPLETA ====================
+        function verHistoriaCompleta(idArtesano) {
+            const artesano = todosLosArtesanos.find(a => a.idArtesano === idArtesano);
+            if (!artesano) return;
+
+            const modalBody = document.getElementById('modal-body');
+            const tecnicas = artesano.tecnica ? artesano.tecnica.split(',').map(t => t.trim()) : [];
+            
+            modalBody.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Columna Izquierda: Foto y Datos -->
+                    <div>
+                        <div class="artesano-avatar-cultural" style="width: 240px; height: 240px;">
+                            <img src="${artesano.urlFoto}" 
+                                 alt="${artesano.nombreCompleto}"
+                                 onerror="this.src='https://via.placeholder.com/240?text=Sin+Foto'">
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem;">
+                                ${artesano.nombreCompleto}
+                            </h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">
+                                ${artesano.edad || 'N/A'} años
+                            </p>
+                            
+                            <div style="display: grid; gap: 1rem;">
+                                <div>
+                                    <strong style="color: var(--primary);">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>Ubicación:
+                                    </strong>
+                                    <p>${artesano.comunidad}, ${artesano.estado || 'México'}</p>
+                                </div>
+                                
+                                ${artesano.lenguaOriginaria ? `
+                                    <div>
+                                        <strong style="color: var(--primary);">
+                                            <i class="fas fa-language mr-2"></i>Lengua Originaria:
+                                        </strong>
+                                        <p>${artesano.lenguaOriginaria}</p>
+                                    </div>
+                                ` : ''}
+                                
+                                <div>
+                                    <strong style="color: var(--primary);">
+                                        <i class="fas fa-hands mr-2"></i>Técnicas Dominadas:
+                                    </strong>
+                                    <div style="margin-top: 0.5rem;">
+                                        ${tecnicas.map(t => `<span class="tecnica-badge">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                                
+                                ${artesano.impactoEconomico ? `
+                                    <div>
+                                        <strong style="color: var(--primary);">
+                                            <i class="fas fa-chart-line mr-2"></i>Impacto:
+                                        </strong>
+                                        <p>${artesano.impactoEconomico}</p>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Columna Derecha: Historia y Video -->
+                    <div>
+                        <h4 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem;">
+                            <i class="fas fa-book-reader mr-2"></i>Su Historia
+                        </h4>
+                        <div class="historia-destacada">
+                            <p style="font-size: 1.125rem; line-height: 1.8; color: var(--dark);">
+                                ${artesano.historia || 'Historia no disponible.'}
+                            </p>
+                        </div>
+                        
+                        ${artesano.urlVideo ? `
+                            <div style="margin-top: 2rem;">
+                                <h4 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem;">
+                                    <i class="fas fa-video mr-2"></i>Conócelo en Video
+                                </h4>
+                                <div class="video-wrapper">
+                                    <iframe 
+                                        src="${convertirVideoUrl(artesano.urlVideo)}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <a href="proyectos.html" class="btn btn-primary btn-lg">
+                                <i class="fas fa-heart mr-2"></i>
+                                Apoya a ${artesano.nombreCompleto.split(' ')[0]}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Mostrar modal
+            const modal = document.getElementById('historia-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function convertirVideoUrl(url) {
+            // Convertir URLs de YouTube a embed
+            if (url.includes('youtube.com/watch')) {
+                const videoId = url.split('v=')[1]?.split('&')[0];
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            if (url.includes('youtu.be/')) {
+                const videoId = url.split('youtu.be/')[1]?.split('?')[0];
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            return url;
+        }
+
+        function reproducirVideo(url) {
+            verHistoriaCompleta(event.target.closest('.card').querySelector('[onclick^="verHistoriaCompleta"]').getAttribute('onclick').match(/'([^']+)'/)[1]);
+        }
+
+        // Cerrar modal
+        document.getElementById('modal-close').addEventListener('click', () => {
+            const modal = document.getElementById('historia-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.querySelector('.modal-backdrop').addEventListener('click', () => {
+            const modal = document.getElementById('historia-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // ==================== HISTORIAS DESTACADAS ====================
+        function cargarHistoriasDestacadas(artesanos) {
+            const container = document.getElementById('historias-destacadas-container');
+            
+            // Seleccionar artesanos con mayor impacto
+            const destacados = artesanos
+                .filter(a => a.impactoEconomico && a.historia)
+                .sort((a, b) => {
+                    const impactoA = extraerNumeroImpacto(a.impactoEconomico) || 0;
+                    const impactoB = extraerNumeroImpacto(b.impactoEconomico) || 0;
+                    return impactoB - impactoA;
+                })
+                .slice(0, 4);
+
+            if (destacados.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--gray-600);">Próximamente más historias inspiradoras.</p>';
+                return;
+            }
+
+            container.innerHTML = destacados.map((artesano, index) => {
+                const impacto = extraerNumeroImpacto(artesano.impactoEconomico);
+                return `
+                    <div class="historia-destacada" data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <div class="flex gap-6 items-start">
+                            <div style="flex-shrink: 0;">
+                                <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid var(--gold);">
+                                    <img src="${artesano.urlFoto}" 
+                                         alt="${artesano.nombreCompleto}"
+                                         style="width: 100%; height: 100%; object-fit: cover;"
+                                         onerror="this.src='https://via.placeholder.com/120?text=Sin+Foto'">
+                                </div>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem;">
+                                    ${artesano.nombreCompleto}
+                                </h4>
+                                <p style="color: var(--accent); font-weight: 600; margin-bottom: 1rem;">
+                                    ${artesano.comunidad}, ${artesano.estado || 'México'}
+                                </p>
+                                <p style="font-size: 1.125rem; line-height: 1.8; color: var(--dark); margin-bottom: 1.5rem;">
+                                    ${truncarTexto(artesano.historia, 200)}
+                                </p>
+                                ${impacto ? `
+                                    <div class="badge badge-success" style="font-size: 1rem; padding: 0.75rem 1.5rem;">
+                                        <i class="fas fa-chart-line mr-2"></i>
+                                        Incrementó sus ingresos en +${impacto}%
+                                    </div>
+                                ` : ''}
+                                <button onclick="verHistoriaCompleta('${artesano.idArtesano}')" 
+                                        class="btn btn-ghost btn-sm" 
+                                        style="margin-top: 1rem;">
+                                    Leer historia completa →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== MOSTRAR ERROR ====================
+        function mostrarError() {
+            const grid = document.getElementById('artesanos-grid');
+            grid.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <p>Error al cargar los artesanos. Por favor, intenta de nuevo.</p>
+                    <button onclick="cargarArtesanos()" class="btn btn-primary btn-sm" style="margin-top: 1rem;">
+                        <i class="fas fa-redo mr-2"></i>Reintentar
+                    </button>
+                </div>
+            `;
+        }
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // ==================== INICIALIZACIÓN ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarArtesanos();
+        });
+    </script>
+</body>
+</html>
