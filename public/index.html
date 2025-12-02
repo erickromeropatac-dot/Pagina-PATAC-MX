@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO Meta Tags -->
     <title>PATAC México | El Tejido Cultural de México - Preservación del Patrimonio Biocultural</title>
-    <meta name="description" content="PATAC México: Cooperativa dedicada a la preservación del patrimonio biocultural textil de pueblos originarios. Apoyamos artesanos indígenas mediante incubación empresarial, educación integral y comercio justo. Descubre nuestros proyectos, artesanos y productos auténticos.">
-    <meta name="keywords" content="patrimonio cultural, artesanía mexicana, pueblos originarios, economía solidaria, textiles artesanales, cultura México, voluntariado cultural, incubadora social, comercio justo">
+    <meta name="description"
+        content="PATAC México: Cooperativa dedicada a la preservación del patrimonio biocultural textil de pueblos originarios. Apoyamos artesanos indígenas mediante incubación empresarial, educación integral y comercio justo.">
+    <meta name="keywords"
+        content="patrimonio cultural, artesanía mexicana, pueblos originarios, economía solidaria, textiles artesanales, cultura México, voluntariado cultural, incubadora social, comercio justo">
     <meta name="author" content="PATAC México">
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://patac.org/">
     <meta property="og:title" content="PATAC México | El Tejido Cultural de México">
-    <meta property="og:description" content="Preservamos el patrimonio biocultural textil de pueblos originarios. Incubadora especializada en acompañamiento empresarial social a artesanos indígenas.">
+    <meta property="og:description"
+        content="Preservamos el patrimonio biocultural textil de pueblos originarios mediante incubación empresarial y educación integral.">
     <meta property="og:image" content="https://patac.org/og-image.jpg">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://patac.org/">
     <meta property="twitter:title" content="PATAC México | El Tejido Cultural de México">
-    <meta property="twitter:description" content="Preservamos el patrimonio biocultural textil de pueblos originarios mediante incubación empresarial y educación integral.">
+    <meta property="twitter:description"
+        content="Preservamos el patrimonio biocultural textil de pueblos originarios mediante incubación empresarial y educación integral.">
     <meta property="twitter:image" content="https://patac.org/twitter-image.jpg">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -27,26 +32,24 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="PATAC México" />
     <link rel="manifest" href="/site.webmanifest" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Preconnect to CDNs for better performance -->
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
-    <link rel="dns-prefetch" href="https://plus.unsplash.com">
-    <!-- Google Fonts via CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet">
-    <!-- AOS for animations -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Libraries -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <!-- Swiper for carousels -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <!-- Leaflet for map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
     <!-- Canonical URL -->
     <link rel="canonical" href="https://patac.org/">
-    <!-- Structured Data (JSON-LD) for better SEO -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -76,11 +79,11 @@
     }
     </script>
     <style>
-        /* Asegurar que el body tenga posición relativa para los puntos flotantes */
+        /* Quick Navigation Styles */
         body {
             position: relative;
         }
-        /* Estilos para los puntos de navegación laterales (Quick Nav) */
+
         .quick-nav {
             position: fixed;
             right: 20px;
@@ -95,6 +98,7 @@
             border-radius: 50px;
             padding: 15px 10px;
         }
+
         .quick-nav-list {
             list-style: none;
             margin: 0;
@@ -104,9 +108,11 @@
             align-items: center;
             gap: 12px;
         }
+
         .quick-nav-item {
             margin: 0;
         }
+
         .quick-nav-link {
             display: flex;
             align-items: center;
@@ -120,16 +126,13 @@
             transition: all 0.3s ease;
             position: relative;
         }
+
         .quick-nav-link:hover,
         .quick-nav-link.active {
             background-color: var(--gold, #d4af37);
             transform: scale(1.1);
         }
-        .quick-nav-link:hover .quick-nav-tooltip,
-        .quick-nav-link:focus .quick-nav-tooltip {
-            opacity: 1;
-            visibility: visible;
-        }
+
         .quick-nav-tooltip {
             position: absolute;
             right: 50px;
@@ -145,6 +148,13 @@
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+
+        .quick-nav-link:hover .quick-nav-tooltip,
+        .quick-nav-link:focus .quick-nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .quick-nav-tooltip::after {
             content: '';
             position: absolute;
@@ -154,38 +164,85 @@
             border: 5px solid transparent;
             border-left-color: var(--dark, #333);
         }
-        /* Ajustes para dispositivos móviles */
+
         @media (max-width: 768px) {
             .quick-nav {
-                /* Mostrar en móviles */
-                display: flex;
-                /* Posición fija en el lado derecho */
-                right: 8px; /* Ajuste para no tocar el borde */
-                /* Ajustar el tamaño de los puntos */
+                right: 8px;
                 padding: 10px 6px;
             }
+
             .quick-nav-link {
                 width: 28px;
                 height: 28px;
             }
-            /* Ajustar el tamaño del tooltip en móviles */
+
             .quick-nav-tooltip {
                 font-size: 0.7rem;
                 right: 40px;
             }
-            
         }
-        /* Ajuste para el Hero Section para que no tape el contenido */
+
         .hero {
-            padding-right: 60px; /* Espacio para la barra de navegación lateral */
+            padding-right: 60px;
         }
+
         @media (max-width: 768px) {
             .hero {
-                padding-right: 40px; /* Menos espacio en móvil */
+                padding-right: 40px;
+            }
+        }
+
+        /* Typing Effect Styles */
+        .tagline {
+            min-height: 1.5em;
+            display: inline-block;
+            position: relative;
+        }
+
+        .tagline::after {
+            content: '|';
+            position: absolute;
+            right: -8px;
+            animation: blink 1s infinite;
+            color: var(--gold);
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav" id="main-nav">
@@ -193,16 +250,16 @@
             <a href="#inicio" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#mision">Misión</a></li>
-                <li><a href="#impacto">Impacto</a></li>
-                <li><a href="#actividades">Actividades</a></li>
-                <li><a href="#artesanos">Artesanos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="artesanos.html">Artesanos</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="voluntariado.html">Voluntariado</a></li>
+                <li><a href="transparencia.html">Transparencia</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
@@ -214,79 +271,170 @@
         </div>
         <ul class="nav-sidebar-links">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#mision">Misión</a></li>
-            <li><a href="#impacto">Impacto</a></li>
-            <li><a href="#actividades">Actividades</a></li>
-            <li><a href="#artesanos">Artesanos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="proyectos.html">Proyectos</a></li>
-            <li><a href="artesanos.html">Conoce a los Artesanos</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="voluntariado.html">Voluntariado</a></li>
+            <li><a href="transparencia.html">Transparencia</a></li>
+            <li><a href="#actividades">Actividades</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
             <li><a href="#reconocimientos">Aliados</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </aside>
     <div class="nav-overlay" id="nav-overlay"></div>
-    <!-- Quick Navigation (Ahora visible en móviles también) -->
+
+    <!-- Quick Navigation -->
     <aside class="quick-nav">
         <ul class="quick-nav-list">
-            <li class="quick-nav-item"><a href="#inicio" class="quick-nav-link active" data-section="inicio"><span class="quick-nav-tooltip">Inicio</span></a></li>
-            <li class="quick-nav-item"><a href="#mision" class="quick-nav-link" data-section="mision"><span class="quick-nav-tooltip">Misión</span></a></li>
-            <li class="quick-nav-item"><a href="#impacto" class="quick-nav-link" data-section="impacto"><span class="quick-nav-tooltip">Impacto</span></a></li>
-            <li class="quick-nav-item"><a href="#actividades" class="quick-nav-link" data-section="actividades"><span class="quick-nav-tooltip">Actividades</span></a></li>
-            <li class="quick-nav-item"><a href="#artesanos" class="quick-nav-link" data-section="artesanos"><span class="quick-nav-tooltip">Artesanos</span></a></li>
-            <li class="quick-nav-item"><a href="#proyectos" class="quick-nav-link" data-section="proyectos"><span class="quick-nav-tooltip">Proyectos</span></a></li>
-            <li class="quick-nav-item"><a href="#reconocimientos" class="quick-nav-link" data-section="reconocimientos"><span class="quick-nav-tooltip">Aliados</span></a></li>
+            <li class="quick-nav-item"><a href="#inicio" class="quick-nav-link active" data-section="inicio"><span
+                        class="quick-nav-tooltip">Inicio</span></a></li>
+            <li class="quick-nav-item"><a href="#mision" class="quick-nav-link" data-section="mision"><span
+                        class="quick-nav-tooltip">Misión</span></a></li>
+            <li class="quick-nav-item"><a href="#impacto" class="quick-nav-link" data-section="impacto"><span
+                        class="quick-nav-tooltip">Impacto</span></a></li>
+            <li class="quick-nav-item"><a href="#actividades" class="quick-nav-link" data-section="actividades"><span
+                        class="quick-nav-tooltip">Actividades</span></a></li>
+            <li class="quick-nav-item"><a href="#artesanos" class="quick-nav-link" data-section="artesanos"><span
+                        class="quick-nav-tooltip">Artesanos</span></a></li>
+            <li class="quick-nav-item"><a href="#proyectos" class="quick-nav-link" data-section="proyectos"><span
+                        class="quick-nav-tooltip">Proyectos</span></a></li>
+            <li class="quick-nav-item"><a href="#reconocimientos" class="quick-nav-link"
+                    data-section="reconocimientos"><span class="quick-nav-tooltip">Aliados</span></a></li>
         </ul>
     </aside>
+
     <!-- Hero Section with Video Background -->
-    <section class="hero" id="inicio">
-        <video class="hero-video" autoplay muted loop playsinline poster="/assets/hero-fallback.jpg">
-            <source src="https://www.pexels.com/download/video/19312831/" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">PATRIMONIO BIOCULTURAL TEXTIL INDÍGENA</div>
-            <h1 class="logo logo-muthiara" data-aos="fade-up" data-aos-delay="400">Patac</h1>
-            <p class="tagline" data-aos="fade-up" data-aos-delay="600">El Tejido Cultural de México</p>
-            <p class="description" data-aos="fade-up" data-aos-delay="800">
-                Somos una cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios en riesgo de desaparecer. Operamos como incubadora empresarial social que brinda acompañamiento integral a artesanos indígenas, combinando educación para la vida, comercio justo y empoderamiento comunitario.
-            </p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="1000">
-                <a href="proyectos.html" class="btn btn-primary btn-xl">
-                    <i class="fas fa-hands-helping mr-3"></i>Apoya un Proyecto
-                </a>
-                <a href="artesanos.html" class="btn btn-secondary btn-xl">
-                    <i class="fas fa-users mr-3"></i>Conoce a los Artesanos
-                </a>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="inicio">
+  <div class="hero-background">
+    <video class="hero-video" autoplay muted loop playsinline poster="/assets/hero-fallback.jpg">
+      <source src="https://www.pexels.com/download/video/19312831/" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">
+      PATRIMONIO BIOCULTURAL TEXTIL INDÍGENA
+    </div>
+    <h1 class="logo logo-muthiara" data-aos="fade-up" data-aos-delay="400">Patac</h1>
+    <p class="tagline" data-aos="fade-up" data-aos-delay="600">El Tejido Cultural de México</p>
+    <p class="description" data-aos="fade-up" data-aos-delay="800">
+      Somos una cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos
+      originarios en riesgo de desaparecer. Operamos como incubadora empresarial social que brinda
+      acompañamiento integral a artesanos indígenas, combinando educación para la vida, comercio justo y
+      empoderamiento comunitario.
+    </p>
+    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="1000">
+      <a href="proyectos.html" class="btn btn-primary">
+        <i class="fas fa-hands-helping mr-3"></i>Apoya un Proyecto
+      </a>
+      <a href="artesanos.html" class="btn btn-secondary">
+        <i class="fas fa-users mr-3"></i>Conoce a los Artesanos
+      </a>
+    </div>
+  </div>
+</section>
+
     <!-- Misión, Visión y Objetivos Section -->
-    <section class="mission section" id="mision" data-aos="fade-up">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestra Misión, Visión y Objetivos</h2>
-                <p>El compromiso de PATAC México con el patrimonio cultural indígena</p>
-            </div>
-            <div class="mission-grid">
-                <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="mission-icon">🎯</div>
-                    <h3>Misión</h3>
-                    <p>Contribuir a la preservación del patrimonio biocultural textil de los pueblos originarios de México, promoviendo su valoración y respeto como expresión viva de identidad y resistencia cultural.</p>
-                </div>
-                <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mission-icon">🌟</div>
-                    <h3>Visión</h3>
-                    <p>Ser el referente en la preservación y revitalización del patrimonio textil originario, conectando comunidades artesanas con mercados justos y empoderando a las nuevas generaciones para asegurar la continuidad de este legado.</p>
-                </div>
-                <div class="mission-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="mission-icon">🚀</div>
-                    <h3>Objetivos</h3>
-                    <p>Garantizar la sostenibilidad del patrimonio textil originario a través de iniciativas estratégicas de difusión, comercialización justa y formación, asegurando así su prosperidad en un contexto globalizado.</p>
-                </div>
-            </div>
+   <section class="mission section mission-biocultural-wrap" id="mision" data-aos="fade-up">
+    <div class="container">
+        <div class="section-header">
+            <h2>Nuestra Misión, Visión y Objetivos</h2>
+            <p>El compromiso de PATAC México con el patrimonio cultural indígena</p>
+            <div class="section-badge" style="margin: 1rem auto; display: inline-block;">✦ Tejido Cultural 2025 ✦</div>
         </div>
-    </section>
+        
+        <div class="contenedor-cards">
+            <article class="card-biocultural" data-tejido="tenango" data-aos="fade-up" data-aos-delay="100">
+                <header class="cabeza-huipil">
+                    <svg class="icono-nahual-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--grana-nocheztli)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="15" fill="var(--caracol-purpura)"/>
+                        <path d="M50 5 L50 95 M5 50 L95 50" stroke="var(--tierra-tepetate)" stroke-width="2"/>
+                    </svg>
+                    <h3>MISIÓN</h3>
+                    <span class="subtitulo-tejido">Bordado Tenango</span>
+                </header>
+                <div class="cuerpo-card">
+                    <p class="texto-principal">
+                        Contribuir a la preservación del <strong>patrimonio biocultural</strong> textil, promoviendo su valoración como expresión viva de identidad.
+                    </p>
+                    <ul class="lista-valores">
+                        <li>Soberanía biocultural</li>
+                        <li>Equidad tejida a mano</li>
+                    </ul>
+                </div>
+                <footer class="remate-textil">
+                    <div class="hilatura-triple">
+                        <span class="hilo" style="background: var(--grana-nocheztli)"></span>
+                        <span class="hilo" style="background: var(--pericon-dorado)"></span>
+                    </div>
+                    <small>📍 Hidalgo</small>
+                </footer>
+            </article>
+
+            <article class="card-biocultural" data-tejido="tlahui" data-aos="fade-up" data-aos-delay="200">
+                <header class="cabeza-huipil">
+                    <svg class="icono-nahual-svg" viewBox="0 0 100 100">
+                        <polygon points="50,10 90,70 10,70" fill="none" stroke="var(--turquesa-cenote)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="8" fill="var(--pericon-dorado)"/>
+                    </svg>
+                    <h3>VISIÓN</h3>
+                    <span class="subtitulo-tejido">Tejido Mixe</span>
+                </header>
+                <div class="cuerpo-card">
+                    <p class="texto-principal">
+                        Ser el referente en la <strong>revitalización del textil</strong> originario, conectando comunidades con mercados justos y empoderando nuevas generaciones.
+                    </p>
+                    <ul class="lista-valores">
+                        <li>Geometría sagrada</li>
+                        <li>Innovación con raíces</li>
+                    </ul>
+                </div>
+                <footer class="remate-textil">
+                    <div class="hilatura-triple">
+                        <span class="hilo" style="background: var(--turquesa-cenote)"></span>
+                        <span class="hilo" style="background: var(--tierra-tepetate)"></span>
+                    </div>
+                    <small>📍 Oaxaca</small>
+                </footer>
+            </article>
+
+            <article class="card-biocultural" data-tejido="chiapaneco" data-aos="fade-up" data-aos-delay="300">
+                <header class="cabeza-huipil">
+                    <svg class="icono-nahual-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="var(--magenta-rebozo)" stroke-width="3"/>
+                        <path d="M50 10 L55 25 L70 30 L55 35 L50 50 L45 35 L30 30 L45 25 Z" fill="var(--pericon-dorado)"/>
+                    </svg>
+                    <h3>OBJETIVOS</h3>
+                    <span class="subtitulo-tejido">Jaspeado Maya</span>
+                </header>
+                <div class="cuerpo-card">
+                    <p class="texto-principal">
+                        Garantizar la <strong>sostenibilidad</strong> mediante difusión estratégica, comercialización y formación educativa integral.
+                    </p>
+                    <ul class="lista-valores">
+                        <li>Comunalidad</li>
+                        <li>Transparencia</li>
+                    </ul>
+                </div>
+                <footer class="remate-textil">
+                    <div class="hilatura-triple">
+                        <span class="hilo" style="background: var(--magenta-rebozo)"></span>
+                        <span class="hilo" style="background: var(--quetzal-verde)"></span>
+                    </div>
+                    <small>📍 Chiapas</small>
+                </footer>
+            </article>
+        </div>
+        <div class="text-center mt-8">
+            <a href="nosotros.html" class="btn btn-outline">Ver Manifiesto Completo</a>
+        </div>
+    </div>
+</section>
+
     <!-- Stats Section - Impacto Dinámico -->
     <section class="stats section" id="impacto" data-aos="fade-up">
         <div class="container">
@@ -298,68 +446,97 @@
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stat-number" data-target="500">0</div>
                     <div class="stat-label">Artesanos Apoyados</div>
-                    <p class="stat-description">Más de 500 artesanos han recibido apoyo integral a través de nuestros programas.</p>
+                    <p class="stat-description">Más de 500 artesanos han recibido apoyo integral a través de nuestros
+                        programas.</p>
                 </div>
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stat-number" data-target="50">0</div>
                     <div class="stat-label">Comunidades Beneficiadas</div>
-                    <p class="stat-description">Impactamos directamente en más de 50 comunidades indígenas en todo México.</p>
+                    <p class="stat-description">Impactamos directamente en más de 50 comunidades indígenas en todo
+                        México.</p>
                 </div>
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stat-number" data-target="15">0</div>
                     <div class="stat-label">Estados de la República</div>
-                    <p class="stat-description">Nuestra presencia abarca 15 estados, preservando diversidad cultural.</p>
+                    <p class="stat-description">Nuestra presencia abarca 15 estados, preservando diversidad cultural.
+                    </p>
                 </div>
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stat-number" data-target="100">0</div>
                     <div class="stat-label">Mil Personas Impactadas</div>
-                    <p class="stat-description">Más de 100,000 personas beneficiadas indirectamente por nuestras iniciativas.</p>
+                    <p class="stat-description">Más de 100,000 personas beneficiadas indirectamente por nuestras
+                        iniciativas.</p>
                 </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="transparencia.html" class="btn btn-outline-light">Ver reporte completo</a>
             </div>
         </div>
     </section>
+
     <!-- Actividades Principales Section -->
     <section class="features section" id="actividades" data-aos="fade-up">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestras Actividades Principales</h2>
-                <p>Iniciativas integradas que fortalecen a artesanos y preservan tradiciones ancestrales</p>
+    <div class="container">
+        <div class="section-header">
+            <h2>Nuestras Actividades Principales</h2>
+            <p>Iniciativas integradas que fortalecen a artesanos y preservan tradiciones ancestrales</p>
+        </div>
+        
+        <div class="activities-list-container">
+            <div class="activities-nav">
+                <i class="fas fa-seedling" title="Crecimiento"></i>
+                <i class="fas fa-hands-helping" title="Comunidad"></i>
+                <i class="fas fa-globe-americas" title="Impacto"></i>
             </div>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Turismo Rural</h3>
-                    <p class="feature-description">Promoción de experiencias culturales que conectan a visitantes con el arte textil indígena, generando ingresos directos a las comunidades.</p>
+
+            <div class="list">
+                <div class="activity-item" data-index="1">
+                    <div class="activity-content">
+                        <h3>Turismo Rural y Experiencias</h3>
+                        <p>Promoción de rutas culturales que conectan visitantes con el arte textil, generando ingresos directos.</p>
+                    </div>
                 </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">🎓</div>
-                    <h3 class="feature-title">Talleres y Capacitación</h3>
-                    <p class="feature-description">Ofrecemos capacitación especializada que mejora los procesos de producción y conservación textil, elevando la calidad de los productos.</p>
+                <div class="activity-item" data-index="2">
+                    <div class="activity-content">
+                        <h3>Talleres y Capacitación Técnica</h3>
+                        <p>Mejora de procesos de producción, conservación textil y control de calidad para artesanos.</p>
+                    </div>
                 </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">🧵</div>
-                    <h3 class="feature-title">DIY - Aprendizaje Textil</h3>
-                    <p class="feature-description">Fomentamos la creación y el aprendizaje de técnicas textiles ancestrales, transmitiendo conocimiento a nuevas generaciones.</p>
+                <div class="activity-item" data-index="3">
+                    <div class="activity-content">
+                        <h3>DIY - Transmisión de Saberes</h3>
+                        <p>Fomentamos la enseñanza intergeneracional de técnicas ancestrales (telar de cintura, tintes).</p>
+                    </div>
                 </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">🛍️</div>
-                    <h3 class="feature-title">Comercio Justo</h3>
-                    <p class="feature-description">Realizamos comercialización justa de productos textiles, con exportaciones internacionales que garantizan precios equitativos para artesanos.</p>
+                <div class="activity-item" data-index="4">
+                    <div class="activity-content">
+                        <h3>Comercio Justo y Exportación</h3>
+                        <p>Canales de venta éticos que garantizan el pago justo y abren mercados internacionales.</p>
+                    </div>
                 </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">📚</div>
-                    <h3 class="feature-title">Educación para la Vida</h3>
-                    <p class="feature-description">Modelo educativo integral que incluye idiomas originarios, biología, arte textil, emprendimiento y fortalecimiento de identidad cultural.</p>
+                <div class="activity-item" data-index="5">
+                    <div class="activity-content">
+                        <h3>Educación Integral para la Vida</h3>
+                        <p>Modelo educativo que incluye alfabetización, finanzas, biología y derechos indígenas.</p>
+                    </div>
                 </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">💼</div>
-                    <h3 class="feature-title">Incubación Empresarial</h3>
-                    <p class="feature-description">Apoyo integral para el desarrollo de emprendimientos artesanales sostenibles y competitivos en mercados modernos.</p>
+                <div class="activity-item" data-index="6">
+                    <div class="activity-content">
+                        <h3>Incubación de Empresas Sociales</h3>
+                        <p>Acompañamiento para formalizar cooperativas y emprendimientos sostenibles.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Artesanos Section -->
+
+        <div class="text-center mt-8">
+            <h5 class="message" style="color: var(--gray-500); font-size: 0.9rem; margin-top: 1rem;">DESLIZA SOBRE LOS ÍTEMS PARA VER DETALLES</h5>
+            <a href="voluntariado.html" class="btn btn-primary mt-4">Únete a nuestras actividades</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Artesanos Section - MODIFIED: Now displays 3 random artesanos -->
     <section class="artesanos section" id="artesanos" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
@@ -369,8 +546,12 @@
             <div class="artesanos-grid" id="artesanos-container">
                 <div class="loading-spinner"></div>
             </div>
+            <div class="text-center mt-8">
+                <a href="artesanos.html" class="btn btn-secondary">Ver todos los artesanos</a>
+            </div>
         </div>
     </section>
+
     <!-- Proyectos Section -->
     <section class="proyectos section" id="proyectos" data-aos="fade-up">
         <div class="container">
@@ -381,23 +562,28 @@
             <div class="proyectos-grid" id="proyectos-container">
                 <div class="loading-spinner"></div>
             </div>
+            <div class="text-center mt-8">
+                <a href="proyectos.html" class="btn btn-primary">Explorar todos los proyectos</a>
+            </div>
         </div>
     </section>
+
     <!-- Voluntarios Section -->
-    <!-- Sección de Voluntarios -->
-<section class="voluntarios-showcase section" id="voluntarios" data-aos="fade-up"> <!-- Cambié la clase principal a una más específica si es deseado, o mantuve .voluntarios -->
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Nuestros Voluntarios</h2> <!-- Añadí .section-title para consistencia de encabezado -->
-            <p class="section-subtitle">Personas apasionadas que impulsan nuestro movimiento</p> <!-- Añadí .section-subtitle para consistencia de subtítulo -->
+    <section class="voluntarios-showcase section" id="voluntarios" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Voluntarios</h2>
+                <p class="section-subtitle">Personas apasionadas que impulsan nuestro movimiento</p>
+            </div>
+            <div class="voluntarios-grid" id="voluntarios-container">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="voluntariado.html" class="btn btn-accent">Conviértete en voluntario</a>
+            </div>
         </div>
-        <!-- El contenedor de la cuadrícula ya usa .voluntarios-grid, lo cual es correcto según el CSS -->
-        <div class="voluntarios-grid" id="voluntarios-container">
-            <!-- El spinner de carga y las tarjetas generadas por JS se insertan aquí -->
-            <div class="loading-spinner"></div>
-        </div>
-    </div>
-</section>
+    </section>
+
     <!-- Testimonios Section with Swiper -->
     <section class="testimonios section" id="testimonios" data-aos="fade-up">
         <div class="container">
@@ -413,45 +599,59 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
+            <div class="text-center mt-8">
+                <a href="nosotros.html#historias" class="btn btn-outline-primary">Más historias</a>
+            </div>
         </div>
     </section>
+
     <!-- Presencia en México Section -->
     <section class="section" id="mapa" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Nuestra Presencia en México</h2>
-                <p class="section-subtitle">Tocando vidas y preservando tradiciones en comunidades textiles a lo largo del país</p>
+                <p class="section-subtitle">Tocando vidas y preservando tradiciones en comunidades textiles a lo largo
+                    del país</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Texto descriptivo -->
                 <div class="text-content">
-                    <p class="mb-4">PATAC México no es solo una organización en la Ciudad de México; es un puente que conecta y fortalece comunidades artesanas en todo el país. Nuestro trabajo se extiende desde las montañas de Oaxaca hasta las costas de Chiapas, desde los valles de Puebla hasta los pueblos mágicos de Michoacán.</p>
-                    <p>Trabajamos de la mano con artesanos textiles, custodios de técnicas ancestrales que, gracias a su dedicación, mantienen vivas las historias tejidas en cada pieza. Nuestra presencia busca empoderar a estas comunidades, preservar su invaluable patrimonio cultural y abrir nuevos caminos para su arte en mercados justos y sostenibles.</p>
+                    <p class="mb-4">PATAC México no es solo una organización en la Ciudad de México; es un puente que
+                        conecta y fortalece comunidades artesanas en todo el país. Nuestro trabajo se extiende desde las
+                        montañas de Oaxaca hasta las costas de Chiapas, desde los valles de Puebla hasta los pueblos
+                        mágicos de Michoacán.</p>
+                    <p>Trabajamos de la mano con artesanos textiles, custodios de técnicas ancestrales que, gracias a su
+                        dedicación, mantienen vivas las historias tejidas en cada pieza. Nuestra presencia busca
+                        empoderar a estas comunidades, preservar su invaluable patrimonio cultural y abrir nuevos
+                        caminos para su arte en mercados justos y sostenibles.</p>
                     <div class="stats-preview mt-8">
                         <div class="flex justify-around text-center">
                             <div class="stat">
-                                <div class="stat-number" style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">15+</div>
+                                <div class="stat-number"
+                                    style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">15+</div>
                                 <div class="stat-label" style="color: var(--secondary);">Estados</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-number" style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">50+</div>
+                                <div class="stat-number"
+                                    style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">50+</div>
                                 <div class="stat-label" style="color: var(--secondary);">Comunidades</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-number" style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">500+</div>
+                                <div class="stat-number"
+                                    style="color: var(--gold); font-size: var(--text-3xl); font-weight: bold;">500+
+                                </div>
                                 <div class="stat-label" style="color: var(--secondary);">Artesanos</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Contenedor para el mapa o visualización -->
                 <div class="map-container">
-                    <div id="communities-map" style="width: 100%; height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-                        <!-- Aquí se cargará el mapa interactivo con Leaflet o Google Maps -->
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--secondary-light)); display: flex; align-items: center; justify-content: center; color: var(--dark); font-size: var(--text-lg); font-weight: 500;">
-                            <!-- Placeholder visual del mapa -->
+                    <div id="communities-map"
+                        style="width: 100%; height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <div
+                            style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--secondary-light)); display: flex; align-items: center; justify-content: center; color: var(--dark); font-size: var(--text-lg); font-weight: 500;">
                             <div class="text-center">
-                                <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                                <i class="fas fa-map-marked-alt"
+                                    style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
                                 <p>Mapa Interactivo de<br>Comunidades PATAC</p>
                             </div>
                         </div>
@@ -460,6 +660,7 @@
             </div>
         </div>
     </section>
+
     <!-- Noticias/Blog Section -->
     <section class="blog-section section" id="noticias" data-aos="fade-up">
         <div class="container">
@@ -470,108 +671,120 @@
             <div class="blog-grid" id="blog-container">
                 <div class="loading-spinner"></div>
             </div>
-        </div>
-    </section>
-      <!-- Reconocimientos Section -->
-    <section class="reconocimientos-section section" id="reconocimientos">
-        <div class="container">
-            <div class="section-header">
-                <h2>Reconocimientos e Instituciones Aliadas</h2>
-                <p>PATAC México ha sido respaldada por importantes instituciones nacionales e internacionales</p>
-            </div>
-            <div class="reconocimientos-grid">
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">🏛️</div>
-                    <h4>Instituto Politécnico Nacional (IPN)</h4>
-                    <p>Origen de nuestro modelo a través de investigación doctoral</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">🎓</div>
-                    <h4>Universidad Interserrana de Chilchotla, Puebla</h4>
-                    <p>Convenio de colaboración para el desarrollo regional</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">🎓</div>
-                    <h4>McGill University</h4>
-                    <p>Apoyo académico y colaboración internacional</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">🎓</div>
-                    <h4>Georgetown University</h4>
-                    <p>Reconocimiento de nuestras iniciativas educativas</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">📚</div>
-                    <h4>Harvard Business Publishing</h4>
-                    <p>Publicación de casos de estudio sobre nuestro modelo</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">🌱</div>
-                    <h4>Wadhwani Foundation</h4>
-                    <p>Apoyo a iniciativas de emprendimiento social</p>
-                </div>
-                <div class="reconocimiento-item">
-                    <div class="reconocimiento-icon">⭐</div>
-                    <h4>Natoure</h4>
-                    <p>Reconocimiento como organización innovadora en patrimonio biocultural</p>
-                </div>
+            <div class="text-center mt-8">
+                <a href="nosotros.html#blog" class="btn btn-outline-secondary">Ver todas las noticias</a>
             </div>
         </div>
     </section>
-    <!-- Contacto Section -->
-<section class="section" id="contacto" data-aos="fade-up">
+
+    <!-- Reconocimientos Section -->
+    <section class="reconocimientos-section section" id="reconocimientos" style="background-color: #f9f9f9;">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Contacto</h2>
-            <p class="section-subtitle">Únete a nuestro movimiento</p>
+            <h2>Reconocimientos e Instituciones Aliadas</h2>
+            <p>PATAC México ha sido respaldada por importantes instituciones nacionales e internacionales</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Información de Contacto -->
-            <div class="contact-info">
-                <h3 class="font-bold text-2xl mb-6" style="color: var(--primary);">¿Tienes alguna pregunta?</h3>
-                <p class="mb-8">Estamos aquí para ayudarte. Puedes contactarnos a través de los siguientes medios:</p>
-                <div class="mb-6">
-                    <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Email</h4>
-                    <p class="mb-2"><i class="fas fa-envelope mr-2"></i> info@patacmexico.org</p>
-                </div>
-            <!-- Formulario de Contacto -->
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Nombre Completo</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Mensaje</label>
-                        <textarea id="message" name="message" class="form-textarea" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                </form>
+        
+        <div class="reconocimientos-wrap">
+            <div class="card-material" data-aos="zoom-in">
+                <div class="card-material-icon"><i class="material-icons md-36">school</i></div>
+                <p class="title">IPN</p>
+                <p class="text">Instituto Politécnico Nacional: Origen del modelo PATAC vía investigación doctoral.</p>
+            </div>
+
+            <div class="card-material" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card-material-icon"><i class="material-icons md-36">public</i></div>
+                <p class="title">McGill & Georgetown</p>
+                <p class="text">Apoyo académico internacional y reconocimiento a iniciativas educativas.</p>
+            </div>
+
+            <div class="card-material" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card-material-icon"><i class="material-icons md-36">menu_book</i></div>
+                <p class="title">Harvard Business</p>
+                <p class="text">Publicación de casos de estudio sobre nuestro modelo de impacto social.</p>
+            </div>
+
+            <div class="card-material" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card-material-icon"><i class="material-icons md-36">emoji_objects</i></div>
+                <p class="title">Wadhwani Foundation</p>
+                <p class="text">Impulso estratégico a nuestras iniciativas de emprendimiento.</p>
+            </div>
+
+            <div class="card-material" data-aos="zoom-in" data-aos-delay="400">
+                <div class="card-material-icon"><i class="material-icons md-36">nature_people</i></div>
+                <p class="title">Natoure</p>
+                <p class="text">Reconocimiento como organización innovadora en turismo biocultural.</p>
             </div>
         </div>
     </div>
 </section>
+
+    <!-- Contacto Section -->
+    <section class="section" id="contacto" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-subtitle">Únete a nuestro movimiento</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="contact-info">
+                    <h3 class="font-bold text-2xl mb-6" style="color: var(--primary);">¿Tienes alguna pregunta?</h3>
+                    <p class="mb-8">Estamos aquí para ayudarte. Puedes contactarnos a través de los siguientes medios:
+                    </p>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Email</h4>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> info@patacmexico.org</p>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Teléfono</h4>
+                        <p class="mb-2"><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Dirección</h4>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Ciudad de México, México</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre Completo</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensaje</label>
+                            <textarea id="message" name="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>PATAC México</h4>
-                <p>Cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios mediante incubación empresarial, educación integral y comercio justo.</p>
+                <p>Cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios
+                    mediante incubación empresarial, educación integral y comercio justo.</p>
                 <p><strong>Eslogan:</strong> "El Tejido Cultural de México"</p>
             </div>
             <div class="footer-section">
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#mision">Misión</a></li>
-                    <li><a href="#actividades">Actividades</a></li>
-                    <li><a href="#artesanos">Artesanos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
                     <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="artesanos.html">Artesanos</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="voluntariado.html">Voluntariado</a></li>
                     <li><a href="transparencia.html">Transparencia</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -580,22 +793,27 @@
                 <p><i class="fas fa-envelope mr-2"></i> contacto@patac.org</p>
                 <p><i class="fas fa-building mr-2"></i> SC de RL de CV</p>
             </div>
-             <div class="footer-section">
+            <div class="footer-section">
                 <h4>Síguenos</h4>
-                 <div class="flex gap-4 mb-4">
-                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Visita PATAC México en Facebook">
+                <div class="flex gap-4 mb-4 justify-center">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Visita PATAC México en Twitter">
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                     <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Visita PATAC México en Instagram">
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Visita PATAC México en LinkedIn">
+                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Contacta a PATAC México por WhatsApp">
+                    <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Contacta a PATAC México por WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
@@ -605,28 +823,33 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 PATAC México. Todos los derechos reservados. | Fundada en 2020 como SAS de CV, evolucionó a SC de RL de CV en julio de 2023.</p>
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados. | Fundada en 2020 como SAS de CV, evolucionó a
+                SC de RL de CV en julio de 2023.</p>
         </div>
     </footer>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar AOS
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 50
             });
-            // 🔄 CAMBIO PRINCIPAL: API LOCAL (Google Sheets via servidor)
+
             const API_BASE = '/api';
+
             // ==================== MOBILE NAVIGATION ====================
             const navToggle = document.getElementById('nav-toggle');
             const navSidebar = document.getElementById('nav-sidebar');
             const navClose = document.getElementById('nav-close');
             const navOverlay = document.getElementById('nav-overlay');
             const sidebarLinks = document.querySelectorAll('.nav-sidebar-links a');
+
             if (navToggle) {
                 navToggle.addEventListener('click', () => {
                     navSidebar.classList.add('active');
@@ -634,17 +857,21 @@
                     navToggle.classList.add('active');
                 });
             }
+
             const closeMenu = () => {
                 navSidebar.classList.remove('active');
                 navOverlay.classList.remove('active');
                 navToggle.classList.remove('active');
             };
+
             if (navClose) navClose.addEventListener('click', closeMenu);
             if (navOverlay) navOverlay.addEventListener('click', closeMenu);
             sidebarLinks.forEach(link => link.addEventListener('click', closeMenu));
+
             // ==================== QUICK NAVIGATION & SCROLLSPY ====================
             const quickNavLinks = document.querySelectorAll('.quick-nav-link');
             const sections = document.querySelectorAll('.section');
+
             const onScroll = () => {
                 const scrollPosition = window.scrollY + window.innerHeight / 2;
                 sections.forEach(section => {
@@ -658,7 +885,70 @@
                     }
                 });
             };
+
             window.addEventListener('scroll', onScroll);
+
+            // ==================== TYPING EFFECT LOGIC ====================
+            const typingMessages = [
+                "Preservando el patrimonio biocultural textil",
+                "Empoderando comunidades indígenas",
+                "Tejiendo futuros sostenibles",
+                "Conectando tradición y modernidad",
+                "Educando para la vida y la cultura",
+                "Promoviendo el comercio justo"
+            ];
+
+            function typeWriter(element, text, speed = 60) {
+                return new Promise(resolve => {
+                    element.textContent = '';
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                            setTimeout(resolve, 2500);
+                        }
+                    }, speed);
+                });
+            }
+
+            function eraseText(element, speed = 40) {
+                return new Promise(resolve => {
+                    const eraseInterval = setInterval(() => {
+                        if (element.textContent.length > 0) {
+                            element.textContent = element.textContent.slice(0, -1);
+                        } else {
+                            clearInterval(eraseInterval);
+                            resolve();
+                        }
+                    }, speed);
+                });
+            }
+
+            async function startTypingEffect() {
+                const taglineElement = document.querySelector('.tagline');
+                if (!taglineElement) return;
+
+                // Start with original text
+                await typeWriter(taglineElement, "El Tejido Cultural de México", 80);
+                await new Promise(resolve => setTimeout(resolve, 3000));
+
+                // Loop through alternative messages
+                let messageIndex = 0;
+                while (true) {
+                    await eraseText(taglineElement);
+                    await typeWriter(taglineElement, typingMessages[messageIndex]);
+                    messageIndex = (messageIndex + 1) % typingMessages.length;
+                }
+            }
+
+            // Start typing effect after page load
+            setTimeout(() => {
+                startTypingEffect();
+            }, 1500);
+
             // ==================== ANIMACIÓN DE CONTADORES ====================
             const animateCounters = () => {
                 const counters = document.querySelectorAll('.stat-number');
@@ -678,7 +968,8 @@
                     };
                     updateCount();
                 });
-            }
+            };
+
             const statsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -687,21 +978,56 @@
                     }
                 });
             }, { threshold: 0.5 });
+
             const statsSection = document.querySelector('.stats');
             if (statsSection) {
                 statsObserver.observe(statsSection);
             }
-            // ==================== FETCH ARTESANOS ====================
+
+            // ==================== UTILIDADES ====================
+            const shuffleArray = (array) => {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            };
+
+            // ==================== FETCH ARTESANOS (3 RANDOM) ====================
+            let allArtesanos = [];
+            let currentArtesanos = [];
+            let artesanosInterval;
+
             async function loadArtesanos() {
                 try {
                     const response = await fetch(`${API_BASE}/artesanos`);
                     const data = await response.json();
-                    renderArtesanos(data.artesanos);
+                    allArtesanos = data.artesanos;
+                    displayRandomArtesanos();
+                    // Update every 45 seconds
+                    artesanosInterval = setInterval(displayRandomArtesanos, 45000);
                 } catch (error) {
                     console.error('Error cargando artesanos:', error);
                     document.getElementById('artesanos-container').innerHTML = '<p class="error-message">Error al cargar artesanos. <button onclick="loadArtesanos()">Reintentar</button></p>';
                 }
             }
+
+            function displayRandomArtesanos() {
+                if (!allArtesanos.length) return;
+
+                const shuffled = shuffleArray(allArtesanos);
+                const selected = shuffled.slice(0, 3);
+
+                // Avoid immediate repetition
+                if (JSON.stringify(selected.map(a => a.id)) === JSON.stringify(currentArtesanos.map(a => a.id))) {
+                    return displayRandomArtesanos();
+                }
+
+                currentArtesanos = selected;
+                renderArtesanos(selected);
+            }
+
             function renderArtesanos(artesanos) {
                 const container = document.getElementById('artesanos-container');
                 container.innerHTML = artesanos.map(artesano => `
@@ -723,52 +1049,97 @@
                     </div>
                 `).join('');
             }
+
             // ==================== FETCH PROYECTOS ====================
             async function loadProyectos() {
                 try {
                     const response = await fetch(`${API_BASE}/proyectos`);
                     const data = await response.json();
-                    // Filtrar y mostrar solo los 3 más recientes/activos
                     const proyectosDestacados = data.proyectos
-                        .sort((a, b) => new Date(b.fechaInicio) - new Date(a.fechaInicio)) // Ordenar por fecha (más reciente primero)
-                        .slice(0, 3); // Tomar solo los 3 primeros
+                        .sort((a, b) => new Date(b.fechaInicio) - new Date(a.fechaInicio))
+                        .slice(0, 3);
                     renderProyectos(proyectosDestacados);
                 } catch (error) {
                     console.error('Error cargando proyectos:', error);
                     document.getElementById('proyectos-container').innerHTML = '<p class="error-message">Error al cargar proyectos. <button onclick="loadProyectos()">Reintentar</button></p>';
                 }
             }
+
             function renderProyectos(proyectos) {
-                const container = document.getElementById('proyectos-container');
-                container.innerHTML = proyectos.map(proyecto => {
-                    const progreso = proyecto.metaEconomica ? (parseFloat(proyecto.recaudado || 0) / parseFloat(proyecto.metaEconomica)) * 100 : 0;
-                    return `
-                        <div class="card card-project">
-                            <div class="card-image">
-                                <img src="${proyecto.urlImagenPrincipal}" alt="Imagen principal del proyecto ${proyecto.nombre}" loading="lazy">
-                                <span class="card-badge status-${proyecto.status || 'activo'}">${(proyecto.status || 'activo').toUpperCase()}</span>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-category">${proyecto.categoria || 'Proyecto'}</div>
-                                <h3 class="card-title">${proyecto.nombre}</h3>
-                                <p class="project-location">📍 ${proyecto.comunidad || ''}, ${proyecto['estado(geográfico)'] || proyecto.estado || 'México'}</p>
-                                <p class="card-description">${proyecto.descripcion}</p>
-                                <div class="project-goal">
-                                    <span class="project-goal-current">$${parseFloat(proyecto.recaudado || 0).toLocaleString('es-MX')}</span>
-                                    <span class="project-goal-target">de $${parseFloat(proyecto.metaEconomica || 0).toLocaleString('es-MX')}</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: ${Math.min(progreso, 100)}%"></div>
-                                </div>
-                                <a href="proyectos.html" class="btn btn-primary btn-sm">Ver Proyecto</a>
-                                <div class="card-footer">
-                                    <span>${proyecto.artesanosBeneficiados || 0} artesanos beneficiados</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
+    const container = document.getElementById('proyectos-container');
+    
+    // Agregamos la clase contenedora de variables al padre si no existe
+    container.classList.add('proyectos-grid-vibrante'); 
+
+    container.innerHTML = proyectos.map(proyecto => {
+        // Cálculos de lógica existentes
+        const meta = parseFloat(proyecto.metaEconomica || 0);
+        const recaudado = parseFloat(proyecto.recaudado || 0);
+        const progreso = meta > 0 ? (recaudado / meta) * 100 : 0;
+        const porcentaje = Math.min(progreso, 100).toFixed(0);
+        
+        // Formateo de moneda para visualización
+        const formatMoney = (amount) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(amount);
+
+        // Mapeo seguro de datos (fallback si la API no trae técnica o ubicación)
+        const tecnica = proyecto.tecnica || "Textil Tradicional"; 
+        const ubicacion = proyecto.ubicacion || "México";
+        const artesanosCount = proyecto.artesanos ? proyecto.artesanos.length : 1;
+
+        return `
+        <div class="card-proyecto-textil">
+            <div class="card-header-visual">
+                <div class="visual-overlay"></div>
+                <img src="${proyecto.urlImagenPrincipal}" alt="${proyecto.nombre}" loading="lazy">
+                
+                <div class="status-badge ${proyecto.status === 'completado' ? 'completado' : 'activo'}">
+                    ${(proyecto.status || 'Activo').toUpperCase()}
+                </div>
+
+                <div class="meta-tags">
+                    <span class="tag-tecnica">
+                        <i class="fas fa-fingerprint"></i> ${tecnica}
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <h3 class="title">${proyecto.nombre}</h3>
+                <p class="description">${proyecto.descripcion}</p>
+
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt text-accent"></i>
+                        <span>${ubicacion}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-user-group text-primary"></i>
+                        <span>${artesanosCount} artesanos</span>
+                    </div>
+                </div>
+
+                <div class="card-footer-project">
+                    <div class="progress-info">
+                        <span class="progress-raised">${formatMoney(recaudado)}</span>
+                        <span class="progress-goal">de ${formatMoney(meta)}</span>
+                    </div>
+                    <div class="progress-bar-textil">
+                        <div class="bar" style="width: ${porcentaje}%;"></div>
+                    </div>
+                    <a href="ver-proyecto.html?id=${proyecto._id || proyecto.id}" class="btn btn-primary w-full" style="width:100%; text-align:center; display:block;">Ver Proyecto</a>
+                </div>
+            </div>
+            
+            <div class="card-remate-textil">
+                <div class="hilo-patriotico"></div>
+                <div class="hilo-patriotico"></div>
+                <div class="hilo-patriotico"></div>
+            </div>
+        </div>
+        `;
+    }).join('');
+}
+
             // ==================== FETCH VOLUNTARIOS ====================
             async function loadVoluntarios() {
                 try {
@@ -780,6 +1151,7 @@
                     document.getElementById('voluntarios-container').innerHTML = '<p class="error-message">Error al cargar voluntarios. <button onclick="loadVoluntarios()">Reintentar</button></p>';
                 }
             }
+
             function renderVoluntarios(voluntarios) {
                 const container = document.getElementById('voluntarios-container');
                 container.innerHTML = voluntarios.map(voluntario => `
@@ -800,13 +1172,17 @@
                     </div>
                 `).join('');
             }
+
             // ==================== FETCH TESTIMONIOS ====================
             async function loadTestimonios() {
                 try {
-                    const artesanosResponse = await fetch(`${API_BASE}/artesanos`);
-                    const voluntariosResponse = await fetch(`${API_BASE}/voluntarios`);
-                    const artesanosData = await artesanosResponse.json();
-                    const voluntariosData = await voluntariosResponse.json();
+                    const [artesanosRes, voluntariosRes] = await Promise.all([
+                        fetch(`${API_BASE}/artesanos`),
+                        fetch(`${API_BASE}/voluntarios`)
+                    ]);
+                    const artesanosData = await artesanosRes.json();
+                    const voluntariosData = await voluntariosRes.json();
+
                     const testimonios = [
                         ...artesanosData.artesanos.map(a => ({
                             nombre: a.nombreCompleto,
@@ -821,12 +1197,14 @@
                             foto: v.urlFoto
                         }))
                     ];
+
                     renderTestimonios(testimonios);
                 } catch (error) {
                     console.error('Error cargando testimonios:', error);
                     document.getElementById('testimonios-container').innerHTML = '<p class="error-message">Error al cargar testimonios. <button onclick="loadTestimonios()">Reintentar</button></p>';
                 }
             }
+
             function renderTestimonios(testimonios) {
                 const container = document.getElementById('testimonios-container');
                 container.innerHTML = testimonios.map(t => `
@@ -841,6 +1219,7 @@
                         </div>
                     </div>
                 `).join('');
+
                 // Inicializar Swiper después de renderizar
                 new Swiper('.testimonios-carousel', {
                     slidesPerView: 1,
@@ -854,12 +1233,12 @@
                     }
                 });
             }
+
             // ==================== FETCH BLOG ====================
             async function loadBlog() {
                 try {
                     const response = await fetch(`${API_BASE}/articulosBlog`);
                     const data = await response.json();
-                    // Filtrar y mostrar solo los 3 más recientes
                     const articulosRecientes = data.articulosBlogs
                         .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
                         .slice(0, 3);
@@ -869,6 +1248,7 @@
                     document.getElementById('blog-container').innerHTML = '<p class="error-message">Error al cargar noticias. <button onclick="loadBlog()">Reintentar</button></p>';
                 }
             }
+
             function renderBlog(articulos) {
                 const container = document.getElementById('blog-container');
                 container.innerHTML = articulos.map(articulo => {
@@ -889,14 +1269,17 @@
                     `;
                 }).join('');
             }
+
             // ==================== MAPA INTERACTIVO ====================
             function initMap() {
+                const mapElement = document.getElementById('communities-map');
+                if (!mapElement) return;
+
                 const map = L.map('communities-map').setView([23.6345, -102.5528], 5);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap contributors'
                 }).addTo(map);
-                // Datos de ejemplo simulados (deberían venir de una API o base de datos)
-                // Estos datos representan comunidades con proyectos activos
+
                 const comunidades = [
                     { coords: [16.7833, -98.2333], name: 'Xochistlahuaca, Guerrero', description: 'Proyectos activos en tejido de cintura y resistol.', estado: 'Guerrero', comunidad: 'Xochistlahuaca' },
                     { coords: [18.9667, -99.6000], name: 'Tenancingo, Estado de México', description: 'Proyecto de revitalización de técnicas textiles tradicionales.', estado: 'México', comunidad: 'Tenancingo' },
@@ -904,7 +1287,7 @@
                     { coords: [19.0411, -98.2062], name: 'Atlixco, Puebla', description: 'Talleres de capacitación y promoción turística.', estado: 'Puebla', comunidad: 'Atlixco' },
                     { coords: [19.7014, -101.1844], name: 'Santa Clara del Cobre, Michoacán', description: 'Preservación de técnicas de alfarería y textiles.', estado: 'Michoacán', comunidad: 'Santa Clara del Cobre' }
                 ];
-                // Agregar marcadores y popups para cada comunidad
+
                 comunidades.forEach(comunidad => {
                     const marker = L.marker(comunidad.coords).addTo(map);
                     marker.bindPopup(`
@@ -920,7 +1303,7 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    
+
                     const submitButton = contactForm.querySelector('button[type="submit"]');
                     const originalButtonText = submitButton.innerHTML;
                     submitButton.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
@@ -930,17 +1313,12 @@
                         clienteNombre: document.getElementById('name').value,
                         clienteEmail: document.getElementById('email').value,
                         mensaje: document.getElementById('message').value,
-                        // Puedes agregar otros campos si los tienes, ej:
-                        // clienteTelefono: document.getElementById('phone')?.value,
-                        // productoId: 'Consulta General' 
                     };
 
                     try {
                         const response = await fetch(`${API_BASE}/consultas`, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(formData),
                         });
 
@@ -950,39 +1328,30 @@
                             throw new Error(result.error || 'Error desconocido al enviar.');
                         }
 
-                        // Éxito
                         submitButton.innerHTML = '¡Enviado con éxito! <i class="fas fa-check"></i>';
-                        submitButton.style.backgroundColor = 'var(--success)'; // Color verde
+                        submitButton.style.backgroundColor = 'var(--success)';
                         contactForm.reset();
-                        
+
                         setTimeout(() => {
                             submitButton.innerHTML = originalButtonText;
                             submitButton.disabled = false;
-                            submitButton.style.backgroundColor = ''; // Restablecer color
+                            submitButton.style.backgroundColor = '';
                         }, 4000);
 
                     } catch (error) {
-                        // Error
                         console.error('Error enviando consulta:', error);
                         submitButton.innerHTML = `Error: ${error.message}`;
-                        submitButton.style.backgroundColor = 'var(--danger)'; // Color rojo
+                        submitButton.style.backgroundColor = 'var(--danger)';
                         submitButton.disabled = false;
-                        
+
                         setTimeout(() => {
                             submitButton.innerHTML = originalButtonText;
-                            submitButton.style.backgroundColor = ''; // Restablecer color
+                            submitButton.style.backgroundColor = '';
                         }, 5000);
                     }
                 });
             }
 
-            // ==================== INICIALIZAR ====================
-            loadArtesanos();
-            loadProyectos();
-            loadVoluntarios();
-            loadTestimonios();
-            loadBlog();
-            initMap(); // Inicializar el mapa interactivo
             // ==================== SMOOTH SCROLL ====================
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -996,6 +1365,7 @@
                     }
                 });
             });
+
             // ==================== NAVBAR SCROLL EFFECT ====================
             window.addEventListener('scroll', () => {
                 const nav = document.querySelector('.nav');
@@ -1005,7 +1375,21 @@
                     nav.classList.remove('scrolled');
                 }
             });
+
+            // ==================== INICIALIZAR TODO ====================
+            loadArtesanos();
+            loadProyectos();
+            loadVoluntarios();
+            loadTestimonios();
+            loadBlog();
+            initMap();
+
+            // Limpiar intervalos al salir de la página
+            window.addEventListener('beforeunload', () => {
+                if (artesanosInterval) clearInterval(artesanosInterval);
+            });
         });
     </script>
 </body>
+
 </html>

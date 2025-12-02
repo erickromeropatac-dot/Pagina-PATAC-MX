@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Nosotros | PATAC México - Conoce Nuestra Historia y Equipo</title>
+    <meta name="description"
+        content="Conoce la historia de PATAC México, nuestro equipo, misión, visión y valores. Líderes en preservación del patrimonio biocultural textil de pueblos originarios.">
+    <meta name="keywords"
+        content="PATAC México, historia, equipo, misión, visión, valores, patrimonio cultural, artesanos indígenas">
+    <meta name="author" content="PATAC México">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://patac.org/nosotros.html">
+    <meta property="og:title" content="Nosotros | PATAC México - El Tejido Cultural de México">
+    <meta property="og:description"
+        content="Descubre nuestra historia, equipo y compromiso con la preservación del patrimonio biocultural textil indígena.">
+    <meta property="og:image" content="https://patac.org/assets/nosotros-og.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://patac.org/nosotros.html">
+    <meta property="twitter:title" content="Nosotros | PATAC México - El Tejido Cultural de México">
+    <meta property="twitter:description"
+        content="Descubre nuestra historia, equipo y compromiso con la preservación del patrimonio biocultural textil indígena.">
+    <meta property="twitter:image" content="https://patac.org/assets/nosotros-twitter.jpg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="PATAC México" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet">
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://patac.org/nosotros.html">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PATAC México",
+      "alternateName": "Productos Artesanales Textiles de Arte y Cultura",
+      "url": "https://patac.org",
+      "logo": "https://patac.org/favicon.svg",
+      "description": "Cooperativa dedicada a la preservación del patrimonio biocultural textil de pueblos originarios de México",
+      "foundingDate": "2020",
+      "founder": {
+        "@type": "Person",
+        "name": "Carlos Ernesto Moreno"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+52-55-2521-3142",
+        "contactType": "customer service",
+        "availableLanguage": ["es"]
+      },
+      "sameAs": [
+        "https://facebook.com/PATACMEX",
+        "https://instagram.com/patacmx",
+        "https://twitter.com/MexicoPatac",
+        "https://linkedin.com/company/PATACMX"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "MX"
+      }
+    }
+    </script>
+    <!-- Embedded CSS for Nosotros-specific components -->
+    <style>
+        /* Timeline Interactive Styles */
+        .timeline-section {
+            background: var(--light);
+            padding: var(--space-32) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, var(--white) 0%, var(--light) 100%);
+            z-index: 0;
+        }
+
+        .timeline-container {
+            max-width: var(--max-width-6xl);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--gold));
+            transform: translateX(-50%);
+            border-radius: var(--radius-full);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + var(--space-12));
+            margin-bottom: var(--space-16);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all var(--transition-slow);
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + var(--space-12));
+            padding-right: 0;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            transition: all var(--transition-bounce);
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before,
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .timeline-content::before {
+            right: -30px;
+            border-left-color: var(--white);
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-right-color: var(--white);
+            border-left-color: transparent;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--dark);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            box-shadow: var(--shadow-gold);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            color: var(--gold);
+            box-shadow: var(--shadow-primary);
+            z-index: 3;
+        }
+
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            color: var(--primary);
+            margin-bottom: var(--space-4);
+            font-weight: 700;
+        }
+
+        .timeline-description {
+            color: var(--dark);
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: var(--space-4);
+        }
+
+        .timeline-milestones {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-milestones li {
+            padding: var(--space-2) 0;
+            font-size: var(--text-sm);
+            color: var(--accent);
+            position: relative;
+            padding-left: var(--space-6);
+        }
+
+        .timeline-milestones li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Mission/Vision/Values Tabs */
+        .mvv-section {
+            background: var(--white);
+            padding: var(--space-32) 0;
+        }
+
+        .mvv-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-12);
+            flex-wrap: wrap;
+        }
+
+        .mvv-tab {
+            padding: var(--space-4) var(--space-8);
+            background: var(--light);
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-weight: 600;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .mvv-tab:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .mvv-tab.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .mvv-tab i {
+            font-size: var(--text-lg);
+        }
+
+        .mvv-content {
+            display: none;
+            animation: fadeIn var(--transition-base);
+        }
+
+        .mvv-content.active {
+            display: block;
+        }
+
+        .mvv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-12);
+            align-items: start;
+        }
+
+        .mvv-card {
+            background: var(--light);
+            padding: var(--space-10);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow);
+            transition: all var(--transition-bounce);
+            border-top: 4px solid var(--gold);
+            height: 100%;
+        }
+
+        .mvv-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-primary-lg);
+        }
+
+        .mvv-card h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-bottom: var(--space-6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .mvv-card p {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.9;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .value-item {
+            background: var(--white);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent);
+            transition: all var(--transition-base);
+        }
+
+        .value-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--gold);
+        }
+
+        .value-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        /* Journey Map */
+        .journey-map-section {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            padding: var(--space-32) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-map-container {
+            max-width: var(--max-width-7xl);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .journey-map-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: var(--space-16);
+            position: relative;
+            padding: var(--space-8) 0;
+        }
+
+        .journey-map-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--gold));
+            border-radius: var(--radius-full);
+            z-index: 0;
+        }
+
+        .journey-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 var(--space-4);
+        }
+
+        .journey-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 4px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin: 0 auto var(--space-4);
+            box-shadow: var(--shadow-primary);
+            transition: all var(--transition-bounce);
+        }
+
+        .journey-step:hover .journey-icon {
+            transform: scale(1.1);
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .journey-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+
+        .journey-description {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--white);
+            padding: var(--space-32) 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-10);
+            margin-top: var(--space-16);
+        }
+
+        .team-member-card {
+            background: var(--light);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-bounce);
+            text-align: center;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-primary-lg);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .team-member-card:hover .team-photo {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: var(--space-8);
+        }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            color: var(--primary);
+            margin-bottom: var(--space-2);
+            font-weight: 700;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .team-bio {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--dark);
+            opacity: 0.85;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: var(--white);
+            padding: var(--space-32) 0;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+            align-items: center;
+        }
+
+        .partner-logo {
+            background: var(--white);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            transition: all var(--transition-bounce);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        /* Manuals Section */
+        .manuals-section {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(212, 175, 55, 0.08) 100%);
+            padding: var(--space-32) 0;
+        }
+
+        .manuals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+        }
+
+        .manual-card {
+            background: var(--white);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            transition: all var(--transition-bounce);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .manual-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .manual-icon {
+            font-size: var(--text-5xl);
+            color: var(--primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .manual-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            margin-bottom: var(--space-3);
+            font-weight: 700;
+        }
+
+        .manual-description {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+
+        .manual-download {
+            background: var(--primary);
+            color: var(--white);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .manual-download:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--dark);
+            color: var(--white);
+            padding: var(--space-32) 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            margin-top: var(--space-12);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .timeline-item {
+                padding-right: calc(50% + var(--space-8));
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: calc(50% + var(--space-8));
+            }
+
+            .journey-map-path::before {
+                display: none;
+            }
+
+            .journey-map-path {
+                flex-direction: column;
+                gap: var(--space-8);
+            }
+
+            .journey-step {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: var(--space-8);
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: calc(var(--space-16) + var(--space-8));
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-date {
+                left: var(--space-8);
+                transform: translateX(-50%);
+            }
+
+            .timeline-content::before {
+                left: -30px;
+                border-right-color: var(--white);
+                border-left-color: transparent;
+            }
+
+            .mvv-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .mvv-tab {
+                justify-content: center;
+            }
+
+            .mvv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-content">
+            <a href="#inicio" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="index.html#impacto">Impacto</a></li>
+                <li><a href="index.html#actividades">Actividades</a></li>
+                <li><a href="index.html#artesanos">Artesanos</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="nav-sidebar" id="nav-sidebar">
+        <div class="nav-sidebar-header">
+            <span class="nav-sidebar-logo">PATAC</span>
+            <button class="nav-sidebar-close" id="nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="index.html#mision">Misión</a></li>
+            <li><a href="index.html#impacto">Impacto</a></li>
+            <li><a href="index.html#actividades">Actividades</a></li>
+            <li><a href="index.html#artesanos">Artesanos</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="#reconocimientos">Aliados</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Quick Navigation -->
+    <aside class="quick-nav">
+        <ul class="quick-nav-list">
+            <li class="quick-nav-item"><a href="#inicio" class="quick-nav-link active" data-section="inicio"><span
+                        class="quick-nav-tooltip">Inicio</span></a></li>
+            <li class="quick-nav-item"><a href="#timeline" class="quick-nav-link" data-section="timeline"><span
+                        class="quick-nav-tooltip">Historia</span></a></li>
+            <li class="quick-nav-item"><a href="#mvv" class="quick-nav-link" data-section="mvv"><span
+                        class="quick-nav-tooltip">Misión</span></a></li>
+            <li class="quick-nav-item"><a href="#equipo" class="quick-nav-link" data-section="equipo"><span
+                        class="quick-nav-tooltip">Equipo</span></a></li>
+            <li class="quick-nav-item"><a href="#aliados" class="quick-nav-link" data-section="aliados"><span
+                        class="quick-nav-tooltip">Aliados</span></a></li>
+            <li class="quick-nav-item"><a href="#manuales" class="quick-nav-link" data-section="manuales"><span
+                        class="quick-nav-tooltip">Manuales</span></a></li>
+            <li class="quick-nav-item"><a href="#video" class="quick-nav-link" data-section="video"><span
+                        class="quick-nav-tooltip">Video</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-background">
+            <img src="/assets/nosotros-hero.jpg" alt="Equipo de PATAC México trabajando con artesanos"
+                loading="lazy">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">CONOCIENDO NUESTRA HISTORIA</div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="400">El Tejido Detrás de PATAC</h1>
+            <p class="tagline" data-aos="fade-up" data-aos-delay="600">Nuestra Historia, Nuestra Pasión</p>
+            <p class="description" data-aos="fade-up" data-aos-delay="800">
+                Somos una cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos
+                originarios en riesgo de desaparecer. Desde 2020, hemos tejido puentes entre tradición y modernidad,
+                empoderando a más de 500 artesanos en 15 estados de la República.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="1000">
+                <a href="#timeline" class="btn btn-primary btn-xl">
+                    <i class="fas fa-history mr-3"></i>Nuestra Trayectoria
+                </a>
+                <a href="#equipo" class="btn btn-secondary btn-xl">
+                    <i class="fas fa-users mr-3"></i>Conoce al Equipo
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Descubre más</span>
+            <i class="fas fa-chevron-down scroll-arrow"></i>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nuestra Trayectoria</h2>
+                <p>Hitos clave que han tejido el legado de PATAC México</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-icon">🌱</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fundación de PATAC México</h3>
+                        <p class="timeline-description">
+                            Nacimos con la misión de ser el puente vital entre los 62 grupos étnicos de México y el
+                            mundo. Nuestro modelo sistémico e integral comienza a tomar forma con 6 categorías
+                            principales: turismo rural, talleres, DIY, comercio justo, educación para la vida y
+                            emprendimiento.
+                        </p>
+                        <ul class="timeline-milestones">
+                            <li>Proyecto piloto con 50 artesanos</li>
+                            <li>Convenios con 5 comunidades indígenas</li>
+                            <li>Diagnóstico biocultural inicial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-icon">🎓</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Latin America Leadership Program</h3>
+                        <p class="timeline-description">
+                            Participamos en el prestigioso LALP, fortaleciendo nuestras alianzas estratégicas y
+                            expandiendo nuestra red internacional. Este reconocimiento validó nuestro modelo innovador
+                            y nos conectó con líderes de todo Latinoamérica.
+                        </p>
+                        <ul class="timeline-milestones">
+                            <li>Reconocimiento internacional del modelo</li>
+                            <li>Fortalecimiento de capacidades directivas</li>
+                            <li>Nuevas alianzas académicas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-icon">🌍</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Expansión Internacional</h3>
+                        <p class="timeline-description">
+                            Logramos la expansión internacional consolidando presencia en mercados globales.
+                            Exportamos nuestros productos artesanales a Alemania, Francia y Estados Unidos,
+                            validando la calidad y valor cultural de nuestras piezas.
+                        </p>
+                        <ul class="timeline-milestones">
+                            <li>Exportaciones a 3 continentes</li>
+                            <li>+500 artesanos en red</li>
+                            <li>Presencia en 15 estados de México</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-icon">🏆</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Reconocimiento Global</h3>
+                        <p class="timeline-description">
+                            Nuestro modelo es reconocido por HundrED como una de las innovaciones educativas más
+                            impactantes. La incubadora PATAC se consolida como herramienta única en el mundo para la
+                            preservación biocultural textil.
+                        </p>
+                        <ul class="timeline-milestones">
+                            <li>Publicación en Harvard Business Publishing</li>
+                            <li>Caso de estudio en 5 universidades</li>
+                            <li>+100,000 personas impactadas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission, Vision, Values Section -->
+    <section class="mvv-section" id="mvv">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nuestros Principios</h2>
+                <p>Los valores que tejen cada acción de PATAC México</p>
+            </div>
+
+            <div class="mvv-tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="mvv-tab active" data-tab="mision">
+                    <i class="fas fa-bullseye"></i> Misión
+                </button>
+                <button class="mvv-tab" data-tab="vision">
+                    <i class="fas fa-eye"></i> Visión
+                </button>
+                <button class="mvv-tab" data-tab="valores">
+                    <i class="fas fa-gem"></i> Valores
+                </button>
+            </div>
+
+            <div class="mvv-content active" id="mision" data-aos="fade-up" data-aos-delay="200">
+                <div class="mvv-grid">
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-link"></i> Enlace entre Artesanos y el Mundo</h3>
+                        <p>
+                            Somos el puente vital entre los 62 grupos étnicos de México, compuestos por 25 millones de
+                            artesanos, y personas de todo el mundo que valoran y desean apoyar el patrimonio cultural.
+                            Nuestro modelo de asesoramiento culturalmente respetuoso acompaña a cada artesana en
+                            procesos de creación, comercialización justa y fortalecimiento de saberes ancestrales.
+                        </p>
+                    </div>
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-shield-alt"></i> Preservación Biocultural</h3>
+                        <p>
+                            Trabajamos incansablemente para rescatar y promover las tradiciones textiles de los pueblos
+                            indígenas, reconociendo que cada pieza es portadora de historia, espiritualidad y
+                            resistencia. Sin espacios como PATAC, muchas expresiones textiles podrían perderse para
+                            siempre.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mvv-content" id="vision" data-aos="fade-up" data-aos-delay="200">
+                <div class="mvv-grid">
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-globe-americas"></i> Referente Global</h3>
+                        <p>
+                            Convertirnos en el referente mundial en preservación y promoción del patrimonio artesanal
+                            mexicano. Nuestra expansión internacional a Alemania, Francia y Estados Unidos es solo el
+                            inicio de una red global que valora la autenticidad cultural.
+                        </p>
+                    </div>
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-leaf"></i> Sostenibilidad Integral</h3>
+                        <p>
+                            Impulsar la sostenibilidad cultural, económica y ambiental de las comunidades indígenas.
+                            Cada pieza artesanal representa un equilibrio entre tradición ancestral y futuro sostenible,
+                            generando prosperidad sin comprometer la identidad cultural.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mvv-content" id="valores" data-aos="fade-up" data-aos-delay="200">
+                <div class="values-grid">
+                    <div class="value-item" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="value-title">
+                            <i class="fas fa-heart"></i> Respeto y Valoración Cultural
+                        </div>
+                        <p>Reconocimiento y dignificación de tradiciones, lenguas y conocimientos ancestrales.</p>
+                    </div>
+                    <div class="value-item" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="value-title">
+                            <i class="fas fa-balance-scale"></i> Equidad y Justicia Social
+                        </div>
+                        <p>Promoción de oportunidades justas y trato igualitario para artesanas indígenas marginadas.</p>
+                    </div>
+                    <div class="value-item" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="value-title">
+                            <i class="fas fa-handshake"></i> Integridad y Ética
+                        </div>
+                        <p>Actuación con honestidad, transparencia y responsabilidad en todas nuestras acciones.</p>
+                    </div>
+                    <div class="value-item" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="value-title">
+                            <i class="fas fa-users"></i> Colaboración y Solidaridad
+                        </div>
+                        <p>Fortalecimiento de relaciones basadas en cooperación y apoyo mutuo.</p>
+                    </div>
+                    <div class="value-item" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="value-title">
+                            <i class="fas fa-seedling"></i> Compromiso Ambiental
+                        </div>
+                        <p>Implementación de prácticas sostenibles que respetan la naturaleza y los recursos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Map Section -->
+    <section class="journey-map-section" id="journey">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>El Viaje de Nuestras Piezas</h2>
+                <p>Desde el taller indígena hasta tu hogar: un recorrido de autenticidad y comercio justo</p>
+            </div>
+            <div class="journey-map-container">
+                <div class="journey-map-path">
+                    <div class="journey-step" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="journey-icon">
+                            <i class="fas fa-people-carry"></i>
+                        </div>
+                        <h3 class="journey-title">Creación Ancestral</h3>
+                        <p class="journey-description">Las artesanas indígenas tejen cada pieza con técnicas
+                            transmitidas por generaciones, utilizando materiales locales y saberes ancestrales.</p>
+                    </div>
+                    <div class="journey-step" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="journey-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="journey-title">Acompañamiento PATAC</h3>
+                        <p class="journey-description">Nuestro equipo brinda capacitación en comercialización, diseño y
+                            preservación de técnicas tradicionales de manera culturalmente respetuosa.</p>
+                    </div>
+                    <div class="journey-step" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="journey-icon">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <h3 class="journey-title">Comercio Justo</h3>
+                        <p class="journey-description">Cada artesana recibe un precio justo que refleja el valor real de
+                            su trabajo, garantizando ingresos sostenibles para sus comunidades.</p>
+                    </div>
+                    <div class="journey-step" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="journey-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="journey-title">Exportación Global</h3>
+                        <p class="journey-description">Nuestras piezas llegan a Alemania, Francia, Estados Unidos y más,
+                            conectando tradiciones mexicanas con el mundo entero.</p>
+                    </div>
+                    <div class="journey-step" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="journey-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="journey-title">Tu Historia</h3>
+                        <p class="journey-description">Cada pieza llega a tu hogar con su historia, espiritualidad y
+                            resistencia cultural, tejiendo futuros sostenibles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="equipo">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nuestro Equipo</h2>
+                <p>Las manos y corazones que tejen el futuro del patrimonio cultural mexicano</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="/assets/team/carlos-moreno.jpg" alt="Carlos Ernesto Moreno, Fundador de PATAC México"
+                        class="team-photo" loading="lazy">
+                    <div class="team-info">
+                        <h3 class="team-name">Carlos Ernesto Moreno</h3>
+                        <p class="team-role">Fundador y Representante</p>
+                        <p class="team-bio">
+                            Profesional apasionado con vasta experiencia en desarrollo social y cooperación
+                            internacional. Ha dedicado su carrera a empoderar comunidades indígenas mexicanas,
+                            fomentando desarrollo económico y preservación cultural. Su liderazgo ha guiado el
+                            crecimiento de PATAC desde sus inicios hasta su reconocimiento global.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-member-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="/assets/team/ernesto-moreno.jpg" alt="Ernesto Moreno, Desarrollo Comunitario"
+                        class="team-photo" loading="lazy">
+                    <div class="team-info">
+                        <h3 class="team-name">Ernesto Moreno</h3>
+                        <p class="team-role">Desarrollo Comunitario</p>
+                        <p class="team-bio">
+                            Apasionado y comprometido con la causa indígena, aporta experiencia en desarrollo
+                            comunitario, educación artesanal y gestión cultural. Su trabajo fortalece capacidades de
+                            comunidades indígenas, promoviendo sostenibilidad cultural, económica y ambiental.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-member-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="/assets/team/nohemi-farfan.jpg" alt="Nohemi Farfán Oropeza, Gestión Cultural"
+                        class="team-photo" loading="lazy">
+                    <div class="team-info">
+                        <h3 class="team-name">Nohemi Farfán Oropeza</h3>
+                        <p class="team-role">Gestión Cultural</p>
+                        <p class="team-bio">
+                            Integrante clave del equipo ejecutivo. Su pasión y compromiso se reflejan en el trabajo con
+                            comunidades indígenas, aportando experiencia en desarrollo comunitario, educación artesanal
+                            y fortalecimiento de identidades culturales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-member-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="/assets/team/paulina-sabido.jpg" alt="Paulina Sabido Moreno, Educación Artesanal"
+                        class="team-photo" loading="lazy">
+                    <div class="team-info">
+                        <h3 class="team-name">Paulina Sabido Moreno</h3>
+                        <p class="team-role">Educación Artesanal</p>
+                        <p class="team-bio">
+                            Miembro destacada del equipo con profundo compromiso con la causa indígena. Su experiencia en
+                            desarrollo comunitario y gestión cultural es fundamental para la implementación de nuestro
+                            modelo educativo integral.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-member-card" data-aos="fade-up" data-aos-delay="500">
+                    <img src="/assets/team/paulina-bobadilla.jpg" alt="Paulina Bobadilla Galeana, Empoderamiento"
+                        class="team-photo" loading="lazy">
+                    <div class="team-info">
+                        <h3 class="team-name">Paulina Bobadilla Galeana</h3>
+                        <p class="team-role">Empoderamiento Comunitario</p>
+                        <p class="team-bio">
+                            Integrante vital del equipo, su pasión por la causa indígena y experiencia en desarrollo
+                            comunitario son fundamentales. Trabaja incansablemente para fortalecer capacidades de
+                            comunidades indígenas y promover sostenibilidad integral.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="600">
+                <a href="voluntarios.html" class="btn btn-outline btn-lg">
+                    <i class="fas fa-hands-helping mr-3"></i>Conoce a nuestros voluntarios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section" id="aliados">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Aliados y Socios</h2>
+                <p>Organizaciones que caminan junto a nosotros en la preservación del patrimonio cultural</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="/assets/partners/lalp.png" alt="Latin America Leadership Program" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="/assets/partners/hundred.png" alt="HundrED" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="/assets/partners/ipn.png" alt="Instituto Politécnico Nacional" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="/assets/partners/university-chilchotla.png" alt="Universidad Interserrana de Chilchotla"
+                        loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="/assets/partners/mcgill.png" alt="McGill University" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="/assets/partners/georgetown.png" alt="Georgetown University" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="/assets/partners/harvard.png" alt="Harvard Business Publishing" loading="lazy">
+                </div>
+                <div class="partner-logo" data-aos="zoom-in" data-aos-delay="800">
+                    <img src="/assets/partners/wadhwani.png" alt="Wadhwani Foundation" loading="lazy">
+                </div>
+            </div>
+
+            <div class="testimonios-section mt-20">
+                <div class="container">
+                    <div class="section-header" data-aos="fade-up">
+                        <h2>Testimonios de Colaboradores</h2>
+                        <p>Lo que dicen nuestros aliados sobre el impacto de PATAC</p>
+                    </div>
+                    <div class="swiper testimonios-carousel" data-aos="fade-up" data-aos-delay="200">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-avatar">
+                                        <img src="/assets/testimonials/colaborador1.jpg"
+                                            alt="Colaborador de LALP" loading="lazy">
+                                    </div>
+                                    <p class="testimonial-quote">"PATAC México representa una innovación sin precedentes
+                                        en la preservación biocultural. Su modelo integral es referente para toda
+                                        Latinoamérica."</p>
+                                    <p class="testimonial-author">Directora LALP</p>
+                                    <p class="testimonial-role">Latin America Leadership Program</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-avatar">
+                                        <img src="/assets/testimonials/colaborador2.jpg"
+                                            alt="Colaborador de HundrED" loading="lazy">
+                                    </div>
+                                    <p class="testimonial-quote">"La forma en que PATAC combina educación, desarrollo
+                                        económico y preservación cultural es exactamente lo que el mundo necesita."</p>
+                                    <p class="testimonial-author">Research Lead</p>
+                                    <p class="testimonial-role">HundrED</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-avatar">
+                                        <img src="/assets/testimonials/colaborador3.jpg"
+                                            alt="Colaborador del IPN" loading="lazy">
+                                    </div>
+                                    <p class="testimonial-quote">"El modelo académico de PATAC ha inspirado nuevos
+                                        enfoques en nuestras investigaciones sobre desarrollo indígena."</p>
+                                    <p class="testimonial-author">Investigador Titular</p>
+                                    <p class="testimonial-role">Instituto Politécnico Nacional</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manuals Section -->
+    <section class="manuals-section" id="manuales">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Manuales Descargables</h2>
+                <p>Documentos que transparentan nuestro trabajo y guían nuestra misión</p>
+            </div>
+            <div class="manuals-grid">
+                <div class="manual-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="manual-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="manual-title">Manual de Identidad Visual</h3>
+                    <p class="manual-description">
+                        Detalles completos sobre el uso del logotipo, colores y tipografía de PATAC México para
+                        mantener identidad coherente en todas las comunicaciones.
+                    </p>
+                    <a href="/downloads/manual-identidad.pdf" class="manual-download" download>
+                        <i class="fas fa-download"></i> Descargar PDF
+                    </a>
+                </div>
+
+                <div class="manual-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="manual-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <h3 class="manual-title">Guía de Citación</h3>
+                    <p class="manual-description">
+                        Recomendaciones y formatos para citar correctamente nuestro trabajo en investigaciones y
+                        publicaciones académicas.
+                    </p>
+                    <a href="/downloads/guia-citacion.pdf" class="manual-download" download>
+                        <i class="fas fa-download"></i> Descargar PDF
+                    </a>
+                </div>
+
+                <div class="manual-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="manual-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="manual-title">Regulaciones y Ética</h3>
+                    <p class="manual-description">
+                        Estándares y políticas internas que rigen las operaciones de la cooperativa. Disponible bajo
+                        solicitud para fomentar transparencia y buenas prácticas.
+                    </p>
+                    <a href="mailto:contacto@patac.org?subject=Solicitud%20Regulaciones" class="manual-download">
+                        <i class="fas fa-envelope"></i> Solicitar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 style="color: var(--white);">Conoce Nuestro Trabajo</h2>
+                <p style="color: var(--gray-300);">Videos institucionales que muestran el impacto real de PATAC en las
+                    comunidades</p>
+            </div>
+            <div class="video-container" data-aos="fade-up" data-aos-delay="200">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_PATAC" 
+                    title="Video institucional PATAC México" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://www.youtube.com/@PATACMEXICO" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-outline-secondary btn-lg">
+                    <i class="fab fa-youtube mr-3"></i>Ver más videos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contacto" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Únete a Nuestro Movimiento</h2>
+                <p class="section-subtitle">Tu apoyo es crucial para seguir tejiendo futuros sostenibles</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="contact-info">
+                    <h3 class="font-bold text-2xl mb-6" style="color: var(--primary);">¿Quieres colaborar?</h3>
+                    <p class="mb-6">Estamos abiertos a alianzas estratégicas que fortalezcan nuestro impacto.</p>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Contacto Directo</h4>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> info@patacmexico.org</p>
+                        <p class="mb-2"><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> SC de RL de CV</p>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg mb-3" style="color: var(--accent);">Síguenos</h4>
+                        <div class="flex gap-3">
+                            <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary"
+                                target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary"
+                                target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary"
+                                target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank"
+                                aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization" class="form-label">Organización</label>
+                            <input type="text" id="organization" name="organization" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest" class="form-label">Tipo de Colaboración</label>
+                            <select id="interest" name="interest" class="form-select">
+                                <option value="">Selecciona una opción</option>
+                                <option value="alianza">Alianza Estratégica</option>
+                                <option value="voluntariado">Voluntariado</option>
+                                <option value="investigacion">Colaboración Académica</option>
+                                <option value="comercial">Comercialización</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensaje *</label>
+                            <textarea id="message" name="message" class="form-textarea"
+                                placeholder="Cuéntanos sobre tu interés en colaborar con PATAC..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-full">
+                            <i class="fas fa-paper-plane mr-3"></i>Enviar Propuesta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>PATAC México</h4>
+                <p>Cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios
+                    mediante incubación empresarial, educación integral y comercio justo.</p>
+                <p><strong>Eslogan:</strong> "El Tejido Cultural de México"</p>
+                <p><strong>Fundación:</strong> 2020</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="index.html#mision">Misión</a></li>
+                    <li><a href="index.html#actividades">Actividades</a></li>
+                    <li><a href="index.html#artesanos">Artesanos</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="transparencia.html">Transparencia</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                <p><i class="fas fa-envelope mr-2"></i> info@patacmexico.org</p>
+                <p><i class="fas fa-building mr-2"></i> SC de RL de CV</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="flex gap-4 mb-4">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <a href="https://wa.me/525525213142" class="btn btn-outline-secondary btn-sm" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados. | Fundada en 2020 como SAS de CV, evolucionó a
+                SC de RL de CV en julio de 2023.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+
+            const API_BASE = '/api';
+
+            // Mobile Navigation
+            const navToggle = document.getElementById('nav-toggle');
+            const navSidebar = document.getElementById('nav-sidebar');
+            const navClose = document.getElementById('nav-close');
+            const navOverlay = document.getElementById('nav-overlay');
+            const sidebarLinks = document.querySelectorAll('.nav-sidebar-links a');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navSidebar.classList.add('active');
+                    navOverlay.classList.add('active');
+                    navToggle.classList.add('active');
+                });
+            }
+
+            const closeMenu = () => {
+                navSidebar.classList.remove('active');
+                navOverlay.classList.remove('active');
+                navToggle.classList.remove('active');
+            };
+
+            if (navClose) navClose.addEventListener('click', closeMenu);
+            if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+            sidebarLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            // Quick Navigation
+            const quickNavLinks = document.querySelectorAll('.quick-nav-link');
+            const sections = document.querySelectorAll('.section, .timeline-section, .mvv-section, .team-section, .partners-section, .manuals-section, .video-section');
+
+            const onScroll = () => {
+                const scrollPosition = window.scrollY + window.innerHeight / 2;
+                sections.forEach(section => {
+                    if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+                        quickNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (section.id === link.dataset.section) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+
+            // MVV Tabs
+            const mvvTabs = document.querySelectorAll('.mvv-tab');
+            const mvvContents = document.querySelectorAll('.mvv-content');
+
+            mvvTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.dataset.tab;
+                    
+                    mvvTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    mvvContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === targetTab) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Timeline Animation
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+
+            timelineItems.forEach(item => {
+                timelineObserver.observe(item);
+            });
+
+            // Testimonials Swiper
+            new Swiper('.testimonios-carousel', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 }
+                }
+            });
+
+            // Contact Form (similar to index.html)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+                    submitButton.disabled = true;
+
+                    const formData = {
+                        clienteNombre: document.getElementById('name').value,
+                        clienteEmail: document.getElementById('email').value,
+                        organizacion: document.getElementById('organization').value,
+                        tipoColaboracion: document.getElementById('interest').value,
+                        mensaje: document.getElementById('message').value,
+                    };
+
+                    try {
+                        const response = await fetch(`${API_BASE}/consultas`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(formData),
+                        });
+
+                        const result = await response.json();
+
+                        if (!response.ok) {
+                            throw new Error(result.error || 'Error al enviar.');
+                        }
+
+                        submitButton.innerHTML = '¡Enviado con éxito! <i class="fas fa-check"></i>';
+                        submitButton.style.backgroundColor = 'var(--success)';
+                        contactForm.reset();
+
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.disabled = false;
+                            submitButton.style.backgroundColor = '';
+                        }, 4000);
+
+                    } catch (error) {
+                        console.error('Error enviando consulta:', error);
+                        submitButton.innerHTML = `Error: ${error.message}`;
+                        submitButton.style.backgroundColor = 'var(--error)';
+                        submitButton.disabled = false;
+
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.style.backgroundColor = '';
+                        }, 5000);
+                    }
+                });
+            }
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.nav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

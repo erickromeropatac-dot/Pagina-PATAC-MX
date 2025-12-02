@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Catálogo de Productos | PATAC México - Comercio Justo</title>
+    <meta name="description"
+        content="Descubre productos artesanales únicos creados por artesanos indígenas de México. Cada compra apoya directamente a las comunidades y preserva técnicas ancestrales.">
+    <meta name="keywords"
+        content="productos artesanales méxico, textiles indígenas, comercio justo, artesanía mexicana, huipiles, rebozos">
+    <meta name="author" content="PATAC México">
+
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar" role="navigation" aria-label="Menú principal">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="proyectos.html" role="menuitem">Proyectos</a></li>
+                <li role="none"><a href="artesanos.html" role="menuitem">Artesanos</a></li>
+                <li role="none"><a href="catalogo.html" class="active" role="menuitem" aria-current="page">Catálogo</a>
+                </li>
+                <li role="none"><a href="voluntariado.html" role="menuitem">Voluntariado</a></li>
+                <li role="none"><a href="transparencia.html" role="menuitem">Transparencia</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú móvil" aria-expanded="false"
+                aria-controls="navSidebar">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <aside class="nav-sidebar" id="navSidebar" role="complementary" aria-label="Menú móvil">
+        <div class="nav-sidebar-header">
+            <div class="nav-sidebar-logo">PATAC</div>
+            <button class="nav-sidebar-close" id="navSidebarClose" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="catalogo.html" class="active">Catálogo</a></li>
+            <li><a href="voluntariado.html">Voluntariado</a></li>
+            <li><a href="transparencia.html">Transparencia</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero" role="banner">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1617196214233-54e99576595f?auto=format&fit=crop&w=1920&q=80"
+                alt="Productos artesanales mexicanos">
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">COMERCIO JUSTO</span>
+            <h1 class="proyectos-hero-title">Catálogo de Productos Artesanales</h1>
+            <p class="hero-description">
+                Cada pieza cuenta una historia. Cada compra transforma una vida. Descubre productos únicos creados con
+                técnicas ancestrales por artesanos indígenas de México.
+            </p>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="section proyectos-destacados" id="catalog-section">
+        <div class="container">
+            <!-- Header with View Toggle -->
+            <div class="catalog-header">
+                <div class="section-header">
+                    <h2 class="section-title">Productos Disponibles</h2>
+                    <p class="section-subtitle" id="results-count">Cargando productos...</p>
+                </div>
+                <div class="view-controls">
+                    <button class="btn btn-sm btn-outline" id="toggleFilters" aria-label="Mostrar filtros">
+                        <i class="fas fa-filter"></i> Filtros
+                    </button>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" aria-label="Vista de cuadrícula">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" aria-label="Vista de lista">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="catalog-layout">
+                <!-- Filters Sidebar -->
+                <aside class="catalog-filters" id="catalogFilters">
+                    <div class="filter-header">
+                        <h3>Filtros</h3>
+                        <button class="btn btn-ghost btn-sm" id="clearFilters">Limpiar</button>
+                    </div>
+
+                    <!-- Artisan Filter -->
+                    <div class="filter-group">
+                        <label for="artisanFilter" class="filter-label">
+                            <i class="fas fa-user"></i> Artesano
+                        </label>
+                        <select class="form-select" id="artisanFilter">
+                            <option value="">Todos los artesanos</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="fas fa-tag"></i> Categoría
+                        </label>
+                        <div class="filter-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="Ropa"> Ropa
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="Accesorios"> Accesorios
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="Hogar"> Hogar
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="fas fa-dollar-sign"></i> Rango de Precio
+                        </label>
+                        <div class="price-range">
+                            <input type="range" id="priceRange" min="0" max="10000" step="100" value="10000">
+                            <div class="price-display">
+                                <span>$0</span>
+                                <span id="maxPrice">$10,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Filter -->
+                    <div class="filter-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="inStockOnly"> Solo productos en stock
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="catalog-content">
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner-container">
+                            <div class="spinner"></div>
+                            <p>Cargando productos artesanales...</p>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be injected here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state hidden" id="emptyState">
+                        <i class="fas fa-search"></i>
+                        <h3>No se encontraron productos</h3>
+                        <p>Intenta ajustar los filtros de búsqueda</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('clearFilters').click()">
+                            Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+            <div id="modalBody" class="product-modal-body">
+                <!-- Content will be injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PATAC México</h3>
+                <p>Preservando el patrimonio biocultural textil de los pueblos originarios de México.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="artesanos.html">Artesanos</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="transparencia.html">Transparencia</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: contacto@patac.org</p>
+                <p>Tel: +52 55 2521 3142</p>
+                <p>CDMX, México</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="flex gap-4 mb-4 justify-center">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PATAC México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // ==================== STATE ====================
+        const AppState = {
+            productos: [],
+            artesanos: [],
+            filteredProductos: [],
+            currentView: localStorage.getItem('catalogView') || 'grid',
+            filters: {
+                artisan: '',
+                categories: [],
+                maxPrice: 10000,
+                inStockOnly: false
+            },
+            currentProduct: null
+        };
+
+        const DOM = {
+            navToggle: document.getElementById('navToggle'),
+            navSidebar: document.getElementById('navSidebar'),
+            navSidebarClose: document.getElementById('navSidebarClose'),
+            navOverlay: document.getElementById('navOverlay'),
+            toggleFilters: document.getElementById('toggleFilters'),
+            catalogFilters: document.getElementById('catalogFilters'),
+            productsGrid: document.getElementById('productsGrid'),
+            loadingState: document.getElementById('loadingState'),
+            emptyState: document.getElementById('emptyState'),
+            resultsCount: document.getElementById('results-count'),
+            artisanFilter: document.getElementById('artisanFilter'),
+            priceRange: document.getElementById('priceRange'),
+            maxPrice: document.getElementById('maxPrice'),
+            inStockOnly: document.getElementById('inStockOnly'),
+            clearFilters: document.getElementById('clearFilters'),
+            viewBtns: document.querySelectorAll('.view-btn'),
+            productModal: document.getElementById('productModal'),
+            modalBackdrop: document.getElementById('modalBackdrop'),
+            modalClose: document.getElementById('modalClose'),
+            modalBody: document.getElementById('modalBody')
+        };
+
+        // ==================== NAVIGATION ====================
+        function toggleMobileMenu() {
+            DOM.navSidebar.classList.add('active');
+            DOM.navOverlay.classList.add('active');
+            DOM.navToggle.classList.add('active');
+            DOM.navToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMobileMenu() {
+            DOM.navSidebar.classList.remove('active');
+            DOM.navOverlay.classList.remove('active');
+            DOM.navToggle.classList.remove('active');
+            DOM.navToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        if (DOM.navToggle) DOM.navToggle.addEventListener('click', toggleMobileMenu);
+        if (DOM.navSidebarClose) DOM.navSidebarClose.addEventListener('click', closeMobileMenu);
+        if (DOM.navOverlay) DOM.navOverlay.addEventListener('click', closeMobileMenu);
+
+        // ==================== FILTERS ====================
+        function toggleFiltersPanel() {
+            DOM.catalogFilters.classList.toggle('active');
+        }
+
+        if (DOM.toggleFilters) {
+            DOM.toggleFilters.addEventListener('click', toggleFiltersPanel);
+        }
+
+        // ==================== FETCH DATA ====================
+        async function loadData() {
+            try {
+                const [productosRes, artesanosRes] = await Promise.all([
+                    fetch('/api/productos'),
+                    fetch('/api/artesanos')
+                ]);
+
+                const productosData = await productosRes.json();
+                const artesanosData = await artesanosRes.json();
+
+                AppState.productos = productosData.productos || [];
+                AppState.artesanos = artesanosData.artesanos || [];
+
+                populateArtisanFilter();
+                checkURLParams();
+                applyFilters();
+                DOM.loadingState.style.display = 'none';
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                DOM.loadingState.innerHTML = '<p class="error-message">Error al cargar productos. Por favor intenta más tarde.</p>';
+            }
+        }
+
+        function populateArtisanFilter() {
+            const options = AppState.artesanos.map(a =>
+                `<option value="${a.idArtesano}">${a.nombre}</option>`
+            ).join('');
+            DOM.artisanFilter.innerHTML = '<option value="">Todos los artesanos</option>' + options;
+        }
+
+        function checkURLParams() {
+            const params = new URLSearchParams(window.location.search);
+            const artesanoId = params.get('artesano');
+            if (artesanoId && DOM.artisanFilter) {
+                DOM.artisanFilter.value = artesanoId;
+                AppState.filters.artisan = artesanoId;
+            }
+        }
+
+        // ==================== FILTERS ====================
+        function applyFilters() {
+            let filtered = [...AppState.productos];
+
+            // Filter by artisan
+            if (AppState.filters.artisan) {
+                filtered = filtered.filter(p => p.idArtesano === AppState.filters.artisan);
+            }
+
+            // Filter by categories
+            if (AppState.filters.categories.length > 0) {
+                filtered = filtered.filter(p =>
+                    AppState.filters.categories.includes(p.categoria)
+                );
+            }
+
+            // Filter by price
+            filtered = filtered.filter(p =>
+                parseFloat(p.precio) <= AppState.filters.maxPrice
+            );
+
+            // Filter by stock
+            if (AppState.filters.inStockOnly) {
+                filtered = filtered.filter(p => parseInt(p.stock) > 0);
+            }
+
+            AppState.filteredProductos = filtered;
+            renderProducts();
+            updateResultsCount();
+        }
+
+        function updateResultsCount() {
+            const count = AppState.filteredProductos.length;
+            DOM.resultsCount.textContent = `${count} producto${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+        }
+
+        // Event Listeners for Filters
+        if (DOM.artisanFilter) {
+            DOM.artisanFilter.addEventListener('change', (e) => {
+                AppState.filters.artisan = e.target.value;
+                applyFilters();
+            });
+        }
+
+        if (DOM.priceRange) {
+            DOM.priceRange.addEventListener('input', (e) => {
+                const value = parseInt(e.target.value);
+                AppState.filters.maxPrice = value;
+                DOM.maxPrice.textContent = `$${value.toLocaleString('es-MX')}`;
+                applyFilters();
+            });
+        }
+
+        if (DOM.inStockOnly) {
+            DOM.inStockOnly.addEventListener('change', (e) => {
+                AppState.filters.inStockOnly = e.target.checked;
+                applyFilters();
+            });
+        }
+
+        // Category checkboxes
+        document.querySelectorAll('input[name="category"]').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                AppState.filters.categories = Array.from(
+                    document.querySelectorAll('input[name="category"]:checked')
+                ).map(cb => cb.value);
+                applyFilters();
+            });
+        });
+
+        // Clear filters
+        if (DOM.clearFilters) {
+            DOM.clearFilters.addEventListener('click', () => {
+                AppState.filters = {
+                    artisan: '',
+                    categories: [],
+                    maxPrice: 10000,
+                    inStockOnly: false
+                };
+                DOM.artisanFilter.value = '';
+                DOM.priceRange.value = 10000;
+                DOM.maxPrice.textContent = '$10,000';
+                DOM.inStockOnly.checked = false;
+                document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
+                applyFilters();
+            });
+        }
+
+        // ==================== VIEW TOGGLE ====================
+        function setView(view) {
+            AppState.currentView = view;
+            localStorage.setItem('catalogView', view);
+            DOM.productsGrid.className = view === 'grid' ? 'products-grid' : 'products-list';
+            DOM.viewBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === view);
+            });
+        }
+
+        DOM.viewBtns.forEach(btn => {
+            btn.addEventListener('click', () => setView(btn.dataset.view));
+        });
+
+        // Set initial view
+        setView(AppState.currentView);
+
+        // ==================== RENDER PRODUCTS ====================
+        function renderProducts() {
+            if (AppState.filteredProductos.length === 0) {
+                DOM.productsGrid.style.display = 'none';
+                DOM.emptyState.classList.remove('hidden');
+                return;
+            }
+
+            DOM.productsGrid.style.display = AppState.currentView === 'grid' ? 'grid' : 'block';
+            DOM.emptyState.classList.add('hidden');
+
+            DOM.productsGrid.innerHTML = AppState.filteredProductos.map(producto => {
+                const artesano = AppState.artesanos.find(a => a.idArtesano === producto.idArtesano);
+                const inStock = parseInt(producto.stock) > 0;
+
+                return `
+                    <article class="card card-project product-card" data-id="${producto.idProducto}" onclick="openProductModal('${producto.idProducto}')">
+                        <div class="card-image">
+                            <img src="${producto.urlImagenPrincipal}" alt="${producto.nombre}" loading="lazy">
+                            ${!inStock ? '<span class="card-badge status-pausado">Agotado</span>' : ''}
+                            <span class="card-badge status-activo">${producto.categoria}</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${producto.nombre}</h3>
+                            <p class="card-description">${producto.descripcion.substring(0, 100)}...</p>
+                            
+                            <div class="product-price">
+                                <span class="price-amount">$${parseFloat(producto.precio).toLocaleString('es-MX')}</span>
+                                <span class="price-label">MXN</span>
+                            </div>
+
+                            ${artesano ? `
+                                <div class="artisan-mini-info">
+                                    <img src="${artesano.foto || 'https://via.placeholder.com/40'}" alt="${artesano.nombre}" class="artisan-mini-photo">
+                                    <div>
+                                        <p class="artisan-mini-label">Creado por</p>
+                                        <a href="artesanos.html#${artesano.idArtesano}" class="artisan-mini-name">${artesano.nombre}</a>
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            <div class="product-meta">
+                                <span class="meta-badge">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    ${producto.porcentajeArtesano}% para el artesano
+                                </span>
+                                <span class="meta-badge">
+                                    <i class="fas fa-box"></i>
+                                    ${producto.stock} disponibles
+                                </span>
+                            </div>
+
+                            <button class="btn btn-primary btn-sm w-full mt-4" onclick="event.stopPropagation(); openProductModal('${producto.idProducto}')">
+                                Ver Detalles
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // ==================== PRODUCT MODAL ====================
+        async function openProductModal(productId) {
+            const producto = AppState.productos.find(p => p.idProducto === productId);
+            if (!producto) return;
+
+            AppState.currentProduct = producto;
+            const artesano = AppState.artesanos.find(a => a.idArtesano === producto.idArtesano);
+
+            // Parse gallery images
+            const galleryImages = producto.urlImagenesGaleria
+                ? producto.urlImagenesGaleria.split(',').map(url => url.trim())
+                : [producto.urlImagenPrincipal];
+
+            // Find related products
+            const relatedProducts = AppState.productos
+                .filter(p => p.idProducto !== productId && (
+                    p.idArtesano === producto.idArtesano ||
+                    p.categoria === producto.categoria
+                ))
+                .slice(0, 3);
+
+            const whatsappMessage = encodeURIComponent(
+                `¡Hola! Me interesa el producto:\n\n` +
+                `📦 *${producto.nombre}*\n` +
+                `💰 Precio: $${parseFloat(producto.precio).toLocaleString('es-MX')} MXN\n` +
+                `👤 Artesano: ${artesano ? artesano.nombre : 'N/A'}\n` +
+                `💚 ${producto.porcentajeArtesano}% va directo al artesano\n\n` +
+                `¿Podrían darme más información?`
+            );
+
+            DOM.modalBody.innerHTML = `
+                <div class="product-modal-grid">
+                    <div class="product-modal-gallery">
+                        <div class="swiper product-swiper">
+                            <div class="swiper-wrapper">
+                                ${galleryImages.map(img => `
+                                    <div class="swiper-slide">
+                                        <img src="${img}" alt="${producto.nombre}">
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        ${producto.videoProcesoUrl ? `
+                            <div class="product-video mt-6">
+                                <h4 class="text-lg font-bold mb-3">Proceso de Creación</h4>
+                                <div class="video-container">
+                                    <iframe src="${producto.videoProcesoUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="product-modal-info">
+                        <h2 class="text-3xl font-bold text-primary mb-4">${producto.nombre}</h2>
+                        
+                        <div class="product-price-large mb-6">
+                            <span class="text-4xl font-bold text-primary">$${parseFloat(producto.precio).toLocaleString('es-MX')}</span>
+                            <span class="text-xl text-gray-500">MXN</span>
+                        </div>
+
+                        <div class="product-badges mb-6">
+                            <span class="badge badge-primary">${producto.categoria}</span>
+                            <span class="badge badge-success">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                ${producto.porcentajeArtesano}% para el artesano
+                            </span>
+                            <span class="badge ${parseInt(producto.stock) > 0 ? 'badge-info' : 'badge-warning'}">
+                                <i class="fas fa-box"></i>
+                                ${producto.stock} en stock
+                            </span>
+                        </div>
+
+                        <div class="product-description mb-6">
+                            <h3 class="text-xl font-bold mb-3">Descripción</h3>
+                            <p class="text-gray-600 leading-relaxed">${producto.descripcion}</p>
+                        </div>
+
+                        ${producto.historiaPieza ? `
+                            <div class="product-story mb-6">
+                                <h3 class="text-xl font-bold mb-3">Historia de la Pieza</h3>
+                                <p class="text-gray-600 leading-relaxed italic">${producto.historiaPieza}</p>
+                            </div>
+                        ` : ''}
+
+                        ${artesano ? `
+                            <div class="artisan-profile-card mb-6">
+                                <h3 class="text-xl font-bold mb-3">Conoce al Artesano</h3>
+                                <div class="flex items-center gap-4 p-4 bg-light rounded-lg">
+                                    <img src="${artesano.foto || 'https://via.placeholder.com/80'}" alt="${artesano.nombre}" class="w-20 h-20 rounded-full object-cover">
+                                    <div>
+                                        <h4 class="font-bold text-lg">${artesano.nombre}</h4>
+                                        <p class="text-sm text-gray-600">${artesano.comunidad}, ${artesano.estado}</p>
+                                        <p class="text-sm text-primary font-semibold">${artesano.tecnica}</p>
+                                        <a href="artesanos.html#${artesano.idArtesano}" class="text-sm text-accent hover:underline">Ver perfil completo →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="product-actions">
+                            <a href="https://wa.me/525525213142?text=${whatsappMessage}" 
+                               target="_blank" 
+                               class="btn btn-primary btn-lg w-full mb-3"
+                               ${parseInt(producto.stock) === 0 ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora por WhatsApp
+                            </a>
+                            <p class="text-xs text-gray-500 text-center">
+                                Al comprar, ${producto.porcentajeArtesano}% del precio va directamente al artesano
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                ${relatedProducts.length > 0 ? `
+                    <div class="related-products mt-12">
+                        <h3 class="text-2xl font-bold mb-6">Productos Relacionados</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            ${relatedProducts.map(p => `
+                                <div class="card card-project" onclick="openProductModal('${p.idProducto}')">
+                                    <div class="card-image">
+                                        <img src="${p.urlImagenPrincipal}" alt="${p.nombre}">
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="card-title">${p.nombre}</h4>
+                                        <p class="text-primary font-bold">$${parseFloat(p.precio).toLocaleString('es-MX')} MXN</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+
+            DOM.productModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Initialize Swiper
+            setTimeout(() => {
+                new Swiper('.product-swiper', {
+                    loop: galleryImages.length > 1,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            }, 100);
+        }
+
+        function closeProductModal() {
+            DOM.productModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (DOM.modalClose) DOM.modalClose.addEventListener('click', closeProductModal);
+        if (DOM.modalBackdrop) DOM.modalBackdrop.addEventListener('click', closeProductModal);
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && DOM.productModal.classList.contains('active')) {
+                closeProductModal();
+            }
+        });
+
+        // ==================== INITIALIZE ====================
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>

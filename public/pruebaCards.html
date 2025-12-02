@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATAC México | Catálogo Artesanal Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Licorice&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           1. VARIABLES DEL SISTEMA (PATAC BASE)
+           ========================================= */
+        :root {
+            /* Paleta de Colores Principal */
+            --primary: #8B4513;
+            --primary-dark: #5C2E0A;
+            --secondary: #D4A574;
+            --gold: #D4AF37;
+            --gold-light: #E8C76B;
+            --gold-dark: #B8942C;
+            --accent: #C75B39;
+            --dark: #1A1A1A;
+            --white: #FFFFFF;
+            
+            /* Fondos */
+            --light: #F5F1EC;
+            --paper-texture: radial-gradient(var(--gold-light) 1px, transparent 1px);
+
+            /* Sombras */
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-gold: 0 15px 40px rgba(212, 175, 55, 0.4);
+            --shadow-inner: inset 0 0 20px rgba(139, 69, 19, 0.05);
+
+            /* Tipografía */
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --font-handwritten: 'Licorice', cursive;
+
+            /* Radios */
+            --radius-lg: 1rem;
+            --radius-xl: 1.25rem;
+        }
+
+        /* =========================================
+           2. RESET & LAYOUT BÁSICO
+           ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--light);
+            font-family: var(--font-primary);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1rem;
+        }
+
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .catalog-subtitle {
+            font-family: var(--font-handwritten);
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .catalog-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .catalog-desc {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Grid del Catálogo */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        /* =========================================
+           3. COMPONENTE: THE STORYTELLER CARD
+           ========================================= */
+        
+        .product-card-3d {
+            background-color: transparent;
+            width: 100%;
+            max-width: 340px;
+            height: 520px;
+            perspective: 1000px; /* Profundidad 3D */
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow-xl);
+            border-radius: var(--radius-xl);
+        }
+
+        /* Interacción Flip */
+        .product-card-3d:hover .card-inner,
+        .product-card-3d:focus-within .card-inner,
+        .product-card-3d.active .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Caras Comunes */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            background: var(--white);
+        }
+
+        /* --- CARA FRONTAL --- */
+        .image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .product-card-3d:hover .product-img {
+            transform: scale(1.15);
+        }
+
+        .overlay-gradient {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95) 15%, rgba(26, 26, 26, 0.6) 40%, transparent 100%);
+            z-index: 2;
+        }
+
+        .impact-badge {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .heart-icon { color: var(--accent); }
+
+        .front-content {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            padding: 28px;
+            z-index: 10;
+            color: var(--white);
+            transform: translateZ(20px);
+        }
+
+        .category-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .product-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 16px;
+        }
+
+        .price {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--white);
+            font-style: italic;
+        }
+        
+        .price small { font-size: 0.9rem; font-style: normal; opacity: 0.8; margin-left: 4px; }
+
+        .flip-hint {
+            font-size: 0.75rem;
+            color: var(--gold);
+            display: flex; align-items: center; gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        /* --- CARA TRASERA --- */
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #FDFBF7;
+            background-image: var(--paper-texture);
+            background-size: 20px 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Borde decorativo interno */
+        .card-back::after {
+            content: '';
+            position: absolute;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 1px solid var(--gold);
+            border-radius: var(--radius-lg);
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .back-content {
+            position: relative;
+            z-index: 5;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-header { text-align: center; margin-bottom: 1.5rem; margin-top: 0.5rem; }
+
+        .label-gold {
+            font-family: var(--font-display);
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .story-text {
+            font-size: 0.95rem;
+            color: #4A4A4A;
+            line-height: 1.6;
+            font-style: italic;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .artisan-mini-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--white);
+            padding: 12px;
+            border-radius: 50px; /* Pill shape */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: auto;
+        }
+
+        .artisan-img-ring {
+            width: 54px;
+            height: 54px;
+            min-width: 54px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold), var(--primary));
+        }
+
+        .artisan-img-ring img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--white);
+        }
+
+        .artisan-info { display: flex; flex-direction: column; }
+        
+        .artisan-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .artisan-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .technical-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.6);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .detail-item i { color: var(--gold-dark); width: 16px; text-align: center; }
+
+        .btn-buy {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-gold);
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-buy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-buy:hover::before { left: 100%; }
+        
+        .btn-buy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn-buy i { font-size: 1.3rem; }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 768px) {
+            .catalog-grid { grid-template-columns: 1fr; }
+            .product-card-3d { margin-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="catalog-header">
+        <h2 class="catalog-subtitle">Tesoros Vivos</h2>
+        <h1 class="catalog-title">Colección Artesanal</h1>
+        <p class="catalog-desc">Piezas únicas creadas con técnicas ancestrales. Cada compra apoya directamente a la preservación del patrimonio biocultural de México.</p>
+    </header>
+
+    <div class="catalog-grid">
+
+        <div class="product-card-3d" tabindex="0">
+            <div class="card-inner">
+                
+                <div class="card-front">
+                    <div class="impact-badge">
+                        <i class="fas fa-hand-holding-heart heart-icon"></i> 70% para el artesano
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1627931398858-a89634e06c74?q=80&w=800&auto=format&fit=crop" alt="Huipil Ceremonial" class="product-img">
+                        <div class="overlay-gradient"></div>
+                    </div>
+
+                    <div class="front-content">
+                        <span class="category-tag">Textil • Telar de Cintura</span>
+                        <h3 class="product-title">Huipil Ceremonial Amuzgo</h3>
+                        <div class="price-row">
+                            <span class="price">$4,500 <small>MXN</small></span>
+                            <span class="flip-hint">Ver Historia <i class="fas fa-undo"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-back">
+                    <div class="back-content">
+                        <div class="story-header">
+                            <span class="label-gold">El Alma de la Pieza</span>
+                            <p class="story-text">
+                                "Este huipil representa la gratitud a la Madre Tierra por la cosecha. Los brocados fueron tejidos hilo por hilo contando historias de nuestros ancestros."
+                            </p>
+                        </div>
+
+                        <div class="artisan-mini-profile">
+                            <div class="artisan-img-ring">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Artesana">
+                            </div>
+                            <div class="artisan-info">
+                                <span class="artisan-label">Maestra Artesana</span>
+                                <h4 class="artisan-name">Elena de la Cruz</h4>
+                                <span style="font-size:0.75rem; color:#666;">Xochistlahuaca, Guerrero</span>
+                            </div>
+                        </div>
+
+                        <div class="technical-details">
+                            <div class="detail-item">
+                                <i class="far fa-clock"></i>
+                                <span>3 Semanas de labor</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-fingerprint"></i>
+                                <span>Pieza Única</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-box-open"></i>
+                                <span>3 en Stock</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-feather-alt"></i>
+                                <span>Algodón Coyuchi</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-buy">
+                            <span>Adquirir Pieza</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card-3d" tabindex="0">
+            <div class="card-inner">
+                
+                <div class="card-front">
+                    <div class="impact-badge">
+                        <i class="fas fa-hand-holding-heart heart-icon"></i> Comercio Justo
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=800&auto=format&fit=crop" alt="Jarrón Barro Negro" class="product-img">
+                        <div class="overlay-gradient"></div>
+                    </div>
+
+                    <div class="front-content">
+                        <span class="category-tag">Barro • Calado a Mano</span>
+                        <h3 class="product-title">Jarrón Nocturno Zapoteca</h3>
+                        <div class="price-row">
+                            <span class="price">$1,800 <small>MXN</small></span>
+                            <span class="flip-hint">Ver Historia <i class="fas fa-undo"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-back">
+                    <div class="back-content">
+                        <div class="story-header">
+                            <span class="label-gold">El Alma de la Pieza</span>
+                            <p class="story-text">
+                                Horneado en horno de leña bajo tierra para obtener el negro brillante natural. El calado representa las estrellas sobre el valle de Oaxaca.
+                            </p>
+                        </div>
+
+                        <div class="artisan-mini-profile">
+                            <div class="artisan-img-ring">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" alt="Artesano">
+                            </div>
+                            <div class="artisan-info">
+                                <span class="artisan-label">Maestro Alfarero</span>
+                                <h4 class="artisan-name">Mateo Ruiz</h4>
+                                <span style="font-size:0.75rem; color:#666;">San Bartolo, Oaxaca</span>
+                            </div>
+                        </div>
+
+                        <div class="technical-details">
+                            <div class="detail-item">
+                                <i class="far fa-clock"></i>
+                                <span>12 Días de labor</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-burn"></i>
+                                <span>Horno Tradicional</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-box-open"></i>
+                                <span>1 en Stock</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-mountain"></i>
+                                <span>Arcilla Local</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-buy">
+                            <span>Adquirir Pieza</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card-3d" tabindex="0">
+            <div class="card-inner">
+                
+                <div class="card-front">
+                    <div class="impact-badge">
+                        <i class="fas fa-hand-holding-heart heart-icon"></i> Pieza de Museo
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1598555620953-b3c483a90326?q=80&w=800&auto=format&fit=crop" alt="Alebrije Jaguar" class="product-img">
+                        <div class="overlay-gradient"></div>
+                    </div>
+
+                    <div class="front-content">
+                        <span class="category-tag">Madera • Copal</span>
+                        <h3 class="product-title">Guardián Jaguar del Sol</h3>
+                        <div class="price-row">
+                            <span class="price">$8,200 <small>MXN</small></span>
+                            <span class="flip-hint">Ver Historia <i class="fas fa-undo"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-back">
+                    <div class="back-content">
+                        <div class="story-header">
+                            <span class="label-gold">El Alma de la Pieza</span>
+                            <p class="story-text">
+                                Tallado en una sola pieza de madera de copal sagrado. La pintura detallada narra la leyenda del sol y la luna a través de simbología zapoteca.
+                            </p>
+                        </div>
+
+                        <div class="artisan-mini-profile">
+                            <div class="artisan-img-ring">
+                                <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?q=80&w=200&auto=format&fit=crop" alt="Artesana">
+                            </div>
+                            <div class="artisan-info">
+                                <span class="artisan-label">Familia Morales</span>
+                                <h4 class="artisan-name">Taller Sueños</h4>
+                                <span style="font-size:0.75rem; color:#666;">Arrazola, Oaxaca</span>
+                            </div>
+                        </div>
+
+                        <div class="technical-details">
+                            <div class="detail-item">
+                                <i class="far fa-clock"></i>
+                                <span>2 Meses de labor</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-paint-brush"></i>
+                                <span>Pintado a mano</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tree"></i>
+                                <span>Madera Sostenible</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-star"></i>
+                                <span>Colección</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-buy">
+                            <span>Adquirir Pieza</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.product-card-3d').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

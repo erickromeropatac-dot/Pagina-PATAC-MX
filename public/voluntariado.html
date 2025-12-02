@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voluntariado | PATAC México - Transforma Vidas</title>
+    <meta name="description" content="Únete al programa de voluntariado de PATAC México. Conecta con comunidades indígenas, desarrolla habilidades y genera impacto real.">
+    <meta name="keywords" content="voluntariado méxico, voluntariado cultural, comunidades indígenas, voluntariado remoto, voluntariado presencial">
+    
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- EMBEDDED CSS IMPROVEMENTS -->
+    <style>
+        /* =============================================
+           QUICK NAVIGATION (SIDEBAR) - COHERENTE CON INDEX
+           ============================================= */
+        .quick-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 15px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary, #4a90e2);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .quick-nav-link:hover,
+        .quick-nav-link.active {
+            background-color: var(--gold, #d4af37);
+            transform: scale(1.1);
+        }
+
+        .quick-nav-tooltip {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--dark, #333);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .quick-nav-link:hover .quick-nav-tooltip,
+        .quick-nav-link:focus .quick-nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .quick-nav-tooltip::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-left-color: var(--dark, #333);
+        }
+
+        @media (max-width: 768px) {
+            .quick-nav {
+                right: 8px;
+                padding: 10px 6px;
+            }
+            .quick-nav-link {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            .quick-nav-tooltip {
+                font-size: 0.7rem;
+                right: 40px;
+            }
+        }
+
+        /* =============================================
+           SECCIÓN MODALIDADES - COMPONENTE ASPECT-TAB
+           ============================================= */
+        #modalidades-content {
+            margin: 50px auto;
+            max-width: 1000px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modalidad-tab {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 10px;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 0 0 1px rgba(236,236,236,1);
+            transition: box-shadow .3s, transform .3s;
+            overflow: hidden;
+        }
+
+        .modalidad-tab:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .modalidad-input {
+            display: none;
+        }
+
+        .modalidad-input:checked ~ .modalidad-content + .modalidad-tab-content {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        .modalidad-input:checked ~ .modalidad-content:after {
+            transform: rotate(0deg);
+            color: var(--gold);
+        }
+
+        .modalidad-content {
+            position: relative;
+            display: block;
+            height: 80px;
+            padding: 0 87px 0 30px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .modalidad-content:hover {
+            background-color: #f9f9f9;
+        }
+
+        .modalidad-content:after {
+            content: '▼';
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: 0.8rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .modalidad-info {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 16px;
+        }
+
+        .modalidad-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 50%;
+        }
+
+        .modalidad-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .modalidad-stats {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+        }
+
+        .stat-badge {
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .stat-presencial { background: #e3f2fd; color: #1976d2; }
+        .stat-remoto { background: #f3e5f5; color: #7b1fa2; }
+        .stat-proyecto { background: #e8f5e9; color: #388e3c; }
+        .stat-permanente { background: #fff3e0; color: #f57c00; }
+
+        .modalidad-tab-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s;
+            background: #f9f9f9;
+        }
+
+        .modalidad-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .detail-card h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .detail-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .modalidad-content {
+                height: auto;
+                padding: 15px 60px 15px 20px;
+            }
+            .modalidad-info {
+                flex-wrap: wrap;
+            }
+            .modalidad-stats {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+            }
+            .modalidad-input:checked ~ .modalidad-content + .modalidad-tab-content {
+                max-height: 800px;
+            }
+        }
+
+        /* =============================================
+           PROCESO DE APLICACIÓN - HOVER CARDS
+           ============================================= */
+        .proceso-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .proceso-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            height: 120px;
+            width: 200px;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .proceso-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .proceso-card:hover::before {
+            left: 100%;
+        }
+
+        .proceso-card.paso-1 { background: linear-gradient(135deg, #f43f5e, #ec4899); }
+        .proceso-card.paso-2 { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+        .proceso-card.paso-3 { background: linear-gradient(135deg, #22c55e, #10b981); }
+        .proceso-card.paso-4 { background: linear-gradient(135deg, #f59e0b, #f97316); }
+        .proceso-card.paso-5 { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+
+        .proceso-card .tip {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            z-index: 1;
+        }
+
+        .proceso-card .second-text {
+            font-size: 0.8em;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        .proceso-card:hover {
+            transform: scale(1.05, 1.05) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .proceso-cards:hover > .proceso-card:not(:hover) {
+            filter: blur(3px);
+            transform: scale(0.95, 0.95);
+            opacity: 0.7;
+        }
+
+        /* =============================================
+           FAQ ACCORDION MEJORADO
+           ============================================= */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 50px 20px 20px;
+            background: white;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-question::before {
+            content: '❓';
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question::after {
+            content: '❯';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 0.8rem;
+            color: var(--primary);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: translateY(-50%) rotate(-90deg);
+            color: var(--gold);
+        }
+
+        .faq-item.active .faq-question::before {
+            transform: rotate(15deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s;
+            background: #f9f9f9;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 20px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            line-height: 1.7;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .proceso-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .proceso-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            .modalidad-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ACCESSIBILITY */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar" role="navigation" aria-label="Menú principal">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="nosotros.html" role="menuitem">Nosotros</a></li>
+                <li role="none"><a href="proyectos.html" role="menuitem">Proyectos</a></li>
+                <li role="none"><a href="artesanos.html" role="menuitem">Artesanos</a></li>
+                <li role="none"><a href="voluntariado.html" class="active" role="menuitem" aria-current="page">Voluntariado</a></li>
+                <li role="none"><a href="transparencia.html" role="menuitem">Transparencia</a></li>
+                <li role="none"><a href="index.html#contacto" role="menuitem">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú móvil" aria-expanded="false" aria-controls="navSidebar">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <aside class="nav-sidebar" id="navSidebar" role="complementary" aria-label="Menú móvil">
+        <div class="nav-sidebar-header">
+            <div class="nav-sidebar-logo">PATAC</div>
+            <button class="nav-sidebar-close" id="navSidebarClose" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="voluntariado.html" class="active">Voluntariado</a></li>
+            <li><a href="transparencia.html">Transparencia</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#modalidades">Modalidades</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#aplicar">Aplicar</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Quick Navigation -->
+    <aside class="quick-nav">
+        <ul class="quick-nav-list">
+            <li class="quick-nav-item"><a href="#inicio" class="quick-nav-link active" data-section="inicio" aria-label="Inicio"><span class="quick-nav-tooltip">Inicio</span></a></li>
+            <li class="quick-nav-item"><a href="#beneficios" class="quick-nav-link" data-section="beneficios" aria-label="Beneficios"><span class="quick-nav-tooltip">Beneficios</span></a></li>
+            <li class="quick-nav-item"><a href="#modalidades" class="quick-nav-link" data-section="modalidades" aria-label="Modalidades"><span class="quick-nav-tooltip">Modalidades</span></a></li>
+            <li class="quick-nav-item"><a href="#comunidad" class="quick-nav-link" data-section="comunidad" aria-label="Comunidad"><span class="quick-nav-tooltip">Comunidad</span></a></li>
+            <li class="quick-nav-item"><a href="#proceso" class="quick-nav-link" data-section="proceso" aria-label="Proceso"><span class="quick-nav-tooltip">Proceso</span></a></li>
+            <li class="quick-nav-item"><a href="#faq" class="quick-nav-link" data-section="faq" aria-label="FAQ"><span class="quick-nav-tooltip">FAQ</span></a></li>
+            <li class="quick-nav-item"><a href="#aplicar" class="quick-nav-link" data-section="aplicar" aria-label="Aplicar"><span class="quick-nav-tooltip">Aplicar</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero section">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Voluntarios PATAC trabajando en comunidad indígena">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">ÚNETE AL EQUIPO</span>
+            <h1 class="proyectos-hero-title">Transforma Vidas,<br>Transforma la Tuya</h1>
+            <p class="hero-tagline">Sé Voluntario en PATAC</p>
+            <p class="hero-description">
+                Conecta con las raíces de México, comparte tus habilidades y contribuye a preservar nuestro patrimonio biocultural. Tu tiempo y talento generan impacto real y duradero.
+            </p>
+            <div class="hero-buttons">
+                <a href="#aplicar" class="btn btn-primary">Quiero ser Voluntario</a>
+                <a href="#beneficios" class="btn btn-outline-light">Conocer Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section id="beneficios" class="section volunteer-benefits-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">¿Por Qué Ser Voluntario?</h2>
+                <p class="section-subtitle">Más que dar, es una oportunidad para crecer, aprender y conectar con raíces auténticas.</p>
+            </div>
+            <div class="volunteer-benefits-grid">
+                <div class="volunteer-benefit" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-heart benefit-icon text-primary"></i>
+                    <h3 class="benefit-title">Impacto Real</h3>
+                    <p class="benefit-text">Contribuye directamente al bienestar de familias artesanas indígenas. Cada hora cuenta y transforma vidas.</p>
+                </div>
+                <div class="volunteer-benefit" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-briefcase benefit-icon text-primary"></i>
+                    <h3 class="benefit-title">Desarrollo Profesional</h3>
+                    <p class="benefit-text">Pon en práctica habilidades en entorno real, lidera proyectos y enriquece tu CV con experiencia transformadora.</p>
+                </div>
+                <div class="volunteer-benefit" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-globe-americas benefit-icon text-primary"></i>
+                    <h3 class="benefit-title">Red Global</h3>
+                    <p class="benefit-text">Conecta con personas apasionadas de todo el mundo y forma parte de una comunidad de cambio real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalidades de Voluntariado -->
+    <section id="modalidades" class="section bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Modalidades de Voluntariado</h2>
+                <p class="section-subtitle">Encuentra la forma de colaborar que mejor se adapte a tu tiempo y habilidades.</p>
+            </div>
+            
+            <div id="modalidades-content">
+                <!-- Presencial -->
+                <div class="modalidad-tab">
+                    <input id="mod-presencial" type="checkbox" class="modalidad-input" name="modalidades">
+                    <label for="mod-presencial" class="modalidad-label"></label>
+                    <div class="modalidad-content">
+                        <div class="modalidad-info">
+                            <div class="modalidad-icon"><i class="fas fa-users"></i></div>
+                            <span class="modalidad-name">Voluntariado Presencial</span>
+                        </div>
+                        <div class="modalidad-stats">
+                            <span class="stat-badge stat-presencial">Inmersión Total</span>
+                        </div>
+                    </div>
+                    <div class="modalidad-tab-content">
+                        <div class="modalidad-details">
+                            <div class="detail-card">
+                                <h4>🎯 Qué haces</h4>
+                                <p>Trabajo directo en comunidades. Apoyo en talleres, logística, documentación en campo y acompañamiento artesano.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>⏱️ Tiempo</h4>
+                                <p>2-4 semanas mínimo. Ideal para períodos sabáticos o veranos.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>✅ Requisitos</h4>
+                                <p>Disponibilidad para viajar, español intermedio, adaptabilidad cultural.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🏆 Beneficios</h4>
+                                <p>Inmersión cultural total, aprendizaje de técnicas ancestrales, conexiones profundas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remoto -->
+                <div class="modalidad-tab">
+                    <input id="mod-remoto" type="checkbox" class="modalidad-input" name="modalidades">
+                    <label for="mod-remoto" class="modalidad-label"></label>
+                    <div class="modalidad-content">
+                        <div class="modalidad-info">
+                            <div class="modalidad-icon"><i class="fas fa-laptop-house"></i></div>
+                            <span class="modalidad-name">Voluntariado Remoto</span>
+                        </div>
+                        <div class="modalidad-stats">
+                            <span class="stat-badge stat-remoto">Flexibilidad Total</span>
+                        </div>
+                    </div>
+                    <div class="modalidad-tab-content">
+                        <div class="modalidad-details">
+                            <div class="detail-card">
+                                <h4>💻 Perfiles IDEALES</h4>
+                                <p>Diseño gráfico, marketing digital, desarrollo web, traducción, redacción, análisis de datos.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🕒 Compromiso</h4>
+                                <p>4-8 horas semanales. Horarios flexibles según zona horaria.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🌍 Alcance</h4>
+                                <p>Colabora desde cualquier lugar del mundo. Solo necesitas conexión estable.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>📈 Impacto</h4>
+                                <p>Amplifica la voz de artesanos en mercados globales y fortalece presencia digital.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Por Proyecto -->
+                <div class="modalidad-tab">
+                    <input id="mod-proyecto" type="checkbox" class="modalidad-input" name="modalidades">
+                    <label for="mod-proyecto" class="modalidad-label"></label>
+                    <div class="modalidad-content">
+                        <div class="modalidad-info">
+                            <div class="modalidad-icon"><i class="fas fa-project-diagram"></i></div>
+                            <span class="modalidad-name">Colaboración por Proyecto</span>
+                        </div>
+                        <div class="modalidad-stats">
+                            <span class="stat-badge stat-proyecto">Enfoque Específico</span>
+                        </div>
+                    </div>
+                    <div class="modalidad-tab-content">
+                        <div class="modalidad-details">
+                            <div class="detail-card">
+                                <h4>📅 Duración</h4>
+                                <p>2-6 meses con objetivos claros y entregables definidos.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🎯 Ejemplos</h4>
+                                <p>Campañas de crowdfunding, diseño de colección, estudios de impacto, eventos.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🤝 Modelo</h4>
+                                <p>Consultoría experta. Perfecto para profesionales con agenda ocupada.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🏅 Reconocimiento</h4>
+                                <p>Certificado de consultoría y referencias profesionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permanente -->
+                <div class="modalidad-tab">
+                    <input id="mod-permanente" type="checkbox" class="modalidad-input" name="modalidades">
+                    <label for="mod-permanente" class="modalidad-label"></label>
+                    <div class="modalidad-content">
+                        <div class="modalidad-info">
+                            <div class="modalidad-icon"><i class="fas fa-infinity"></i></div>
+                            <span class="modalidad-name">Compromiso Permanente</span>
+                        </div>
+                        <div class="modalidad-stats">
+                            <span class="stat-badge stat-permanente">Liderazgo</span>
+                        </div>
+                    </div>
+                    <div class="modalidad-tab-content">
+                        <div class="modalidad-details">
+                            <div class="detail-card">
+                                <h4>👑 Rol</h4>
+                                <p>Lidera un área estratégica: voluntariado, finanzas, proyectos, comunicaciones.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>📆 Compromiso</h4>
+                                <p>Mínimo 6 meses, 8-12 horas semanales. Participación en decisiones clave.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>🎓 Desarrollo</h4>
+                                <p>Acceso a capacitaciones, mentoría y networking con instituciones aliadas.</p>
+                            </div>
+                            <div class="detail-card">
+                                <h4>💎 Beneficios</h4>
+                                <p>Carta de recomendación ejecutiva, referencias, eventos exclusivos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voluntarios Actuales (Dynamic Grid) -->
+    <section id="comunidad" class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Nuestra Comunidad de Voluntarios</h2>
+                <p class="section-subtitle">Conoce a quienes hacen posible nuestra misión cada día con dedicación y pasión.</p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-voluntarios" class="loading-state">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                    <p>Cargando perfiles de voluntarios...</p>
+                </div>
+            </div>
+
+            <!-- Grid Container -->
+            <div id="voluntarios-grid" class="volunteer-profiles-grid">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de Aplicación -->
+    <section id="proceso" class="section bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Proceso de Aplicación</h2>
+                <p class="section-subtitle">5 pasos sencillos para unirte a la familia PATAC y generar impacto desde el día uno.</p>
+            </div>
+            
+            <div class="proceso-cards" data-aos="fade-up" data-aos-delay="100">
+                <div class="proceso-card paso-1">
+                    <p class="tip">1. Aplica</p>
+                    <p class="second-text">Llena el formulario con tus datos e intereses</p>
+                </div>
+                <div class="proceso-card paso-2">
+                    <p class="tip">2. Entrevista</p>
+                    <p class="second-text">Charla breve para conocernos mejor</p>
+                </div>
+                <div class="proceso-card paso-3">
+                    <p class="tip">3. Selección</p>
+                    <p class="second-text">Evaluamos el mejor fit para ambos</p>
+                </div>
+                <div class="proceso-card paso-4">
+                    <p class="tip">4. Inducción</p>
+                    <p class="second-text">Conoce nuestra misión y herramientas</p>
+                </div>
+                <div class="proceso-card paso-5">
+                    <p class="tip">5. ¡Acción!</p>
+                    <p class="second-text">Comienza a transformar vidas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container container-sm">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">Resuelve tus dudas sobre el voluntariado con PATAC México</p>
+            </div>
+            
+            <div class="faq-section" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Necesito experiencia previa para ser voluntario?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>No necesariamente. Buscamos <strong>actitud y compromiso</strong> por encima de todo. Para roles técnicos (diseño, desarrollo, análisis) sí requerimos conocimientos demostrables, pero para trabajo de campo o apoyo general, te capacitamos completamente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Cuánto tiempo debo dedicar al voluntariado?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Depende de la modalidad: <br>
+                        <strong>Remoto:</strong> 4-8 horas semanales<br>
+                        <strong>Presencial:</strong> 2-4 semanas concentradas<br>
+                        <strong>Proyecto:</strong> 2-6 meses con entregables<br>
+                        <strong>Permanente:</strong> Mínimo 6 meses, 8-12h/semana</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Hay algún costo para ser voluntario?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Ser voluntario es <strong>100% gratuito</strong>. Sin embargo, para voluntariado presencial, los gastos de traslado y viáticos corren por cuenta del voluntario. Buscamos becas parciales para quienes lo necesitan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Qué tipo de certificaciones o reconocimientos recibo?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Al finalizar recibes: <br>
+                        ✅ Constancia oficial de participación<br>
+                        ✅ Carta de recomendación personalizada<br>
+                        ✅ Certificado de horas dedicadas<br>
+                        ✅ Referencias profesionales para empleos futuros</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Puedo colaborar desde fuera de México?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>¡Absolutamente! Nuestro programa remoto está diseñado para <strong>voluntarios globales</strong>. Tenemos colaboradores en España, Canadá, EE.UU., Argentina y más. Solo necesitas conexión estable y compromiso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="sr-only">Pregunta:</span>
+                        ¿Qué diferencia a PATAC de otras organizaciones?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Somos una <strong>incubadora empresarial social</strong> con modelo validado por Harvard Business Publishing. No damos limosna, generamos empoderamiento sostenible. Somos artesanos, socios, no beneficiarios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="aplicar" class="section bg-primary text-white">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title text-white">Aplica Ahora</h2>
+                <p class="section-subtitle text-white opacity-75">Completa el formulario y da el primer paso hacia una experiencia transformadora.</p>
+            </div>
+            <div class="form-iframe-container" data-aos="zoom-in">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeuHw3m_g2RomQ3Oql2PVYxZLT1GQIEZqqR7IpBfYaJb3KpGA/viewform?embedded=true" 
+                        width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" 
+                        title="Formulario de Aplicación de Voluntariado PATAC México">
+                    Cargando formulario de aplicación...
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PATAC México</h3>
+                <p>Preservando el patrimonio biocultural textil de los pueblos originarios de México mediante voluntariado empoderado.</p>
+                <p><strong>Eslogan:</strong> "El Tejido Cultural de México"</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="artesanos.html">Artesanos</a></li>
+                    <li><a href="voluntariado.html">Voluntariado</a></li>
+                    <li><a href="transparencia.html">Transparencia</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                <p><i class="fas fa-envelope mr-2"></i> voluntariado@patacmexico.org</p>
+                <p><i class="fas fa-building mr-2"></i> SC de RL de CV</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="flex gap-4 mb-4 justify-center">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Facebook PATAC">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Twitter PATAC">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Instagram PATAC">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn PATAC">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp PATAC">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <a href="mailto:voluntariado@patacmexico.org" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-envelope mr-2"></i> Escríbenos
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados. | Fundada en 2020 como SAS de CV, evolucionó a SC de RL de CV en julio de 2023.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ============================================
+        // INICIALIZACIÓN Y CONFIGURACIÓN GLOBAL
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+
+            // CONSTANTES
+            const API_BASE = '/api';
+            const DOM = {
+                navToggle: document.getElementById('navToggle'),
+                navSidebar: document.getElementById('navSidebar'),
+                navSidebarClose: document.getElementById('navSidebarClose'),
+                navOverlay: document.getElementById('navOverlay')
+            };
+
+            // ============================================
+            // NAVEGACIÓN MÓVIL
+            // ============================================
+            function toggleMobileMenu() {
+                DOM.navSidebar.classList.add('active');
+                DOM.navOverlay.classList.add('active');
+                DOM.navToggle?.classList.add('active');
+                DOM.navToggle?.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMobileMenu() {
+                DOM.navSidebar.classList.remove('active');
+                DOM.navOverlay.classList.remove('active');
+                DOM.navToggle?.classList.remove('active');
+                DOM.navToggle?.setAttribute('aria-expanded', 'false');
+            }
+
+            DOM.navToggle?.addEventListener('click', toggleMobileMenu);
+            DOM.navSidebarClose?.addEventListener('click', closeMobileMenu);
+            DOM.navOverlay?.addEventListener('click', closeMobileMenu);
+
+            // ============================================
+            // QUICK NAVIGATION & SCROLLSPY
+            // ============================================
+            const quickNavLinks = document.querySelectorAll('.quick-nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            function onScroll() {
+                const scrollPosition = window.scrollY + window.innerHeight / 2;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        quickNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.dataset.section === sectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', onScroll);
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            // Cerrar menú móvil al hacer clic
+                            closeMobileMenu();
+                        }
+                    }
+                });
+            });
+
+            // ============================================
+            // FAQ ACCORDION MEJORADO
+            // ============================================
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+
+                    // Cerrar todos los demás
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                            item.querySelector('i')?.style.setProperty('transform', 'translateY(-50%) rotate(90deg)');
+                        }
+                    });
+
+                    // Toggle actual
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                        icon?.style.setProperty('transform', 'translateY(-50%) rotate(-90deg)');
+                    } else {
+                        faqItem.classList.remove('active');
+                        question.setAttribute('aria-expanded', 'false');
+                        icon?.style.setProperty('transform', 'translateY(-50%) rotate(90deg)');
+                    }
+                });
+
+                // Keyboard navigation
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        question.click();
+                    }
+                });
+            });
+
+            // ============================================
+            // CARGAR VOLUNTARIOS DINÁMICAMENTE
+            // ============================================
+            async function cargarVoluntarios() {
+                const grid = document.getElementById('voluntarios-grid');
+                const loading = document.getElementById('loading-voluntarios');
+
+                try {
+                    const response = await fetch(`${API_BASE}/voluntarios`);
+                    if (!response.ok) throw new Error('Error al cargar voluntarios');
+                    
+                    const data = await response.json();
+                    const voluntarios = data.voluntarios || [];
+
+                    loading.style.display = 'none';
+
+                    if (voluntarios.length === 0) {
+                        grid.innerHTML = '<p class="text-center col-span-full">No hay voluntarios para mostrar en este momento.</p>';
+                        return;
+                    }
+
+                    grid.innerHTML = voluntarios.map(vol => `
+                        <div class="volunteer-profile-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}">
+                            <div class="volunteer-header relative h-48 overflow-hidden">
+                                <img src="${vol.foto || 'https://via.placeholder.com/300x200?text=Voluntario'+Math.random()}" 
+                                     alt="${vol.nombre}" 
+                                     class="w-full h-full object-cover"
+                                     loading="lazy">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                    <h3 class="text-white font-bold text-xl">${vol.nombre}</h3>
+                                    <span class="text-gold text-sm font-semibold uppercase tracking-wider">${vol.area || 'Voluntario'}</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-600 text-sm italic mb-4">"${vol.testimonio || 'Contribuyendo a un México mejor.'}"</p>
+                                <div class="border-t border-gray-200 pt-4 mt-4">
+                                    <p class="text-xs text-gray-500 font-bold uppercase mb-2">Proyecto Actual:</p>
+                                    <p class="text-sm text-primary font-medium">${vol.proyectoActual || 'Proyectos generales'}</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-4 text-xs text-gray-400">
+                                    <span><i class="fas fa-clock mr-1"></i> ${vol.horasContribuidas || 0} horas</span>
+                                    <span><i class="fas fa-calendar mr-1"></i> Desde ${vol.fechaInicio || '2023'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+
+                } catch (error) {
+                    console.error('Error cargando voluntarios:', error);
+                    loading.innerHTML = '<p class="error-message text-center">Error al cargar los voluntarios. <button onclick="cargarVoluntarios()" class="btn btn-sm btn-primary mt-2">Reintentar</button></p>';
+                }
+            }
+
+            // ============================================
+            // EFFECTS & ENHANCEMENTS
+            // ============================================
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.nav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Inicializar todo
+            cargarVoluntarios();
+        });
+
+        // ============================================
+        // SERVICE WORKER (OPTIONAL PERFORMANCE BOOST)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    console.log('Service Worker no es necesario para esta página');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

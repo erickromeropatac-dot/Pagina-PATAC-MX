@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Transparencia | PATAC México - Impacto Medible y Rendición de Cuentas</title>
+    <meta name="description"
+        content="Conoce el impacto medible de PATAC México. Dashboard interactivo, informes anuales, distribución de fondos y métricas de transparencia en nuestra labor con artesanos indígenas.">
+    <meta name="keywords"
+        content="transparencia PATAC, impacto social, informes anuales, artesanos México, rendición de cuentas, cooperativa transparente">
+    <meta name="author" content="PATAC México">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://patac.org/transparencia.html">
+    <meta property="og:title" content="Transparencia | PATAC México">
+    <meta property="og:description"
+        content="Dashboard interactivo y métricas de impacto de PATAC México en la preservación del patrimonio textil indígena.">
+    <meta property="og:image" content="https://patac.org/assets/transparencia-og.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://patac.org/transparencia.html">
+    <meta property="twitter:title" content="Transparencia | PATAC México">
+    <meta property="twitter:description" content="Impacto medible y rendición de cuentas transparente.">
+    <meta property="twitter:image" content="https://patac.org/assets/transparencia-twitter.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="PATAC México" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://patac.org/transparencia.html">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PATAC México",
+      "url": "https://patac.org",
+      "logo": "https://patac.org/favicon.svg",
+      "description": "Cooperativa dedicada a la preservación del patrimonio biocultural textil de pueblos originarios",
+      "foundingDate": "2020",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "MX"
+      },
+      "sameAs": [
+        "https://facebook.com/PATACMEX",
+        "https://instagram.com/patacmx",
+        "https://twitter.com/MexicoPatac",
+        "https://linkedin.com/company/PATACMX"
+      ]
+    }
+    </script>
+
+    <style>
+        /* Solo estilos críticos que no existen en styles.css */
+        .chart-container canvas {
+            max-height: 400px;
+        }
+
+        .faq-item {
+            margin-bottom: var(--space-4);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: var(--white);
+            border: 2px solid var(--secondary-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            border-color: var(--gold);
+            background: var(--light);
+        }
+
+        .faq-question.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow);
+            padding: 0 var(--space-6);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: var(--space-6);
+        }
+
+        .faq-icon {
+            transition: transform var(--transition-base);
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Dashboard específico */
+        .dashboard-grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+
+        .metric-card {
+            background: var(--white);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-bounce);
+            border-left: 4px solid var(--gold);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-2) 0;
+        }
+
+        .metric-label {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-change {
+            font-size: var(--text-xs);
+            margin-top: var(--space-2);
+            font-weight: 600;
+        }
+
+        .metric-change.positive {
+            color: var(--success);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo" aria-label="PATAC México - Inicio">PATAC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="artesanos.html">Artesanos</a></li>
+                <li><a href="transparencia.html" class="active">Transparencia</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="voluntariado.html">Voluntariado</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="nav-sidebar" id="nav-sidebar">
+        <div class="nav-sidebar-header">
+            <span class="nav-sidebar-logo">PATAC</span>
+            <button class="nav-sidebar-close" id="nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="nav-sidebar-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="transparencia.html" class="active">Transparencia</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="voluntariado.html">Voluntariado</a></li>
+        </ul>
+    </aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Quick Navigation -->
+    <aside class="quick-nav">
+        <ul class="quick-nav-list">
+            <li class="quick-nav-item"><a href="#transparencia" class="quick-nav-link active"
+                    data-section="transparencia"><span class="quick-nav-tooltip">Transparencia</span></a></li>
+            <li class="quick-nav-item"><a href="#dashboard" class="quick-nav-link" data-section="dashboard"><span
+                        class="quick-nav-tooltip">Dashboard</span></a></li>
+            <li class="quick-nav-item"><a href="#informes" class="quick-nav-link" data-section="informes"><span
+                        class="quick-nav-tooltip">Informes</span></a></li>
+            <li class="quick-nav-item"><a href="#certificaciones" class="quick-nav-link"
+                    data-section="certificaciones"><span class="quick-nav-tooltip">Certificaciones</span></a></li>
+            <li class="quick-nav-item"><a href="#faq" class="quick-nav-link" data-section="faq"><span
+                        class="quick-nav-tooltip">FAQ</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="transparencia">
+        <div class="hero-content">
+            <h1 class="proyectos-hero-title" data-aos="fade-down">Nuestra Transparencia es tu Confianza</h1>
+            <p class="description" data-aos="fade-up" data-aos-delay="200">
+                En PATAC México, creemos que la transparencia es el pilar de la confianza.
+                Cada peso, cada hora de trabajo y cada recurso se destina con responsabilidad
+                para preservar el patrimonio biocultural textil de pueblos originarios.
+                Aquí encontrarás datos verificables, informes detallados y métricas de impacto actualizadas.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                <a href="#dashboard" class="btn btn-primary btn-lg">
+                    <i class="fas fa-chart-line mr-3"></i>Ver Dashboard
+                </a>
+                <a href="#informes" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-download mr-3"></i>Descargar Informes
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Explora nuestra transparencia</span>
+            <i class="fas fa-chevron-down scroll-arrow"></i>
+        </div>
+    </section>
+
+    <!-- Dashboard Interactivo de Impacto -->
+    <section class="section" id="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Dashboard de Impacto</h2>
+                <p class="section-subtitle">
+                    Visualiza el impacto social y económico de nuestras iniciativas
+                    en tiempo real con datos actualizados cada trimestre.
+                </p>
+            </div>
+
+            <!-- Métricas Clave -->
+            <div class="dashboard-grid-stats" data-aos="fade-up" data-aos-delay="100">
+                <div class="metric-card">
+                    <div class="metric-label">Total Recaudado 2025</div>
+                    <div class="metric-value" data-target="2847500">$0</div>
+                    <div class="metric-change positive">
+                        <i class="fas fa-arrow-up"></i> +23% vs 2024
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Artesanos Apoyados</div>
+                    <div class="metric-value" data-target="523">0</div>
+                    <div class="metric-change positive">
+                        <i class="fas fa-arrow-up"></i> +45 nuevos
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Comunidades Impactadas</div>
+                    <div class="metric-value" data-target="52">0</div>
+                    <div class="metric-change positive">
+                        <i class="fas fa-arrow-up"></i> +8 comunidades
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Horas de Capacitación</div>
+                    <div class="metric-value" data-target="3840">0</div>
+                    <div class="metric-change positive">
+                        <i class="fas fa-arrow-up"></i> +15% vs 2024
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" data-aos="fade-up" data-aos-delay="200">
+                <!-- Distribución de Fondos -->
+                <div class="chart-container">
+                    <h3 class="section-title text-center"
+                        style="font-size: var(--text-2xl); margin-bottom: var(--space-8);">
+                        <i class="fas fa-pie-chart mr-3"></i>Distribución de Fondos 2025
+                    </h3>
+                    <canvas id="fundsChart"></canvas>
+                </div>
+
+                <!-- Proyectos por Estado -->
+                <div class="chart-container">
+                    <h3 class="section-title text-center"
+                        style="font-size: var(--text-2xl); margin-bottom: var(--space-8);">
+                        <i class="fas fa-map-marked-alt mr-3"></i>Proyectos por Estado
+                    </h3>
+                    <canvas id="statesChart"></canvas>
+                </div>
+
+                <!-- Evolución Temporal -->
+                <div class="chart-container">
+                    <h3 class="section-title text-center"
+                        style="font-size: var(--text-2xl); margin-bottom: var(--space-8);">
+                        <i class="fas fa-chart-line mr-3"></i>Crecimiento Anual
+                    </h3>
+                    <canvas id="growthChart"></canvas>
+                </div>
+
+                <!-- Artesanos vs Voluntarios -->
+                <div class="chart-container">
+                    <h3 class="section-title text-center"
+                        style="font-size: var(--text-2xl); margin-bottom: var(--space-8);">
+                        <i class="fas fa-users mr-3"></i>Comunidad Activa
+                    </h3>
+                    <canvas id="communityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Timeline de Hitos -->
+            <div class="timeline" data-aos="fade-up" data-aos-delay="300">
+                <div class="timeline-item">
+                    <div class="timeline-date">Ene 2025</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Certificación B Corp</h3>
+                        <p class="timeline-description">
+                            PATAC obtiene la certificación B Corp con puntaje de 98.3,
+                            posicionándose en el top 10% de empresas de impacto en México.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Mar 2025</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Expansión a 52 Comunidades</h3>
+                        <p class="timeline-description">
+                            Iniciamos operaciones en 8 nuevas comunidades de Oaxaca y Chiapas,
+                            beneficiando a 45 artesanos adicionales.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jun 2025</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">ISO 26000 Evaluación</h3>
+                        <p class="timeline-description">
+                            Completa la evaluación de responsabilidad social bajo norma ISO 26000
+                            con 94% de cumplimiento en gestión de impacto social.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informes Anuales Descargables -->
+    <section class="section" id="informes" style="background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Informes Anuales</h2>
+                <p class="section-subtitle">
+                    Documentos auditados y reportes financieros detallados
+                    disponibles para descarga gratuita.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up">
+                <div class="report-download" data-aos="fade-up" data-aos-delay="100">
+                    <div class="report-info">
+                        <div class="report-icon">
+                            <i class="fas fa-file-pdf" style="color: var(--error);"></i>
+                        </div>
+                        <div>
+                            <h3 class="report-title">Informe Anual 2024</h3>
+                            <p class="report-meta">
+                                <i class="fas fa-calendar mr-2"></i>Publicado: Mar 2025<br>
+                                <i class="fas fa-file-size mr-2"></i>3.2 MB | 48 páginas
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="downloadReport('2024')">
+                        <i class="fas fa-download mr-2"></i>Descargar PDF
+                    </button>
+                </div>
+
+                <div class="report-download" data-aos="fade-up" data-aos-delay="200">
+                    <div class="report-info">
+                        <div class="report-icon">
+                            <i class="fas fa-file-pdf" style="color: var(--error);"></i>
+                        </div>
+                        <div>
+                            <h3 class="report-title">Informe Anual 2023</h3>
+                            <p class="report-meta">
+                                <i class="fas fa-calendar mr-2"></i>Publicado: Feb 2024<br>
+                                <i class="fas fa-file-size mr-2"></i>2.8 MB | 42 páginas
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="downloadReport('2023')">
+                        <i class="fas fa-download mr-2"></i>Descargar PDF
+                    </button>
+                </div>
+
+                <div class="report-download" data-aos="fade-up" data-aos-delay="300">
+                    <div class="report-info">
+                        <div class="report-icon">
+                            <i class="fas fa-chart-bar" style="color: var(--accent);"></i>
+                        </div>
+                        <div>
+                            <h3 class="report-title">Infografía Interactiva 2024</h3>
+                            <p class="report-meta">
+                                <i class="fas fa-chart-pie mr-2"></i>Resumen visual<br>
+                                <i class="fas fa-file-size mr-2"></i>Arte Descargable
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="openInfographic()">
+                        <i class="fas fa-eye mr-2"></i>Ver Infografía
+                    </button>
+                </div>
+
+                <div class="report-download" data-aos="fade-up" data-aos-delay="400">
+                    <div class="report-info">
+                        <div class="report-icon">
+                            <i class="fas fa-file-excel" style="color: var(--success);"></i>
+                        </div>
+                        <div>
+                            <h3 class="report-title">Datos Abiertos Q1 2025</h3>
+                            <p class="report-meta">
+                                <i class="fas fa-database mr-2"></i>CSV & JSON<br>
+                                <i class="fas fa-sync mr-2"></i>Actualizado: Abr 2025
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="downloadData()">
+                        <i class="fas fa-download mr-2"></i>Exportar Datos
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-white rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-center mb-6" style="color: var(--primary); font-size: var(--text-xl);">
+                    <i class="fas fa-shield-alt mr-3"></i>Auditoría Externa
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <i class="fas fa-check-circle" style="color: var(--success); font-size: var(--text-4xl);"></i>
+                        <p class="font-semibold mt-2">KPMG México</p>
+                        <p class="text-sm text-gray-600">Revisión financiera 2024</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-certificate" style="color: var(--gold); font-size: var(--text-4xl);"></i>
+                        <p class="font-semibold mt-2">B Lab Global</p>
+                        <p class="text-sm text-gray-600">Certificación B Corp</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-award" style="color: var(--accent); font-size: var(--text-4xl);"></i>
+                        <p class="font-semibold mt-2">CDI MX</p>
+                        <p class="text-sm text-gray-600">Centro de donaciones inteligentes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones y Reconocimientos -->
+    <section class="section" id="certificaciones">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certificaciones & Reconocimientos</h2>
+                <p class="section-subtitle">
+                    Estándares internacionales y aliados estratégicos que respaldan nuestra gestión.
+                </p>
+            </div>
+
+            <div class="reconocimientos-grid" data-aos="fade-up">
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">🏆</div>
+                    <h4>B Corp Certification</h4>
+                    <p>Score: 98.3/200 | Top 10% México</p>
+                </div>
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">🌱</div>
+                    <h4>ISO 26000</h4>
+                    <p>94% Cumplimiento RSC</p>
+                </div>
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">🤝</div>
+                    <h4>World Fair Trade Org.</h4>
+                    <p>Miembro desde 2023</p>
+                </div>
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">📊</div>
+                    <h4>CDI México</h4>
+                    <p>Organización Recomendada</p>
+                </div>
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">🎓</div>
+                    <h4>Harvard Business</h4>
+                    <p>Case Study Publicado</p>
+                </div>
+                <div class="reconocimiento-item">
+                    <div class="reconocimiento-icon">🌐</div>
+                    <h4>UNESCO</h4>
+                    <p>Patrimonio Vivo - 2024</p>
+                </div>
+            </div>
+
+            <!-- Logos de Aliados -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-center mb-10" style="color: var(--primary); font-size: var(--text-2xl);">
+                    <i class="fas fa-handshake mr-3"></i>Instituciones Aliadas
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+                    <div class="text-center p-4">
+                        <img src="/assets/logos/ipn.png" alt="IPN" class="mx-auto"
+                            style="max-height: 60px; filter: grayscale(100%);">
+                    </div>
+                    <div class="text-center p-4">
+                        <img src="/assets/logos/mcgill.png" alt="McGill University" class="mx-auto"
+                            style="max-height: 60px; filter: grayscale(100%);">
+                    </div>
+                    <div class="text-center p-4">
+                        <img src="/assets/logos/georgetown.png" alt="Georgetown University" class="mx-auto"
+                            style="max-height: 60px; filter: grayscale(100%);">
+                    </div>
+                    <div class="text-center p-4">
+                        <img src="/assets/logos/wadhwani.png" alt="Wadhwani Foundation" class="mx-auto"
+                            style="max-height: 60px; filter: grayscale(100%);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Donaciones -->
+    <section class="section" id="faq" style="background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">
+                    Respuestas transparentes sobre cómo gestionamos los recursos y tu apoyo.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <div class="faq-item">
+                    <button class="faq-question" data-question="1">
+                        ¿Cómo se distribuyen los fondos recaudados?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" data-answer="1">
+                        <p class="mb-4">El 85% de cada donación va directamente a los artesanos y proyectos
+                            comunitarios:</p>
+                        <ul class="list-disc pl-6 space-y-2 text-sm">
+                            <li>60%: Pago directo a artesanos por productos y capacitación</li>
+                            <li>20%: Materiales y herramientas para comunidades</li>
+                            <li>5%: Infraestructura comunitaria (talleres, centros culturales)</li>
+                        </ul>
+                        <p class="mt-4 text-sm">El 15% restante cubre operaciones administrativas, auditoría y
+                            tecnología.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-question="2">
+                        ¿Con qué frecuencia se actualiza la información?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" data-answer="2">
+                        <p>Los datos del dashboard se actualizan trimestralmente. Los informes financieros auditados se
+                            publican anualmente en marzo. Las métricas clave de impacto social se revisan cada 6 meses
+                            mediante evaluaciones externas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-question="3">
+                        ¿Quién audita las finanzas de PATAC?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" data-answer="3">
+                        <p>KPMG México realiza la auditoría financiera anual. Además, contamos con evaluación de impacto
+                            social por parte del Centro de Donaciones Inteligentes (CDI) y verificación de cumplimiento
+                            de estándares B Corp cada 2 años.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-question="4">
+                        ¿Puedo visitar los proyectos que apoyo?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" data-answer="4">
+                        <p>¡Absolutamente! Ofrecemos visitas guiadas a comunidades cada trimestre. Los donantes reciben
+                            invitaciones prioritarias. También organizamos webinars en vivo con artesanos para conectar
+                            directamente con tu impacto.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-question="5">
+                        ¿Cómo garantizan el precio justo para artesanos?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" data-answer="5">
+                        <p>Siguiendo principios de Comercio Justo, pagamos 2.5x el precio de mercado local. Cada
+                            artesano recibe entre 60-70% del precio de venta final. Publicamos la matriz de precios por
+                            técnica y región en nuestro informe anual.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacto para más información -->
+            <div class="text-center mt-16" data-aos="fade-up">
+                <div class="bg-white p-8 rounded-xl shadow-md max-w-2xl mx-auto">
+                    <h3 class="mb-4" style="color: var(--primary);">¿Necesitas más información?</h3>
+                    <p class="mb-6">Nuestro equipo está disponible para aclarar cualquier duda sobre transparencia.</p>
+                    <a href="mailto:transparencia@patac.org" class="btn btn-primary">
+                        <i class="fas fa-envelope mr-2"></i>Contactar Equipo de Transparencia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>PATAC México</h4>
+                <p>Cooperativa especializada en la preservación del patrimonio biocultural textil de pueblos originarios
+                    mediante incubación empresarial, educación integral y comercio justo.</p>
+                <p><strong>Eslogan:</strong> "El Tejido Cultural de México"</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="artesanos.html">Artesanos</a></li>
+                    <li><a href="transparencia.html">Transparencia</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="voluntariado.html">Voluntariado</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone mr-2"></i> +52 55 2521 3142</p>
+                <p><i class="fas fa-envelope mr-2"></i> contacto@patac.org</p>
+                <p><i class="fas fa-building mr-2"></i> SC de RL de CV</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="flex gap-4 mb-4 justify-center">
+                    <a href="https://facebook.com/PATACMEX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/MexicoPatac" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/patacmx" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/PATACMX" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Visita PATAC México en LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/525525213142" class="btn btn-icon btn-secondary" target="_blank"
+                        rel="noopener noreferrer" aria-label="Contacta a PATAC México por WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <a href="mailto:contacto@patac.org" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-envelope mr-2"></i> contacto@patac.org
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PATAC México. Todos los derechos reservados. | Fundada en 2020 como SAS de CV, evolucionó a
+                SC de RL de CV en julio de 2023.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://discursocreativo.com.mx/ppbot/ppbot-dc-whats-v1.js"
+        data-webapp="https://script.google.com/macros/s/AKfycbxVWep6Qoy4dLjxS_ybslSfu7RtN8jaB53p7e65exSSHXpg0IDIgNhgJrJptOnyGdoN5w/exec"
+        data-token="tok_patac_mx_25" defer>
+        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+
+            // ==================== NAVEGACIÓN ====================
+            // Mobile Navigation
+            const navToggle = document.getElementById('nav-toggle');
+            const navSidebar = document.getElementById('nav-sidebar');
+            const navClose = document.getElementById('nav-close');
+            const navOverlay = document.getElementById('nav-overlay');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navSidebar.classList.add('active');
+                    navOverlay.classList.add('active');
+                    navToggle.classList.add('active');
+                });
+            }
+
+            const closeMenu = () => {
+                navSidebar.classList.remove('active');
+                navOverlay.classList.remove('active');
+                navToggle?.classList.remove('active');
+            };
+
+            if (navClose) navClose.addEventListener('click', closeMenu);
+            if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+
+            // Quick Navigation
+            const quickNavLinks = document.querySelectorAll('.quick-nav-link');
+            const sections = document.querySelectorAll('.section, .hero');
+
+            const onScroll = () => {
+                const scrollPosition = window.scrollY + window.innerHeight / 2;
+                sections.forEach(section => {
+                    if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+                        quickNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (section.id === link.dataset.section) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+
+            // ==================== CONTADORES ANIMADOS ====================
+            const animateCounters = () => {
+                const counters = document.querySelectorAll('.metric-value, .stat-number');
+                const speed = 200;
+
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const increment = target / speed;
+                    let current = 0;
+
+                    const updateCount = () => {
+                        if (current < target) {
+                            current += increment;
+                            if (counter.textContent.includes('$')) {
+                                counter.textContent = '$' + Math.ceil(current).toLocaleString('es-MX');
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                            setTimeout(updateCount, 10);
+                        } else {
+                            if (counter.textContent.includes('$')) {
+                                counter.textContent = '$' + target.toLocaleString('es-MX');
+                            } else {
+                                counter.textContent = target;
+                            }
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const statsSection = document.querySelector('#dashboard');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+
+            // ==================== GRÁFICOS CHART.JS ====================
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                family: "'Inter', sans-serif",
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                        titleColor: '#D4AF37',
+                        bodyColor: '#FFFFFF',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            };
+
+            // Gráfico 1: Distribución de Fondos
+            const fundsCtx = document.getElementById('fundsChart');
+            if (fundsCtx) {
+                new Chart(fundsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Artesanos (60%)', 'Materiales (20%)', 'Infraestructura (5%)', 'Operaciones (10%)', 'Auditoría (5%)'],
+                        datasets: [{
+                            data: [60, 20, 5, 10, 5],
+                            backgroundColor: [
+                                '#D4AF37',
+                                '#8B4513',
+                                '#C75B39',
+                                '#D4A574',
+                                '#A0522D'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        cutout: '60%',
+                        plugins: {
+                            ...chartOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'Cada peso se destina con responsabilidad',
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 16,
+                                    weight: 'normal'
+                                },
+                                color: '#737373'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico 2: Proyectos por Estado
+            const statesCtx = document.getElementById('statesChart');
+            if (statesCtx) {
+                new Chart(statesCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Oaxaca', 'Puebla', 'Michoacán', 'Guerrero', 'Chiapas', 'Veracruz', 'Hidalgo', 'Estado México'],
+                        datasets: [{
+                            label: 'Proyectos Activos',
+                            data: [15, 8, 7, 6, 5, 4, 4, 3],
+                            backgroundColor: 'rgba(139, 69, 19, 0.8)',
+                            borderColor: 'rgba(139, 69, 19, 1)',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 2
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico 3: Crecimiento Anual
+            const growthCtx = document.getElementById('growthChart');
+            if (growthCtx) {
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024', '2025 (proyectado)'],
+                        datasets: [{
+                            label: 'Artesanos Apoyados',
+                            data: [120, 245, 380, 478, 523],
+                            borderColor: '#D4AF37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }, {
+                            label: 'Ingresos Totales (miles $)',
+                            data: [850, 1600, 2100, 2315, 2847],
+                            borderColor: '#8B4513',
+                            backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico 4: Artesanos vs Voluntarios
+            const communityCtx = document.getElementById('communityChart');
+            if (communityCtx) {
+                new Chart(communityCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Artesanos Activos',
+                            data: [478, 490, 498, 510, 515, 523],
+                            borderColor: '#D4AF37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.2)'
+                        }, {
+                            label: 'Voluntarios',
+                            data: [42, 45, 48, 52, 55, 58],
+                            borderColor: '#8B4513',
+                            backgroundColor: 'rgba(139, 69, 19, 0.2)'
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            r: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // ==================== FAQ ACORDEÓN ====================
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answerId = question.getAttribute('data-question');
+                    const answer = document.querySelector(`[data-answer="${answerId}"]`);
+
+                    // Toggle active class
+                    question.classList.toggle('active');
+                    answer.classList.toggle('active');
+
+                    // Close other FAQs
+                    faqQuestions.forEach(q => {
+                        if (q !== question && q.classList.contains('active')) {
+                            q.classList.remove('active');
+                            const otherAnswerId = q.getAttribute('data-question');
+                            const otherAnswer = document.querySelector(`[data-answer="${otherAnswerId}"]`);
+                            otherAnswer.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // ==================== FUNCIONES DESCARGA ====================
+            window.downloadReport = function (year) {
+                // Simular descarga - reemplazar con URL real
+                alert(`Iniciando descarga del Informe Anual ${year}...`);
+                window.open(`/assets/reports/patac-informe-anual-${year}.pdf`, '_blank');
+            };
+
+            window.openInfographic = function () {
+                alert('Abriendo infografía interactiva...');
+                // window.open('/infografia-2024', '_blank');
+            };
+
+            window.downloadData = function () {
+                alert('Generando archivo de datos abiertos...');
+                // Simular descarga CSV
+                const csv = `año,artesanos,recaudado,comunidades\n2025,523,2847500,52\n2024,478,2315000,44`;
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'patac-datos-q1-2025.csv';
+                a.click();
+            };
+
+            // ==================== NAVBAR SCROLL EFFECT ====================
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.nav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // ==================== SMOOTH SCROLL ====================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // ==================== SCROLL INDICATOR ====================
+            const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    document.querySelector('#dashboard').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
