@@ -2066,61 +2066,62 @@
         }
 
         // ==================== DATA FETCHING ====================
-        async function loadData() {
-            try {
-                // Mostrar skeletons mientras carga
-                showSkeletons();
+async function loadData() {
+    try {
+        // Mostrar skeletons mientras carga
+        showSkeletons();
 
-                const cached = getCachedData();
-                if (cached) {
-                    AppState.productos = cached.productos;
-                    AppState.artesanos = cached.artesanos;
-                    populateArtisanFilter();
-                    checkURLParams();
-                    applyFilters();
-                    hideSkeletons();
-                    return;
-                }
-
-                const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                    ? 'http://localhost:3000/api' 
-                    : '/api';
-
-                const [productosRes, artesanosRes] = await Promise.all([
-                    fetch(`${API_BASE}/productos`),
-                    fetch(`${API_BASE}/artesanos`)
-                ]);
-
-                if (!productosRes.ok || !artesanosRes.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-
-                const productosData = await productosRes.json();
-                const artesanosData = await artesanosRes.json();
-
-                AppState.productos = productosData.productos || [];
-                AppState.artesanos = artesanosData.artesanos || [];
-
-                // Validar datos
-                AppState.productos.forEach(p => {
-                    p.precio = parseFloat(p.precio) || 0;
-                    p.stock = parseInt(p.stock) || 0;
-                    p.porcentajeArtesano = parseInt(p.porcentajeArtesano) || 0;
-                });
-
-                setCachedData({ productos: AppState.productos, artesanos: AppState.artesanos });
-
-                populateArtisanFilter();
-                checkURLParams();
-                applyFilters();
-                hideSkeletons();
-
-            } catch (error) {
-                console.error('❌ Error loading data:', error);
-                DOM.loadingState.innerHTML = '<p class="error-message">Error al cargar productos. Por favor intenta más tarde.</p>';
-                DOM.loadingState.classList.remove('hidden');
-            }
+        const cached = getCachedData();
+        if (cached) {
+            AppState.productos = cached.productos;
+            AppState.artesanos = cached.artesanos;
+            populateArtisanFilter();
+            checkURLParams();
+            applyFilters();
+            hideSkeletons();
+            return;
         }
+
+        // ✅ CORRECCIÓN: Usar ruta relativa siempre.
+        // En local resolverá a http://localhost:3000/api
+        // En Vercel resolverá a https://patac-mx.vercel.app/api (sin error de CORS)
+        const API_BASE = '/api';
+
+        const [productosRes, artesanosRes] = await Promise.all([
+            fetch(`${API_BASE}/productos`),
+            fetch(`${API_BASE}/artesanos`)
+        ]);
+
+        if (!productosRes.ok || !artesanosRes.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+
+        const productosData = await productosRes.json();
+        const artesanosData = await artesanosRes.json();
+
+        AppState.productos = productosData.productos || [];
+        AppState.artesanos = artesanosData.artesanos || [];
+
+        // Validar datos
+        AppState.productos.forEach(p => {
+            p.precio = parseFloat(p.precio) || 0;
+            p.stock = parseInt(p.stock) || 0;
+            p.porcentajeArtesano = parseInt(p.porcentajeArtesano) || 0;
+        });
+
+        setCachedData({ productos: AppState.productos, artesanos: AppState.artesanos });
+
+        populateArtisanFilter();
+        checkURLParams();
+        applyFilters();
+        hideSkeletons();
+
+    } catch (error) {
+        console.error('❌ Error loading data:', error);
+        DOM.loadingState.innerHTML = '<p class="error-message">Error al cargar productos. Por favor intenta más tarde.</p>';
+        DOM.loadingState.classList.remove('hidden');
+    }
+}
 
         function showSkeletons() {
             DOM.pagination.classList.add('hidden');
