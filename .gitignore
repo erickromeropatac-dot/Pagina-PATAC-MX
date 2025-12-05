@@ -5,6 +5,7 @@ node_modules/
 service-account.json
 .env
 .env.local
+pruebaCards.html
 
 # OS files
 .DS_Store
