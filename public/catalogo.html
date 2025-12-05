@@ -2684,6 +2684,11 @@ async function loadData() {
         }
 
         function initializeModalComponents() {
+            // CORRECCIÓN: Definimos las variables basándonos en el Estado Global (AppState)
+            // para que estén disponibles en toda esta función.
+            const producto = AppState.currentProduct;
+            const artesano = AppState.currentArtesano;
+
             // Swiper
             const productSwiper = new Swiper('#productSwiper', {
                 loop: document.querySelectorAll('.swiper-slide').length > 1,
@@ -2764,7 +2769,7 @@ async function loadData() {
                 });
             });
 
-            // Currency converter
+            // Currency converter (CORREGIDO)
             document.getElementById('currencyBtn').addEventListener('click', (e) => {
                 e.preventDefault();
                 const currencies = ['MXN', 'USD', 'EUR'];
@@ -2775,6 +2780,7 @@ async function loadData() {
                 const currencyBtn = document.getElementById('currencyBtn');
                 const stickyPriceElement = document.getElementById('stickyPrice');
                 
+                // Ahora 'producto' sí existe porque lo definimos al inicio de la función
                 const newPrice = formatCurrency(parseFloat(producto.precio), AppState.currentCurrency);
                 priceElement.textContent = newPrice;
                 stickyPriceElement.textContent = newPrice;
@@ -2820,6 +2826,7 @@ async function loadData() {
                 option.addEventListener('click', () => {
                     const platform = option.dataset.platform;
                     const url = window.location.href;
+                    // También corregimos el uso de 'artesano' aquí
                     const text = `Check out this ${producto.nombre} by ${artesano?.nombreCompleto || artesano?.nombre || 'artisan'}`;
                     
                     switch(platform) {
